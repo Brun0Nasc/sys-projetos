@@ -1,0 +1,35 @@
+package equipes
+
+import (
+	"net/http"
+
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+)
+
+type AddEquipeRequestBody struct {
+	gorm.Model
+	Nome		string 			`json:"nome"`
+}
+
+func (h handler) AddEquipe(c *gin.Context) {
+	body := AddEquipeRequestBody{}
+
+	// getting request's body
+	if err := c.BindJSON(&body); err != nil {
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	var equipe models.Equipe
+
+	equipe.Nome = body.Nome
+
+	if result := h.DB.Create(&equipe); result.Error != nil {
+		c.AbortWithError(http.StatusNotFound, result.Error)
+		return
+	}
+
+	c.JSON(http.StatusCreated, &equipe)
+}
