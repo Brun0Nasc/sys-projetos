@@ -24,6 +24,7 @@ func (h handler) AddProjeto(c *gin.Context) {
 	var projeto models.Projeto
 
 	projeto.Nome = body.Nome
+	projeto.Equipe = body.Equipe
 
 	if result := h.DB.Create(&projeto); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)

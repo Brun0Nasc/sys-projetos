@@ -23,13 +23,10 @@ func (h handler) AddPessoa(c *gin.Context) {
 	}
 
 	var pessoa models.Pessoa
-	var equipe models.Equipe = body.Equipe
-
-	
 
 	pessoa.Nome = body.Nome
 	pessoa.Funcao = body.Funcao
-	pessoa.Equipe = equipe
+	pessoa.Equipe = body.Equipe
 
 	if result := h.DB.Create(&pessoa); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
