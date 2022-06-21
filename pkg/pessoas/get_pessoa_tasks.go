@@ -9,12 +9,12 @@ import (
 )
 
 type result struct {
-	ID		 	uint	`json:"id"`
-	Nome 	 	string	`json:"nome"`
-	Funcao	 	string `json:"funcao"`
-	EquipeID 	int	`json:"id_equipe"`
-	Projeto	 	string	`json:"projeto.nome"`
-	Descricao	string	`json:"descricao"`
+	ID_Pessoa		 uint	`json:"id_pessoa"`
+	Nome_Pessoa 	 string	`json:"nome_pessoa"`
+	Funcao_Pessoa	 string `json:"funcao_pessoa"`
+	Nome_Equipe 	 string	`json:"id_equipe"`
+	Nome_Projeto	 string	`json:"nome_projeto"`
+	Descricao_Task	 string	`json:"descricao_task"`
 }
 
 func (h handler) GetTaskPessoa(c *gin.Context) {
@@ -22,7 +22,7 @@ func (h handler) GetTaskPessoa(c *gin.Context) {
 
 	var result []result
 
-	if result := h.DB.Raw("SELECT pe.id, pe.nome, pe.funcao, pe.equipe_id, pr.nome, tk.descricao FROM pessoas AS pe INNER JOIN equipes AS eq ON pe.equipe_id = eq.id INNER JOIN projetos AS pr ON pr.equipe_id = eq.id INNER JOIN tasks as tk ON tk.projeto_id = pr.id AND tk.pessoa_id = pe.id WHERE pe.id = ?", id).Scan(&result); result.Error != nil {
+	if result := h.DB.Raw("SELECT pe.id_pessoa, pe.nome_pessoa, pe.funcao_pessoa, eq.nome_equipe, pr.nome_projeto, tk.descricao_task FROM pessoas AS pe INNER JOIN equipes AS eq ON pe.equipe_id = eq.id_equipe INNER JOIN projetos AS pr ON pr.equipe_id = eq.id_equipe INNER JOIN tasks as tk ON tk.projeto_id = pr.id_projeto AND tk.pessoa_id = pe.id_pessoa WHERE pe.id_pessoa = ?", id).Scan(&result); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
