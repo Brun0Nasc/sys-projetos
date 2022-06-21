@@ -8,8 +8,8 @@ import (
 )
 
 type UpdateProjetoRequestBody struct {
-	Nome		string `json:"nome"`
-	Equipe 		models.Equipe `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
+	Nome_Projeto	string `json:"nome_projeto"`
+	Equipe 			models.Equipe `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
 }
 
 func (h handler) UpdateProjeto(c *gin.Context) {
@@ -29,7 +29,7 @@ func (h handler) UpdateProjeto(c *gin.Context) {
 		return
 	}
 
-	projeto.Nome = body.Nome
+	projeto.Nome_Projeto = body.Nome_Projeto
 	projeto.Equipe = body.Equipe
 
 	h.DB.Save(&projeto)

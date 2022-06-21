@@ -8,9 +8,9 @@ import (
 )
 
 type AddTaskRequestBody struct {
-	Descricao    string 			`gorm:"type: varchar(100) not null" json:"descricao"`
-	Pessoa		models.Pessoa 	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"pessoa"`
-	Projeto		models.Projeto 	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"projeto"`
+	Descricao_Task  string 			`gorm:"type: varchar(100) not null" json:"descricao"`
+	Pessoa			models.Pessoa 	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"pessoa"`
+	Projeto			models.Projeto 	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"projeto"`
 }
 
 func (h handler) AddTask(c *gin.Context) {
@@ -24,7 +24,7 @@ func (h handler) AddTask(c *gin.Context) {
 
 	var task models.Task
 
-	task.Descricao = body.Descricao
+	task.Descricao_Task = body.Descricao_Task
 	task.Pessoa = body.Pessoa
 	task.Projeto = body.Projeto
 

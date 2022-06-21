@@ -8,9 +8,9 @@ import (
 )
 
 type AddPessoaRequestBody struct {
-    Nome		string `gorm:"type: varchar(30) not null" json:"nome"`
-	Funcao		string `gorm:"type: varchar(20) not null" json:"funcao"`
-	Equipe		models.Equipe `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
+    Nome_Pessoa		string `gorm:"type: varchar(30) not null" json:"nome_pessoa"`
+	Funcao_Pessoa	string `gorm:"type: varchar(20) not null" json:"funcao_pessoa"`
+	Equipe			models.Equipe `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
 }
 
 func (h handler) AddPessoa(c *gin.Context) {
@@ -24,8 +24,8 @@ func (h handler) AddPessoa(c *gin.Context) {
 
 	var pessoa models.Pessoa
 
-	pessoa.Nome = body.Nome
-	pessoa.Funcao = body.Funcao
+	pessoa.Nome_Pessoa = body.Nome_Pessoa
+	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 	pessoa.Equipe = body.Equipe
 
 	if result := h.DB.Create(&pessoa); result.Error != nil {

@@ -8,8 +8,8 @@ import (
 )
 
 type AddProjetoRequestBody struct {
-	Nome		string 			`gorm:"type: varchar(30) not null" json:"nome"`
-	Equipe 		models.Equipe	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
+	Nome_Projeto	string 			`gorm:"type: varchar(30) not null" json:"nome_projeto"`
+	Equipe 			models.Equipe	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
 }
 
 func (h handler) AddProjeto(c *gin.Context) {
@@ -23,7 +23,7 @@ func (h handler) AddProjeto(c *gin.Context) {
 
 	var projeto models.Projeto
 
-	projeto.Nome = body.Nome
+	projeto.Nome_Projeto = body.Nome_Projeto
 	projeto.Equipe = body.Equipe
 
 	if result := h.DB.Create(&projeto); result.Error != nil {

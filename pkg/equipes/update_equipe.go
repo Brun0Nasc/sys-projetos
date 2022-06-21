@@ -8,7 +8,7 @@ import (
 )
 
 type UpdateEquipeRequestBody struct {
-	Nome string `json:"nome"`
+	Nome_Equipe string `json:"nome"`
 }
 
 func (h handler) UpdateEquipe(c *gin.Context) {
@@ -28,7 +28,7 @@ func (h handler) UpdateEquipe(c *gin.Context) {
 		return
 	}
 
-	equipe.Nome = body.Nome
+	equipe.Nome_Equipe = body.Nome_Equipe
 
 	h.DB.Save(&equipe)
 

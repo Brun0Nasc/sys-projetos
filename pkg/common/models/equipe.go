@@ -1,6 +1,6 @@
 package models
 
 type Equipe struct {
-    ID          uint   `gorm:"primary_key" json:"id"`
-    Nome       string `json:"nome"`
+    ID_Equipe         uint   `gorm:"primary_key" json:"id_equipe"`
+    Nome_Equipe       string `json:"nome_equipe"`
 }

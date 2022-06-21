@@ -8,8 +8,8 @@ import (
 )
 
 type UpdatePessoaRequestBody struct {
-	Nome		string `json:"nome"`
-	Funcao 		string `json:"funcao"`
+	Nome_Pessoa		string `json:"nome_pessoa"`
+	Funcao_Pessoa 		string `json:"funcao_pessoa"`
 	Equipe 		models.Equipe `json:"equipe"`
 }
 
@@ -30,8 +30,8 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 		return
 	}
 
-	pessoa.Nome = body.Nome
-	pessoa.Funcao = body.Funcao
+	pessoa.Nome_Pessoa = body.Nome_Pessoa
+	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 	pessoa.Equipe = body.Equipe
 
 	h.DB.Save(&pessoa)
