@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type result struct {
+type Result struct {
 	ID_Pessoa		 uint	`json:"id_pessoa"`
 	Nome_Pessoa 	 string	`json:"nome_pessoa"`
 	Funcao_Pessoa	 string `json:"funcao_pessoa"`
@@ -20,7 +20,7 @@ type result struct {
 func (h handler) GetTaskPessoa(c *gin.Context) {
 	id := c.Param("id")
 
-	var result []result
+	var result []Result
 
 	if result := h.DB.Raw("SELECT pe.id_pessoa, pe.nome_pessoa, pe.funcao_pessoa, eq.nome_equipe, pr.nome_projeto, tk.descricao_task FROM pessoas AS pe INNER JOIN equipes AS eq ON pe.equipe_id = eq.id_equipe INNER JOIN projetos AS pr ON pr.equipe_id = eq.id_equipe INNER JOIN tasks as tk ON tk.projeto_id = pr.id_projeto AND tk.pessoa_id = pe.id_pessoa WHERE pe.id_pessoa = ?", id).Scan(&result); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
