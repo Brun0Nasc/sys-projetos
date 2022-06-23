@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	CORSMiddleware()
 	viper.SetConfigFile("./pkg/common/envs/.env")
 	viper.ReadInConfig()
 
