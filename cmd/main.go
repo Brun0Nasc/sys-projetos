@@ -9,6 +9,7 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/pkg/tasks"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"github.com/gin-contrib/cors"
 )
 
 func main() {
@@ -26,5 +27,9 @@ func main() {
 	projetos.RegisterRoutes(r, h)
 	tasks.RegisterRoutes(r, h)
 
+	r.Use(cors.Default())
+	
 	r.Run(":"+port)
+
+
 }
