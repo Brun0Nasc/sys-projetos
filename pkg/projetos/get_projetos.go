@@ -2,34 +2,24 @@ package projetos
 
 import (
 	"net/http"
-
-	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
 
 type BodyGetProjetos struct {
 	ID_Projeto uint `json:"id_projeto"`
 	Nome_Projeto string `json:"nome_projeto"`
-	EquipeID int `json:"equipeId"`
+	EquipeID int `json:"equipe_id"`
+	Nome_Equipe string `json:"nome_equipe"`
 }
 
 func (h handler) GetProjetos(c *gin.Context) {
-	var projetos []models.Projeto
-	body := BodyGetProjetos{}
-	var exibe []BodyGetProjetos
+	var projetos []BodyGetProjetos
+	sql := "select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe"
 
-	if result := h.DB.Find(&projetos); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
+	if projetos := h.DB.Raw(sql).Scan(&projetos); projetos.Error != nil {
+		c.AbortWithError(http.StatusNotFound, projetos.Error)
 		return
 	}
-
-	for _, p := range projetos {
-		body.ID_Projeto = p.ID_Projeto
-		body.Nome_Projeto = p.Nome_Projeto
-		body.EquipeID = p.EquipeID
-
-		exibe = append(exibe, body)
-	}
 	
-	c.JSON(http.StatusOK, &exibe)
+	c.JSON(http.StatusOK, &projetos)
 }

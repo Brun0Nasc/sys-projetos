@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun 22 07:38:29 2022
+# Make data base, printed on Thu Jun 23 08:37:17 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/dbus-update-activation-environment
 # environment
-JOURNAL_STREAM = 8:56473
+JOURNAL_STREAM = 8:45701
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -71,7 +71,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 MANAGERPID = 2188
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-5959cf40-1723-4b22-ad2b-dbd05521677b.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-deb37910-6055-4f50-9241-aae4a35444e8.sock
 # environment
 VSCODE_CWD = /home/brisa
 # environment
@@ -83,7 +83,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2397,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2397
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2401,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2401
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
 # environment
@@ -95,7 +95,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = e9f6b7d0aec94d19b132c9cbedbf2397
+INVOCATION_ID = 8a4d7d83fe434127aa22ce2e22dfe1ac
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -103,7 +103,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6380
+GIO_LAUNCHED_DESKTOP_FILE_PID = 39853
 # automatic
 %F = $(notdir $%)
 # environment
@@ -115,7 +115,7 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2362
+SSH_AGENT_PID = 2366
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
@@ -131,7 +131,7 @@ VSCODE_CODE_CACHE_PATH = /home/brisa/.config/Code/CachedData/c3511e6c69bb39013c4
 # environment
 LOGNAME = brisa
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
@@ -213,7 +213,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6554
+VSCODE_PID = 40029
 # variable set hash-table stats:
 # Load=101/1024=10%, Rehash=0, Collisions=16/126=13%
 
@@ -274,6 +274,6 @@ server:
 # strcache performance: lookups = 21 / hit rate = 23%
 # hash-table stats:
 # Load=16/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Wed Jun 22 07:38:29 2022
+# Finished Make data base on Thu Jun 23 08:37:17 2022
 
  
