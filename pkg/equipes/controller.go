@@ -10,6 +10,7 @@ type handler struct {
 }
 
 func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
+	
 	h := &handler{
 		DB: db,
 	}

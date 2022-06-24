@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 24 08:25:25 2022
+# Make data base, printed on Fri Jun 24 09:58:07 2022
 
 # Variables
 
@@ -47,7 +47,7 @@ SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupport":true}
 # environment
-_ = /usr/share/code/code
+_ = /usr/bin/dbus-update-activation-environment
 # environment
 JOURNAL_STREAM = 8:51661
 # environment
@@ -57,7 +57,7 @@ MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/github-desktop.desktop
 # environment
 USERNAME = brisa
 # environment
@@ -71,7 +71,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 MANAGERPID = 2195
 # environment
-LESSOPEN = | /usr/bin/lesspipe %s
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-3144213a-8b78-4e48-83c9-c6e847d01112.sock
 # environment
 VSCODE_CWD = /home/brisa
 # environment
@@ -99,13 +99,11 @@ INVOCATION_ID = 342584eb923944db9368440df8eb6e60
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
-LS_COLORS = 
-# environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 20548
+GIO_LAUNCHED_DESKTOP_FILE_PID = 23391
 # automatic
 %F = $(notdir $%)
 # environment
@@ -119,7 +117,7 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # environment
 SSH_AGENT_PID = 2371
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
@@ -127,13 +125,15 @@ GOMODCACHE = /home/brisa/go/pkg/mod
 # environment
 HOME = /home/brisa
 # environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
+VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = /home/brisa/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
 LOGNAME = brisa
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -151,9 +151,9 @@ QT_IM_MODULE = ibus
 # environment
 SHLVL = 0
 # environment
-GNOME_SHELL_SESSION_MODE = ubuntu
+LOCAL_GIT_DIRECTORY = /usr/lib/github-desktop/resources/app/git
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-d49b1bed-9c4b-4fa1-ae61-f667303c036c.sock
+GNOME_SHELL_SESSION_MODE = ubuntu
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -213,9 +213,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 20548
+VSCODE_PID = 47685
 # variable set hash-table stats:
-# Load=101/1024=10%, Rehash=0, Collisions=14/126=11%
+# Load=101/1024=10%, Rehash=0, Collisions=16/126=13%
 
 # Pattern-specific Variable Values
 
@@ -274,6 +274,6 @@ server:
 # strcache performance: lookups = 22 / hit rate = 22%
 # hash-table stats:
 # Load=17/8192=0%, Rehash=0, Collisions=1/22=5%
-# Finished Make data base on Fri Jun 24 08:25:25 2022
+# Finished Make data base on Fri Jun 24 09:58:07 2022
 
  

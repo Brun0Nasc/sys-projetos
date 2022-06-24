@@ -22,12 +22,11 @@ func main() {
 	r := gin.Default()
 	h := db.Init(dbUrl)
 
-	r.Use(cors.Default())
-
 	pessoas.RegisterRoutes(r, h)
 	equipes.RegisterRoutes(r, h)
 	projetos.RegisterRoutes(r, h)
 	tasks.RegisterRoutes(r, h)
 
-	r.Run(":"+port)
+	r.Use(cors.Default())
+	r.Run(":" + port)
 }
