@@ -3,6 +3,7 @@ package equipes
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+	
 )
 
 type handler struct {
@@ -25,3 +26,4 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	routes.PUT("/:id", h.UpdateEquipe)
 	routes.DELETE("/:id", h.DeleteEquipe)
 }
+

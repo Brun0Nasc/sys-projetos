@@ -2,7 +2,6 @@ package equipes
 
 import (
 	"net/http"
-
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 24 09:58:07 2022
+# Make data base, printed on Mon Jun 27 07:51:30 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/dbus-update-activation-environment
 # environment
-JOURNAL_STREAM = 8:51661
+JOURNAL_STREAM = 8:46996
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -63,19 +63,15 @@ USERNAME = brisa
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 2195
+MANAGERPID = 2196
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-3144213a-8b78-4e48-83c9-c6e847d01112.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-46c1d8a5-0d74-4354-98cc-9ea66e0c9fec.sock
 # environment
 VSCODE_CWD = /home/brisa
-# environment
-GOPROXY = https://proxy.golang.org,direct
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -83,11 +79,9 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2406,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2406
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2414,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2414
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
-# environment
-GOPATH = /home/brisa/go
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -95,7 +89,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 342584eb923944db9368440df8eb6e60
+INVOCATION_ID = 7ba9d868e7224237a94ed92aac2f49ea
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -103,7 +97,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 23391
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5411
 # automatic
 %F = $(notdir $%)
 # environment
@@ -115,13 +109,13 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2371
+SSH_AGENT_PID = 2379
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
-GOMODCACHE = /home/brisa/go/pkg/mod
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /home/brisa
 # environment
@@ -213,9 +207,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 47685
+VSCODE_PID = 5658
 # variable set hash-table stats:
-# Load=101/1024=10%, Rehash=0, Collisions=16/126=13%
+# Load=98/1024=10%, Rehash=0, Collisions=15/123=12%
 
 # Pattern-specific Variable Values
 
@@ -274,6 +268,6 @@ server:
 # strcache performance: lookups = 22 / hit rate = 22%
 # hash-table stats:
 # Load=17/8192=0%, Rehash=0, Collisions=1/22=5%
-# Finished Make data base on Fri Jun 24 09:58:07 2022
+# Finished Make data base on Mon Jun 27 07:51:30 2022
 
  
