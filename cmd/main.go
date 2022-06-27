@@ -22,9 +22,9 @@ func main() {
 
 	r := gin.Default()
 	h := db.Init(dbUrl)
-	
+
 	r.Use(cors.New(cors.Config{
-		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"},
+		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization", "Access-Control-Allow-Origin"},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		AllowOrigins: []string{"*"},
 	}))
