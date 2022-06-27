@@ -26,7 +26,7 @@ func main() {
 	r.Use(cors.New(cors.Config{
 		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization", "Access-Control-Allow-Origin"},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
-		AllowOrigins: []string{"*"},
+		AllowOrigins: []string{"localhost:4200"},
 	}))
 
 	pessoas.RegisterRoutes(r, h)
