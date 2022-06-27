@@ -24,7 +24,7 @@ func main() {
 	h := db.Init(dbUrl)
 
 	r.Use(cors.New(cors.Config{
-		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization", "Access-Control-Allow-Origin"},
+		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		AllowOrigins: []string{"localhost:4200"},
 	}))
