@@ -17,10 +17,5 @@ func (h handler) GetProjeto(c *gin.Context) {
 		return
 	}
 
-	if err := c.BindJSON(&projeto); err != nil {
-		c.AbortWithError(http.StatusBadRequest, err)
-		return
-	}
-	
 	c.JSON(http.StatusOK, &projeto)
 }
