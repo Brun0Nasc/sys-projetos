@@ -8,7 +8,7 @@ import (
 )
 
 type AddTaskRequestBody struct {
-	Descricao_Task  string 			`gorm:"type: varchar(100) not null" json:"descricao"`
+	Descricao_Task  string 			`gorm:"type: varchar(100) not null" json:"descricao_task"`
 	Pessoa			models.Pessoa 	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"pessoa"`
 	Projeto			models.Projeto 	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"projeto"`
 }
