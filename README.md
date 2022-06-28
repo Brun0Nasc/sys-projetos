@@ -7,12 +7,12 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 - Utilizando Go e Gin para desenvolvimento, e o software Insomnia para testes;
 - Disponível em (HEROKU): https://sistema-aprendizes-brisanet-go.herokuapp.com/
-- Front-End (React) em desenvolvimento.
+- Front-End (Angular) em desenvolvimento.
 <div style="display: inline_block"><br>
 <img align="center" alt="bruno-Golang" height="60" width="70" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" />
 <img align="center" alt="bruno-Golang" height="50" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" />
 <img align="center" alt="bruno-Postgres" height="50" width="60" src="https://wiki.postgresql.org/images/3/30/PostgreSQL_logo.3colors.120x120.png"/>
-<img align="center" alt="bruno-React" height="50" width="60" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"/>
+<img align="center" alt="bruno-Angular" height="50" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg"/>
 </div>
 
 
@@ -32,7 +32,7 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 | Criar tarefa no projeto | ✔️ | 
 | Atribuir tarefa | ✔️ | 
 | Manter dados no Banco de Dados | ✔️ | 
-| Front-End | ❌ |
+| Front-End | ⌛ |
 | Testes 2e2 com Cypress | ❌ | 
 
 ### ROTAS
