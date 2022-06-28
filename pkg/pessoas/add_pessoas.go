@@ -8,9 +8,9 @@ import (
 )
 
 type AddPessoaRequestBody struct {
-    Nome_Pessoa		string `gorm:"type: varchar(30) not null" json:"nome_pessoa"`
-	Funcao_Pessoa	string `gorm:"type: varchar(20) not null" json:"funcao_pessoa"`
-	Equipe			models.Equipe `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
+    Nome_Pessoa		string 	`json:"nome_pessoa"`
+	Funcao_Pessoa	string 	`json:"funcao_pessoa"`
+	EquipeID		int 	`json:"equipeId"`
 }
 
 func (h handler) AddPessoa(c *gin.Context) {
@@ -26,9 +26,11 @@ func (h handler) AddPessoa(c *gin.Context) {
 
 	pessoa.Nome_Pessoa = body.Nome_Pessoa
 	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-	pessoa.Equipe = body.Equipe
+	pessoa.EquipeID = body.EquipeID
 
-	if result := h.DB.Create(&pessoa); result.Error != nil {
+	sql := "INSERT INTO pessoas(nome_pessoa, funcao_pessoa, equipe_id) VALUES(?,?,?)"
+
+	if result := h.DB.Raw(sql, pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
