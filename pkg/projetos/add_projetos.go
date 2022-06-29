@@ -32,10 +32,6 @@ func (h handler) AddProjeto(c *gin.Context) {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
-	if result := h.DB.Raw(`insert into projetos(nome_projeto, equipe_id) values(?,?)`, projeto.Nome_Projeto, projeto.EquipeID).Scan(&projeto); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
-		return
-	}
 
 	c.JSON(http.StatusCreated, &projeto)
 }
