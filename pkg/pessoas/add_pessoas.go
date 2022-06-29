@@ -8,7 +8,6 @@ import (
 )
 
 type AddPessoaRequestBody struct {
-	ID_Pessoa		uint 	`json:"id_pessoa"`
 	Nome_Pessoa		string  `json:"nome_pessoa"`
 	Funcao_Pessoa	string  `json:"funcao_pessoa"`
 	EquipeID		int     `json:"equipe_id"`
@@ -25,7 +24,6 @@ func (h handler) AddPessoa(c *gin.Context) {
 
 	var pessoa models.Pessoa
 
-	pessoa.ID_Pessoa = body.ID_Pessoa
 	pessoa.Nome_Pessoa = body.Nome_Pessoa
 	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 	pessoa.EquipeID = body.EquipeID
