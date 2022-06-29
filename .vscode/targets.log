@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 28 07:45:00 2022
+# Make data base, printed on Wed Jun 29 07:41:07 2022
 
 # Variables
 
@@ -47,9 +47,9 @@ SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupport":true}
 # environment
-_ = /usr/bin/dbus-update-activation-environment
+_ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:56513
+JOURNAL_STREAM = 8:51682
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -57,21 +57,25 @@ MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/github-desktop.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # environment
 USERNAME = brisa
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 2206
+MANAGERPID = 2192
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-432e6535-ba37-4c25-a85b-db560eb02345.sock
+LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /home/brisa
+# environment
+GOPROXY = https://proxy.golang.org,direct
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -79,9 +83,11 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2414,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2414
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2407,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2407
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
+# environment
+GOPATH = /home/brisa/go
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -89,15 +95,17 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = fe93c10d724a42beb434d82128ecb8c4
+INVOCATION_ID = 57d3a01e7a574c30b6f8e5e03dadf522
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5607
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5509
 # automatic
 %F = $(notdir $%)
 # environment
@@ -109,25 +117,23 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2379
+SSH_AGENT_PID = 2372
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = Unity
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+GOMODCACHE = /home/brisa/go/pkg/mod
 # environment
 HOME = /home/brisa
 # environment
-VSCODE_CLI = 1
+LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CODE_CACHE_PATH = /home/brisa/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
 LOGNAME = brisa
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -145,9 +151,9 @@ QT_IM_MODULE = ibus
 # environment
 SHLVL = 0
 # environment
-LOCAL_GIT_DIRECTORY = /usr/lib/github-desktop/resources/app/git
-# environment
 GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-de13e309-661e-49e9-ac9a-152c3e7f7e8b.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -207,9 +213,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6146
+VSCODE_PID = 5509
 # variable set hash-table stats:
-# Load=98/1024=10%, Rehash=0, Collisions=15/123=12%
+# Load=101/1024=10%, Rehash=0, Collisions=14/126=11%
 
 # Pattern-specific Variable Values
 
@@ -268,6 +274,6 @@ server:
 # strcache performance: lookups = 22 / hit rate = 22%
 # hash-table stats:
 # Load=17/8192=0%, Rehash=0, Collisions=1/22=5%
-# Finished Make data base on Tue Jun 28 07:45:00 2022
+# Finished Make data base on Wed Jun 29 07:41:07 2022
 
  
