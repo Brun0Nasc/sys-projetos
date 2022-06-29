@@ -8,8 +8,9 @@ import (
 )
 
 type AddProjetoRequestBody struct {
-	Nome_Projeto	string 			`gorm:"type: varchar(30) not null" json:"nome_projeto"`
-	Equipe 			models.Equipe	`gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
+	ID_Projeto	 uint	`json:"id_projeto"`
+	Nome_Projeto string `json:"nome_projeto"`
+	EquipeID 	 int 	`json:"equipe_id"`
 }
 
 func (h handler) AddProjeto(c *gin.Context) {
@@ -23,10 +24,15 @@ func (h handler) AddProjeto(c *gin.Context) {
 
 	var projeto models.Projeto
 
+	projeto.ID_Projeto = body.ID_Projeto
 	projeto.Nome_Projeto = body.Nome_Projeto
-	projeto.Equipe = body.Equipe
+	projeto.EquipeID = body.EquipeID
 
 	if result := h.DB.Create(&projeto); result.Error != nil {
+		c.AbortWithError(http.StatusNotFound, result.Error)
+		return
+	}
+	if result := h.DB.Raw(`insert into projetos(nome_projeto, equipe_id) values(?,?)`, projeto.Nome_Projeto, projeto.EquipeID).Scan(&projeto); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}

@@ -12,7 +12,7 @@ type Result struct {
 	ID_Pessoa		 uint	`json:"id_pessoa"`
 	Nome_Pessoa 	 string	`json:"nome_pessoa"`
 	Funcao_Pessoa	 string `json:"funcao_pessoa"`
-	Nome_Equipe 	 string	`json:"id_equipe"`
+	Nome_Equipe 	 string	`json:"equipe_id"`
 	Nome_Projeto	 string	`json:"nome_projeto"`
 	Descricao_Task	 string	`json:"descricao_task"`
 }

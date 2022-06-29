@@ -8,8 +8,9 @@ import (
 )
 
 type UpdateProjetoRequestBody struct {
-	Nome_Projeto	string `json:"nome_projeto"`
-	Equipe 			models.Equipe `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"equipe"`
+	ID_Projeto	 uint	`json:"id_projeto"`
+	Nome_Projeto string `json:"nome_projeto"`
+	EquipeID 	 int 	`json:"equipe_id"`
 }
 
 func (h handler) UpdateProjeto(c *gin.Context) {
@@ -30,9 +31,12 @@ func (h handler) UpdateProjeto(c *gin.Context) {
 	}
 
 	projeto.Nome_Projeto = body.Nome_Projeto
-	projeto.Equipe = body.Equipe
+	projeto.EquipeID = body.EquipeID
 
-	h.DB.Save(&projeto)
+	if result := h.DB.Raw(`update projetos set nome_projeto = ?, equipe_id = ? where id_projeto = ?`, 
+	projeto.Nome_Projeto, projeto.EquipeID, projeto.ID_Projeto).Scan(&projeto); result.Error != nil {
+		c.AbortWithError(http.StatusNotModified, result.Error)
+	}
 
 	c.JSON(http.StatusOK, &projeto)
 }

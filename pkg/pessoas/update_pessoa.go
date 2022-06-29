@@ -11,7 +11,7 @@ type UpdatePessoaRequestBody struct {
 	ID_Pessoa		uint   `json:"id_pessoa"`
 	Nome_Pessoa		string `json:"nome_pessoa"`
 	Funcao_Pessoa	string `json:"funcao_pessoa"`
-	EquipeID		int    `json:"equipeId"`
+	EquipeID		int    `json:"equipe_id"`
 }
 
 func (h handler) UpdatePessoa(c *gin.Context) {
@@ -35,8 +35,9 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 	pessoa.EquipeID = body.EquipeID
 
-	if result := h.DB.Raw("update pessoas set nome_pessoa = ?, funcao_pessoa = ?, equipe_id = ? where id_pessoa = ?", pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID, pessoa.ID_Pessoa).Scan(&pessoa); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
+	if result := h.DB.Raw("update pessoas set nome_pessoa = ?, funcao_pessoa = ?, equipe_id = ? where id_pessoa = ?", 
+	pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID, pessoa.ID_Pessoa).Scan(&pessoa); result.Error != nil {
+		c.AbortWithError(http.StatusNotModified, result.Error)
 		return
 	}
 
