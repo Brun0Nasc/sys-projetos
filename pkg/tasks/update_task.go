@@ -14,6 +14,10 @@ type UpdateTaskRequestBody struct {
 	ProjetoID		int 	`json:"projeto_id"`
 }
 
+type UpdateStatus struct {
+	Status string `json:"status"`
+}
+
 func (h handler) UpdateTask(c *gin.Context) {
 	id := c.Param("id")
 	body := UpdateTaskRequestBody{}
@@ -38,4 +42,21 @@ func (h handler) UpdateTask(c *gin.Context) {
 	h.DB.Save(&task)
 
 	c.JSON(http.StatusOK, &task)
+}
+
+func (h handler) UpdateStatus(c *gin.Context) {
+	id := c.Param("id")
+	body := UpdateStatus{}
+
+	if err := c.BindJSON(&body); err != nil {
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	if result := h.DB.Raw("update tasks set status = ? where id = ?", body.Status, id).Scan(&body); result.Error != nil {
+		c.AbortWithError(http.StatusNotModified, result.Error)
+		return
+	}
+
+	c.JSON(http.StatusOK, &body)
 }
