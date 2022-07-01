@@ -53,19 +53,10 @@ func (h handler) UpdateStatus(c *gin.Context) {
 		return
 	}
 
-	var task models.Task
-
-	if result := h.DB.First(&task, id); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
-		return
-	}
-
-	task.Status = body.Status
-
-	if result := h.DB.Raw("update tasks set status = ? where id = ?", task.Status, id).Scan(&task); result.Error != nil {
+	if result := h.DB.Raw("update tasks set status = ? where id_task = ?", body.Status, id).Scan(&body); result.Error != nil {
 		c.AbortWithError(http.StatusNotModified, result.Error)
 		return
 	}
 
-	c.JSON(http.StatusOK, &task)
+	c.JSON(http.StatusOK, &body)
 }
