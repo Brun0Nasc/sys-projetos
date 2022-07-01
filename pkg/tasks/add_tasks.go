@@ -29,6 +29,7 @@ func (h handler) AddTask(c *gin.Context) {
 	task.Descricao_Task = body.Descricao_Task
 	task.PessoaID = body.PessoaID
 	task.ProjetoID = body.ProjetoID
+	task.Status = "A fazer"
 
 	if result := h.DB.Create(&task); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
