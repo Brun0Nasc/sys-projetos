@@ -28,7 +28,8 @@ func (h handler) AddPessoa(c *gin.Context) {
 	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 	pessoa.EquipeID = body.EquipeID
 
-	if result := h.DB.Raw(`insert into pessoas(nome_pessoa, funcao_pessoa, equipe_id) values(?, ?, ?)`, pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID).Scan(&pessoa); result.Error != nil {
+	if result := h.DB.Raw(`insert into pessoas(nome_pessoa, funcao_pessoa, equipe_id) values(?, ?, ?)`, 
+	pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID).Scan(&pessoa); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}

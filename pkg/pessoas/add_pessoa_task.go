@@ -30,7 +30,10 @@ func (h handler) AddTaskPessoa(c *gin.Context) {
 
 	var projeto int
 
-	if result := h.DB.Raw("select pr.id_projeto from projetos as pr inner join pessoas as pe on pe.equipe_id = pr.equipe_id where pe.id_pessoa = ?", id).Scan(&projeto); result.Error != nil {
+	if result := h.DB.Raw(`select pr.id_projeto from projetos as pr
+	inner join pessoas as pe
+	on pe.equipe_id = pr.equipe_id
+	where pe.id_pessoa = ?`, id).Scan(&projeto); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
