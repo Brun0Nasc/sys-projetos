@@ -14,8 +14,7 @@ type BodyGetProjetos struct {
 
 func (h handler) GetProjetos(c *gin.Context) {
 	var projetos []BodyGetProjetos
-	sql := `select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe 
-	from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe`
+	sql := "select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe"
 
 	if projetos := h.DB.Raw(sql).Scan(&projetos); projetos.Error != nil {
 		c.AbortWithError(http.StatusNotFound, projetos.Error)

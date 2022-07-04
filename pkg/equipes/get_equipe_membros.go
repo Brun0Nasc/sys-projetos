@@ -16,8 +16,7 @@ func (h handler) GetEquipeMembros (c *gin.Context) {
 
 	var membros []Membros
 
-	if membros := h.DB.Raw(`select eq.nome_equipe, pe.nome_pessoa, pe.funcao_pessoa from equipes as eq 
-	inner join pessoas as pe on eq.id_equipe = pe.equipe_id where eq.id_equipe = ?`, id).Scan(&membros); membros.Error != nil {
+	if membros := h.DB.Raw("select eq.nome_equipe, pe.nome_pessoa, pe.funcao_pessoa from equipes as eq inner join pessoas as pe on eq.id_equipe = pe.equipe_id where eq.id_equipe = ?", id).Scan(&membros); membros.Error != nil {
 		c.AbortWithError(http.StatusNotFound, membros.Error)
 		return
 	}
