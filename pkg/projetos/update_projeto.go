@@ -33,7 +33,7 @@ func (h handler) UpdateProjeto(c *gin.Context) {
 	projeto.Nome_Projeto = body.Nome_Projeto
 	projeto.EquipeID = body.EquipeID
 
-	if result := h.DB.Raw("update projetos set nome_projeto = ?, equipe_id = ? where id_projeto = ?", 
+	if result := h.DB.Raw(`update projetos set nome_projeto = ?, equipe_id = ? where id_projeto = ?`, 
 	projeto.Nome_Projeto, projeto.EquipeID, projeto.ID_Projeto).Scan(&projeto); result.Error != nil {
 		c.AbortWithError(http.StatusNotModified, result.Error)
 	}
