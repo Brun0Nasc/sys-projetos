@@ -19,7 +19,11 @@ func (h handler) GetProjetoTasks (c *gin.Context) {
 
 	id := c.Param("id")
 
-	if tasks := h.DB.Raw("select pr.id_projeto, pr.nome_projeto, eq.nome_equipe, tk.descricao_task, pe.nome_pessoa from projetos as pr inner join tasks as tk on pr.id_projeto = tk.projeto_id inner join equipes as eq on pr.equipe_id = eq.id_equipe inner join pessoas as pe on pe.id_pessoa = tk.pessoa_id where id_projeto = ?", id).Scan(&tasks); tasks.Error != nil {
+	if tasks := h.DB.Raw(`select pr.id_projeto, pr.nome_projeto, eq.nome_equipe, tk.descricao_task, pe.nome_pessoa 
+	from projetos as pr inner join tasks as tk on pr.id_projeto = tk.projeto_id 
+	inner join equipes as eq on pr.equipe_id = eq.id_equipe 
+	inner join pessoas as pe on pe.id_pessoa = tk.pessoa_id 
+	where id_projeto = ?`, id).Scan(&tasks); tasks.Error != nil {
 		c.AbortWithError(http.StatusNotFound, tasks.Error)
 		return
 	}
