@@ -13,7 +13,7 @@ type AddTaskRequestBody struct {
 	PessoaID		int 	`json:"pessoa_id"`
 }
 
-func (h handler) AddTask(c *gin.Context) {
+func (h handler) AddTaskEquipe(c *gin.Context) {
 	body := AddTaskRequestBody{}
 	id := c.Param("id")
 
