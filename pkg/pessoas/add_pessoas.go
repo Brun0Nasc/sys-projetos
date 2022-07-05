@@ -2,9 +2,10 @@ package pessoas
 
 import (
 	"net/http"
+	"time"
 
-    "github.com/gin-gonic/gin"
-    "github.com/Brun0Nasc/sys-projetos/pkg/common/models"
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
+	"github.com/gin-gonic/gin"
 )
 
 type AddPessoaRequestBody struct {
@@ -23,10 +24,12 @@ func (h handler) AddPessoa(c *gin.Context) {
 	}
 
 	var pessoa models.Pessoa
-
+	dt := time.Now()
+	
 	pessoa.Nome_Pessoa = body.Nome_Pessoa
 	pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 	pessoa.EquipeID = body.EquipeID
+	pessoa.DataContratacao = dt.Format("02-01-2006")
 
 	if result := h.DB.Create(&pessoa); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
