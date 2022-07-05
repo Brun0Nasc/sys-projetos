@@ -8,7 +8,7 @@ import (
 )
 
 type AddEquipeRequestBody struct {
-	Nome_Equipe		string 			`json:"nome"`
+	Nome_Equipe		string 			`json:"nome_equipe"`
 }
 
 func (h handler) AddEquipe(c *gin.Context) {

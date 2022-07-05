@@ -7,4 +7,5 @@ type Pessoa struct {
     Nome_Pessoa		string `json:"nome_pessoa"`
 	Funcao_Pessoa	string `json:"funcao_pessoa"`
 	EquipeID		int    `json:"equipe_id"`
+	DataCont		string `json:"data_contratacao"`
 }
