@@ -26,6 +26,7 @@ func (h handler) AddProjeto(c *gin.Context) {
 
 	projeto.Nome_Projeto = body.Nome_Projeto
 	projeto.EquipeID = body.EquipeID
+	projeto.Status = "Em planejamento"
 	projeto.DataInicio = dt.Format("02-01-2006")
 
 	if result := h.DB.Create(&projeto); result.Error != nil {
