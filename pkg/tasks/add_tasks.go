@@ -14,6 +14,11 @@ type AddTaskRequestBody struct {
 }
 
 func (h handler) AddTask(c *gin.Context) {
+	/*select count(pe.id_pessoa) from pessoas as pe inner join
+equipes as eq on pe.equipe_id = eq.id_equipe 
+inner join projetos as pr on pr.equipe_id = eq.id_equipe
+where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
+	
 	body := AddTaskRequestBody{}
 
 	// getting request's body
