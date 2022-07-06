@@ -29,10 +29,23 @@ func (h handler) AddProjeto(c *gin.Context) {
 	projeto.Status = "Em planejamento"
 	projeto.DataInicio = dt.Format("02-01-2006")
 
-	if result := h.DB.Create(&projeto); result.Error != nil {
+	var check int
+
+	sql := "select count(id_pessoa) from pessoas where equipe_id = ?"
+
+	if result := h.DB.Raw(sql, projeto.EquipeID).Scan(&check); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
 
-	c.JSON(http.StatusCreated, &projeto)
+	if(check > 0){
+		if result := h.DB.Create(&projeto); result.Error != nil {
+			c.AbortWithError(http.StatusNotFound, result.Error)
+			return
+		}
+		c.JSON(http.StatusCreated, &projeto)
+	} else{
+		c.JSON(http.StatusOK, gin.H{"Message":"Projetos só podem ser cadastrados em equipes que possuam membros."})
+	}
+
 }
