@@ -11,7 +11,7 @@ func (h handler) GetProjeto(c *gin.Context) {
 
 	var projeto BodyGetProjetos
 
-	if projeto := h.DB.Raw("select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe where id_projeto = ?", id).Scan(&projeto); projeto.Error != nil {
+	if projeto := h.DB.Raw("select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe, pr.status, pr.data_inicio from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe where id_projeto = ?", id).Scan(&projeto); projeto.Error != nil {
 		c.AbortWithError(http.StatusNotFound, projeto.Error)
 		return
 	}
