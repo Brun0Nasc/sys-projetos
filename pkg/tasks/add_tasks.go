@@ -29,10 +29,22 @@ func (h handler) AddTask(c *gin.Context) {
 	task.ProjetoID = body.ProjetoID
 	task.Status = "A fazer"
 
-	if result := h.DB.Create(&task); result.Error != nil {
+	var check int
+
+	if result := h.DB.Raw("select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento'", task.ProjetoID).Scan(&check);
+	result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
 
-	c.JSON(http.StatusCreated, &task)
+	if(check > 0){
+		if result := h.DB.Create(&task); result.Error != nil {
+			c.AbortWithError(http.StatusNotFound, result.Error)
+			return
+		}
+	
+		c.JSON(http.StatusCreated, &task)
+	} else {
+		c.JSON(http.StatusOK, gin.H{"Message":"Tasks só podem ser cadastradas em projetos que estão Em desenvolvimento."})
+	}
 }

@@ -13,6 +13,7 @@ type UpdateProjetoRequestBody struct {
 	EquipeID 	 int 	`json:"equipe_id"`
 }
 
+
 func (h handler) UpdateProjeto(c *gin.Context) {
 	id := c.Param("id")
 	body := UpdateProjetoRequestBody{}
