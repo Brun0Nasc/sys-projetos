@@ -33,23 +33,34 @@ where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 	task.ProjetoID = body.ProjetoID
 	task.Status = "A fazer"
 
-	var check int
-	
+	var checkE int
+	verifica_equipe := "select count(pe.id_pessoa) from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe inner join projetos as pr on pr.equipe_id = eq.id_equipe where id_pessoa = 4 and pr.status = 'Em desenvolvimento'"
+	var checkS int
+	verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null"
 
-	if result := h.DB.Raw("select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null", task.ProjetoID).Scan(&check);
-	result.Error != nil {
+	if result := h.DB.Raw(verifica_equipe, task.ProjetoID).Scan(&checkE); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
 
-	if(check > 0){
-		if result := h.DB.Create(&task); result.Error != nil {
+	if(checkE > 0){
+		if result := h.DB.Raw(verifica_status, task.ProjetoID).Scan(&checkS); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return
 		}
 	
-		c.JSON(http.StatusCreated, &task)
+		if(checkS > 0){
+			if result := h.DB.Create(&task); result.Error != nil {
+				c.AbortWithError(http.StatusNotFound, result.Error)
+				return
+			}
+		
+			c.JSON(http.StatusCreated, &task)
+		} else {
+			c.JSON(http.StatusOK, gin.H{"Message":"Tasks só podem ser cadastradas em projetos que estão 'Em desenvolvimento' e estão em alguma equipe."})
+		}
 	} else {
-		c.JSON(http.StatusOK, gin.H{"Message":"Tasks só podem ser cadastradas em projetos que estão 'Em desenvolvimento' e estão em alguma equipe."})
+		c.JSON(http.StatusOK, gin.H{"Message":"Tasks só podem ser atribuidas a pessoas que estão na equipe responsável pelo projeto."})
 	}
+	
 }
