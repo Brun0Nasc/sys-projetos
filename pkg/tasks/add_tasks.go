@@ -33,12 +33,18 @@ where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 	task.ProjetoID = body.ProjetoID
 	task.Status = "A fazer"
 
+	var equipe int
+	if result := h.DB.Raw("select equipe_id from projetos where id_projeto = ?", task.ProjetoID).Scan(&equipe); result.Error != nil {
+		c.AbortWithError(http.StatusNotFound, result.Error)
+		return
+	}
+
 	var checkE int
-	verifica_equipe := "select count(pe.id_pessoa) from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe inner join projetos as pr on pr.equipe_id = eq.id_equipe where id_pessoa = ? and pr.status = 'Em desenvolvimento'"
+	verifica_equipe := "select count(pe.id_pessoa) from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe inner join projetos as pr on pr.equipe_id = eq.id_equipe where id_pessoa = ? and pr.status = 'Em desenvolvimento' and pr.equipe_id = ?"
 	var checkS int
 	verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null"
 
-	if result := h.DB.Raw(verifica_equipe, task.PessoaID).Scan(&checkE); result.Error != nil {
+	if result := h.DB.Raw(verifica_equipe, task.PessoaID, equipe).Scan(&checkE); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
