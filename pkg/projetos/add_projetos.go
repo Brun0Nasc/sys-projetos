@@ -1,8 +1,6 @@
 package projetos
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -33,10 +31,6 @@ func (h handler) AddProjeto(c *gin.Context) {
 	projeto.DataInicio = dt.Format("02-01-2006")
 
 	var check int
-	i, err := json.Marshal(projeto.EquipeID)
-	if err != nil {
-		fmt.Println(err)
-	}
 
 	sql := "select count(id_pessoa) from pessoas where equipe_id = ?"
 
@@ -45,7 +39,7 @@ func (h handler) AddProjeto(c *gin.Context) {
 		return
 	}
 
-	if(check > 0 || i == nil){
+	if(check > 0){
 		if result := h.DB.Create(&projeto); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return
