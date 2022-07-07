@@ -38,7 +38,7 @@ func (h handler) AddProjeto(c *gin.Context) {
 		return
 	}
 
-	if(check > 0){
+	if(check > 0 || len(string(rune(projeto.EquipeID))) == 0){
 		if result := h.DB.Create(&projeto); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return

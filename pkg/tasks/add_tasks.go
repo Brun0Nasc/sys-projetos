@@ -21,7 +21,6 @@ where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 	
 	body := AddTaskRequestBody{}
 
-	// getting request's body
 	if err := c.BindJSON(&body); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
@@ -35,6 +34,7 @@ where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 	task.Status = "A fazer"
 
 	var check int
+	
 
 	if result := h.DB.Raw("select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null", task.ProjetoID).Scan(&check);
 	result.Error != nil {
