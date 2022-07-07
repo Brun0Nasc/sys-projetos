@@ -38,7 +38,7 @@ where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 	var checkS int
 	verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null"
 
-	if result := h.DB.Raw(verifica_equipe, task.ProjetoID).Scan(&checkE); result.Error != nil {
+	if result := h.DB.Raw(verifica_equipe, task.PessoaID).Scan(&checkE); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
