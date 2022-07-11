@@ -12,7 +12,7 @@ type BodyGetProjetos struct {
 	Nome_Equipe 	string 	`json:"nome_equipe"`
 	Status 			string 	`json:"status"`
 	DataInicio 		string 	`json:"data_inicio"`
-	DataConclusao 	string 	`default:"" json:"data_conclusao"`
+	DataConclusao 	string 	`json:"data_conclusao"`
 }
 
 func (h handler) GetProjetos(c *gin.Context) {
@@ -22,6 +22,10 @@ func (h handler) GetProjetos(c *gin.Context) {
 	if projetos := h.DB.Raw(sql).Scan(&projetos); projetos.Error != nil {
 		c.AbortWithError(http.StatusNotFound, projetos.Error)
 		return
+	}
+
+	for _, i := range projetos {
+		i.DataConclusao = ""
 	}
 	
 	c.JSON(http.StatusOK, &projetos)
