@@ -2,7 +2,7 @@ package projetos
 
 import (
     "net/http"
-
+	"time"
     "github.com/gin-gonic/gin"
     "github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 )
@@ -71,18 +71,28 @@ func (h handler) UpdateStatus(c *gin.Context) {
 			c.AbortWithError(http.StatusNotModified, result.Error)
 			return
 		}
-	}
-
-	if check == 0 {
-		if result := h.DB.Raw(`update projetos set status = ? where id_projeto = ?`, 
-		projeto.Status, id).Scan(&projeto); result.Error != nil {
+		if check == 0 {
+			if result := h.DB.Raw(`update projetos set status = ? where id_projeto = ?`, 
+			projeto.Status, id).Scan(&projeto); result.Error != nil {
+				c.AbortWithError(http.StatusNotModified, result.Error)
+				return
+			}
+	
+			c.JSON(http.StatusOK, &projeto)
+		} else{
+			c.JSON(http.StatusOK, gin.H{"Message":"Essa equipe já tem um projeto Em desenvolvimento"})
+		}
+	} else if projeto.Status == "Concluído" {
+		dt := time.Now()
+		sql := "UPDATE projetos SET status = ?, data_conclusao = ? WHERE id_projeto = ?"
+		if result := h.DB.Raw(sql, projeto.Status, dt, id).Scan(&projeto); result.Error != nil {
 			c.AbortWithError(http.StatusNotModified, result.Error)
 			return
 		}
 
 		c.JSON(http.StatusOK, &projeto)
-	} else{
-		c.JSON(http.StatusOK, gin.H{"Message":"Essa equipe já tem um projeto Em desenvolvimento"})
 	}
+
+	
 	
 }
