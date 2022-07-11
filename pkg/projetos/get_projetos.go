@@ -12,12 +12,12 @@ type BodyGetProjetos struct {
 	Nome_Equipe 	string 	`json:"nome_equipe"`
 	Status 			string 	`json:"status"`
 	DataInicio 		string 	`json:"data_inicio"`
-	DataConclusao 	string 	`json:"data_conclusao"`
+	DataConclusao 	string 	`default:"" json:"data_conclusao"`
 }
 
 func (h handler) GetProjetos(c *gin.Context) {
 	var projetos []BodyGetProjetos
-	sql := "select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe, pr.status, pr.data_inicio, pr.data_conclusao from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe"
+	sql := "select pr.id_projeto, pr.nome_projeto, pr.equipe_id, eq.nome_equipe, pr.status, pr.data_inicio, pr.data_conclusao from projetos as pr inner join equipes as eq on pr.equipe_id = eq.id_equipe order by id_projeto"
 
 	if projetos := h.DB.Raw(sql).Scan(&projetos); projetos.Error != nil {
 		c.AbortWithError(http.StatusNotFound, projetos.Error)
