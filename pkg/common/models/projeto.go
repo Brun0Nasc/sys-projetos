@@ -5,5 +5,4 @@ type Projeto struct {
 	Nome_Projeto 	string 	`gorm:"type: varchar(30) not null" json:"nome_projeto"`
 	EquipeID 		int 	`json:"equipe_id"`
 	Status			string	`json:"status"`
-	DataInicio		string  `json:"data_inicio"`
 }

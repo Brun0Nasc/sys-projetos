@@ -2,7 +2,6 @@ package projetos
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
@@ -23,12 +22,10 @@ func (h handler) AddProjeto(c *gin.Context) {
 	}
 
 	var projeto models.Projeto
-	dt := time.Now()
 
 	projeto.Nome_Projeto = body.Nome_Projeto
 	projeto.EquipeID = body.EquipeID
 	projeto.Status = "Em planejamento"
-	projeto.DataInicio = dt.Format("02-01-2006")
 
 	var check int
 
