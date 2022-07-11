@@ -24,8 +24,8 @@ func (h handler) GetProjetos(c *gin.Context) {
 		return
 	}
 
-	for _, i := range projetos {
-		i.DataConclusao = ""
+	for i:=0; i < len(projetos); i++ {
+		projetos[i].DataConclusao = "null"
 	}
 	
 	c.JSON(http.StatusOK, &projetos)
