@@ -13,7 +13,7 @@ type BodyGetProjetos struct {
 	EquipeID 		int 	`json:"equipe_id"`
 	Nome_Equipe 	string 	`json:"nome_equipe"`
 	Status 			string 	`json:"status"`
-	DataInicio 		string 	`json:"data_inicio"`
+	DataInicio 		*time.Time 	`json:"data_inicio"`
 	DataConclusao 	*time.Time	`json:"data_conclusao"`
 }
 
