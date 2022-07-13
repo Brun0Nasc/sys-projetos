@@ -2,7 +2,6 @@ package pessoas
 
 import (
 	"net/http"
-	"time"
 	"strconv"
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
@@ -24,7 +23,6 @@ func (h handler) AddPessoa(c *gin.Context) {
 	}
 
 	var pessoa models.Pessoa
-	dt := time.Now()
 	if eqId, err := strconv.Atoi(body.EquipeID); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
@@ -32,7 +30,6 @@ func (h handler) AddPessoa(c *gin.Context) {
 		pessoa.Nome_Pessoa = body.Nome_Pessoa
 		pessoa.Funcao_Pessoa = body.Funcao_Pessoa
 		pessoa.EquipeID = eqId
-		pessoa.DataContratacao = dt.Format("02-01-2006")
 	}
 
 	if result := h.DB.Create(&pessoa); result.Error != nil {
