@@ -2,22 +2,18 @@ package tasks
 
 import (
 	"net/http"
-
+	"strconv"
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
 
 type AddTaskRequestBody struct {
 	Descricao_Task  string 	`json:"descricao_task"`
-	PessoaID		int 	`json:"pessoa_id"`
-	ProjetoID		int 	`json:"projeto_id"`
+	PessoaID		string 	`json:"pessoa_id"`
+	ProjetoID		string 	`json:"projeto_id"`
 }
 
 func (h handler) AddTask(c *gin.Context) {
-	/*select count(pe.id_pessoa) from pessoas as pe inner join
-equipes as eq on pe.equipe_id = eq.id_equipe 
-inner join projetos as pr on pr.equipe_id = eq.id_equipe
-where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 	
 	body := AddTaskRequestBody{}
 
@@ -28,10 +24,18 @@ where id_pessoa = 4 and pr.status = 'Em desenvolvimento'*/
 
 	var task models.Task
    
-	task.Descricao_Task = body.Descricao_Task
-	task.PessoaID = body.PessoaID
-	task.ProjetoID = body.ProjetoID
-	task.Status = "A fazer"
+	prId, err := strconv.Atoi(body.ProjetoID)
+	peId, err2 := strconv.Atoi(body.PessoaID)
+
+	if err == nil && err2 == nil{
+		task.Descricao_Task = body.Descricao_Task
+		task.PessoaID = peId
+		task.ProjetoID = prId
+		task.Status = "A fazer"
+	} else{
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
 
 	var equipe int
 	if result := h.DB.Raw("select equipe_id from projetos where id_projeto = ?", task.ProjetoID).Scan(&equipe); result.Error != nil {

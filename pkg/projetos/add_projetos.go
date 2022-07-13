@@ -2,14 +2,14 @@ package projetos
 
 import (
 	"net/http"
-
+	"strconv"
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
 
 type AddProjetoRequestBody struct {
 	Nome_Projeto string `json:"nome_projeto"`
-	EquipeID 	 int 	`json:"equipe_id"`
+	EquipeID 	 string `json:"equipe_id"`
 }
 
 func (h handler) AddProjeto(c *gin.Context) {
@@ -23,9 +23,11 @@ func (h handler) AddProjeto(c *gin.Context) {
 
 	var projeto models.Projeto
 
-	projeto.Nome_Projeto = body.Nome_Projeto
-	projeto.EquipeID = body.EquipeID
-	projeto.Status = "Em planejamento"
+	if eqId, err := strconv.Atoi(body.EquipeID); err == nil{
+		projeto.Nome_Projeto = body.Nome_Projeto
+		projeto.EquipeID = eqId
+		projeto.Status = "Em planejamento"
+	}
 
 	var check int
 

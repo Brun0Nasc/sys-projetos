@@ -2,7 +2,7 @@ package tasks
 
 import (
     "net/http"
-
+	"strconv"
     "github.com/gin-gonic/gin"
     "github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 )
@@ -10,8 +10,8 @@ import (
 type UpdateTaskRequestBody struct {
 	ID_Task			uint	`json:"id_task"`
 	Descricao_Task  string 	`json:"descricao_task"`
-	PessoaID		int 	`json:"pessoa_id"`
-	ProjetoID		int 	`json:"projeto_id"`
+	PessoaID		string 	`json:"pessoa_id"`
+	ProjetoID		string 	`json:"projeto_id"`
 }
 
 type UpdateStatus struct {
@@ -35,9 +35,17 @@ func (h handler) UpdateTask(c *gin.Context) {
 		return
 	}
 
-	task.Descricao_Task = body.Descricao_Task
-	task.PessoaID = body.PessoaID
-	task.ProjetoID = body.ProjetoID
+	prId, err := strconv.Atoi(body.ProjetoID)
+	peId, err2 := strconv.Atoi(body.PessoaID)
+
+	if err == nil && err2 == nil{
+		task.Descricao_Task = body.Descricao_Task
+		task.PessoaID = peId
+		task.ProjetoID = prId
+	} else{
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
 
 	h.DB.Save(&task)
 
