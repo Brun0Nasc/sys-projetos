@@ -7,7 +7,7 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 - Utilizando Go e Gin para desenvolvimento, e o software Insomnia para testes;
 - Disponível em (HEROKU): https://sistema-aprendizes-brisanet-go.herokuapp.com/
-- Front-End (Angular) em desenvolvimento.
+- Front-End (React) em desenvolvimento.
 <div style="display: inline_block"><br>
 <img align="center" alt="bruno-Golang" height="60" width="70" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" />
 <img align="center" alt="bruno-Gin" height="50" width="60" src="https://avatars.githubusercontent.com/u/15729372?s=280&v=4" />
