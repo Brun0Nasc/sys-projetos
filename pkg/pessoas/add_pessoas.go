@@ -10,7 +10,7 @@ import (
 type AddPessoaRequestBody struct {
 	Nome_Pessoa		string  `json:"nome_pessoa"`
 	Funcao_Pessoa	string  `json:"funcao_pessoa"`
-	EquipeID		string  `json:"equipe_id"`
+	EquipeID		*string  `json:"equipe_id"`
 }
 
 func (h handler) AddPessoa(c *gin.Context) {
@@ -23,13 +23,13 @@ func (h handler) AddPessoa(c *gin.Context) {
 	}
 
 	var pessoa models.Pessoa
-	if eqId, err := strconv.Atoi(body.EquipeID); err != nil {
+	if eqId, err := strconv.Atoi(*body.EquipeID); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	} else {
 		pessoa.Nome_Pessoa = body.Nome_Pessoa
 		pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-		*pessoa.EquipeID = eqId
+		pessoa.EquipeID = eqId
 	}
 
 	if result := h.DB.Create(&pessoa); result.Error != nil {

@@ -35,12 +35,12 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 			c.AbortWithError(http.StatusBadRequest, err)
 			pessoa.Nome_Pessoa = body.Nome_Pessoa
 			pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-			*pessoa.EquipeID = eqId
+			pessoa.EquipeID = eqId
 		}
 	} else {
 		pessoa.Nome_Pessoa = body.Nome_Pessoa
 		pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-		pessoa.EquipeID = nil
+		pessoa.EquipeID = 0
 	}
 	
 
