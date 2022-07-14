@@ -29,7 +29,7 @@ func (h handler) AddPessoa(c *gin.Context) {
 	} else {
 		pessoa.Nome_Pessoa = body.Nome_Pessoa
 		pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-		pessoa.EquipeID = eqId
+		*pessoa.EquipeID = eqId
 	}
 
 	if result := h.DB.Create(&pessoa); result.Error != nil {
