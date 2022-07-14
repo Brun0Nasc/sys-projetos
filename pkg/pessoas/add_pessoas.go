@@ -23,18 +23,26 @@ func (h handler) AddPessoa(c *gin.Context) {
 	}
 
 	var pessoa models.Pessoa
-	if eqId, err := strconv.Atoi(*body.EquipeID); err != nil {
-		c.AbortWithError(http.StatusBadRequest, err)
-		return
+
+	if body.EquipeID != nil{
+		if eqId, err := strconv.Atoi(*body.EquipeID); err == nil {
+			pessoa.Nome_Pessoa = body.Nome_Pessoa
+			pessoa.Funcao_Pessoa = body.Funcao_Pessoa
+			pessoa.EquipeID = eqId
+		}
+		if result := h.DB.Create(&pessoa); result.Error != nil {
+			c.AbortWithError(http.StatusNotFound, result.Error)
+			return
+		}
+		
 	} else {
 		pessoa.Nome_Pessoa = body.Nome_Pessoa
 		pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-		pessoa.EquipeID = eqId
-	}
-
-	if result := h.DB.Create(&pessoa); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
-		return
+		
+		if result := h.DB.Create(&pessoa); result.Error != nil {
+			c.AbortWithError(http.StatusNotFound, result.Error)
+			return
+		}
 	}
 
 

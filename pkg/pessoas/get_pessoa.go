@@ -2,29 +2,30 @@ package pessoas
 
 import (
 	"net/http"
-	"time"
-
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
 
-type GetPessoasRequestBody struct {
-	ID_Pessoa 		uint 	`json:"id_pessoa"`
-	Nome_Pessoa 	string 	`json:"nome_pessoa"`
-	Funcao_Pessoa	string 	`json:"funcao_pessoa"`
-	EquipeID 		int 	`json:"equipe_id"`
-	Nome_Equipe 	string 	`json:"nome_equipe"`
-	DataContratacao *time.Time 	`json:"data_contratacao"`
-}
 
 func (h handler) GetPessoa(c *gin.Context) {
 	id := c.Param("id")
 
-	var pessoa GetPessoasRequestBody
+	var pessoas GetPessoasBody
 
-	if pessoa := h.DB.Raw("select pe.id_pessoa, pe.nome_pessoa, pe.funcao_pessoa, pe.equipe_id, eq.nome_equipe, pe.data_contratacao from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe where id_pessoa = ?", id).Scan(&pessoa); pessoa.Error != nil {
-		c.AbortWithError(http.StatusNotFound, pessoa.Error)
+	if result := h.DB.Raw("select * from pessoas where id_pessoa = ?", id).Scan(&pessoas); result.Error != nil {
+		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
+	if pessoas.EquipeID == nil{
+		pessoas.Equipe = nil
+	} else{
+		var equipe models.Equipe
+		if result := h.DB.First(&equipe, pessoas.EquipeID); result.Error != nil {
+			c.AbortWithError(http.StatusNotFound, result.Error)
+			return
+		}
+		pessoas.Equipe = &equipe
+	}
 
-	c.JSON(http.StatusOK, &pessoa)
+	c.JSON(http.StatusOK, &pessoas)
 }
