@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+	//"os"
 
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/db"
 	"github.com/Brun0Nasc/sys-projetos/pkg/equipes"
@@ -17,7 +17,7 @@ func main() {
 	viper.SetConfigFile("./pkg/common/envs/.env")
 	viper.ReadInConfig()
 
-	port := os.Getenv("PORT")
+	//port := os.Getenv("PORT")
 	dbUrl := viper.Get("DB_URL").(string)
 
 	r := gin.Default()
@@ -30,5 +30,6 @@ func main() {
 	projetos.RegisterRoutes(r, h)
 	tasks.RegisterRoutes(r, h)
 
-	r.Run(":" + port)
+	//r.Run(":" + port)
+	r.Run("localhost:3030")
 }
