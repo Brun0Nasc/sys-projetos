@@ -9,6 +9,7 @@ import (
 )
 
 func Init(url string) *gorm.DB {
+	//Migração dos modelos definidos na API para o banco de dados PostgreSQL
 	db, err := gorm.Open(postgres.Open(url), &gorm.Config{})
 
 	if err != nil {
