@@ -38,7 +38,8 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 ### ROTAS
 <hr>
 <h4>PROJETOS</h4>
-<table border=1>
+
+<table border=2>
 <tr>
  <th>GET</th>
  <th>POST</th>
@@ -120,23 +121,68 @@ com o status "Em desenvolvimento".</p>
 </tr>
 </table>
 <hr>
- - PESSOAS: 
- <div>GET:</div>
- <div>/pessoas</div>
- <div>/pessoas/:id</div>
- <div>/pessoas/:id/tasks</div>
- <div>------------------------------------</div>
- <div>POST:</div>
- <div>/pessoas</div>
- <div>------------------------------------</div>
- <div>PUT:</div>
- <div>/pessoas/:id</div>
- <div>------------------------------------</div>
- <div>DELETE:</div>
- <div>/pessoas/:id</div>
- <div>------------------------------------</div>
- <div>ㅤ </div>
- <div>ㅤ </div>
+
+
+<h4>PESSOAS</h4>
+
+<table border=2>
+<tr>
+ <th>GET</th>
+ <th>POST</th>
+ <th>PUT</th>
+ <th>DELETE</th>
+</tr>
+
+<tr>
+ <td>/pessoas</td>
+ <td>/pessoas</td>
+ <td>/pessoas/:id</td>
+ <td>/pessoas/:id</td>
+</tr>
+
+<tr>
+ <td>/pessoas/:id</td>
+ <td>/pessoas/:id/tasks</td>
+ <td></td>
+ <td></td>
+</tr>
+
+<tr>
+ <td>/pessoas/:id/tasks</td>
+ <td></td>
+ <td></td>
+ <td></td>
+</tr>
+</table>
+
+<table border=1>
+ <tr>
+  <th>
+   Detalhes
+  </th>
+ </tr>
+ <tr>
+  <td>
+   <p>As funções <b>GET</b> retornam as seguintes informações</p>
+   <ul>
+    <li>ID da pessoa</li>
+    <li>Nome da pessoa</li>
+    <li>Data de contratação</li>
+    <li>Informações da equipe em que ela está</li>
+   </ul>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>As funções <b>POST</b> permitem realizar as seguintes ações:</p>
+   <ul>
+    <li>Registrar uma nova pessoa no Banco de Dados</li>
+    <li>Registrar novas tasks para uma pessoa</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+<hr>
  
 - EQUIPES: 
  <div>GET:</div>
