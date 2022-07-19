@@ -158,7 +158,7 @@ com o status "Em desenvolvimento".</p>
 <table border=1>
  <tr>
   <th>
-   Detalhes
+   DETALHES 
   </th>
  </tr>
  <tr>
@@ -179,6 +179,29 @@ com o status "Em desenvolvimento".</p>
     <li>Registrar uma nova pessoa no Banco de Dados</li>
     <li>Registrar novas tasks para uma pessoa</li>
    </ul>
+   <p>Para cadastrar uma nova pessoa, os seguintes dados são necessários:</p>
+   <ul>
+    <li>Nome da pessoa</li>
+    <li>Função da pessoa</li>
+    <li>Equipe que ela fará parte (pode ser registrada sem equipe)</li>
+   </ul>
+   <p>Para atribuir uma nova task a uma pessoa, será necessário passar apenas a descrição da Task.</p>
+   <p>- Informações como ID do Projeto e Status da task serão automáticas. Para que uma task seja atribuída a uma pessoa, essa pessoa precisa estar em uma equipe, e, por sua vez, esta equipe precisa estar atrelada a um projeto que esteja em desenvolvimento.</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>A função <b>PUT</b> permite alterar os seguintes dados:</p>
+   <ul>
+    <li>Nome da pessoa</li>
+    <li>Função da pessoa</li>
+    <li>ID da equipe (podendo ser nulo)</li>
+   </ul>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>Para deletar um projeto, através do <b>DELETE</b>, será necessário apenas passar o ID do projeto como parâmetro na rota.</p>
   </td>
  </tr>
 </table>
