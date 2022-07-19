@@ -10,7 +10,7 @@ import (
 func (h handler) GetProjeto(c *gin.Context) {
 	id := c.Param("id")
 
-	var projeto models.Projeto
+	var projeto Projeto
 	var pr BodyGetProjetos
 
 	if result := h.DB.First(&projeto, id); result.Error != nil {

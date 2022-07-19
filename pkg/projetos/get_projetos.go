@@ -8,6 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Projeto struct {
+	ID_Projeto 		uint 	`gorm:"primary_key" json:"id_projeto"`
+	Nome_Projeto 	string 	`json:"nome_projeto"`
+	EquipeID 		int 	`json:"equipe_id"`
+	Status			string	`json:"status"`
+	DataInicio 		*time.Time 		`json:"data_inicio"`
+	DataConclusao 	*time.Time		`json:"data_conclusao"`
+}
+
 type BodyGetProjetos struct {
 	ID_Projeto 		uint 			`json:"id_projeto"`
 	Nome_Projeto 	string 			`json:"nome_projeto"`
@@ -19,7 +28,7 @@ type BodyGetProjetos struct {
 }
 
 func (h handler) GetProjetos(c *gin.Context) {
-	var projetos []models.Projeto
+	var projetos []Projeto
 	var pr []BodyGetProjetos
 
 	if result := h.DB.Find(&projetos); result.Error != nil {
