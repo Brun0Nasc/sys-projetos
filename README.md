@@ -17,9 +17,9 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 
 ## Equipe:
-<div>-<a href="https://github.com/Brun0Nasc"> Bruno do Nascimento:</a> Reestruturação da API; Implementação do Banco de Dados; Revisão e Reestruturação de Rotas e Funções; Criação do BDD; Definição das Consultas do BDD.</div>
-<div>-<a href="https://github.com/Lucasmartinsn"> Lucas Martins:</a> Estruturação do Front-End (em desenvolvimento)</div> 
-<div>-<a href="https://github.com/IaraFV"> Iara Ferreira:</a> Estruturação do Front-End (em desenvolvimento)</div>
+- <a href="https://github.com/Brun0Nasc"> Bruno do Nascimento:</a> Reestruturação da API; Implementação do Banco de Dados; Revisão e Reestruturação de Rotas e Funções; Criação do BD; Definição das Consultas do BD.
+- <a href="https://github.com/Lucasmartinsn"> Lucas Martins:</a> Estruturação do Front-End (em desenvolvimento)
+- <a href="https://github.com/IaraFV"> Iara Ferreira:</a> Estruturação do Front-End (em desenvolvimento)
 
 
 ## Andamento do projeto
@@ -33,11 +33,15 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 | Atribuir tarefa | ✔️ | 
 | Manter dados no Banco de Dados | ✔️ | 
 | Front-End | ⌛ |
-| Testes 2e2 com Cypress | ❌ | 
+| Testes e2e com Cypress | ❌ | 
 
 ### ROTAS
 <hr>
 <h4>PROJETOS</h4>
+
+```
+https://sistema-aprendizes-brisanet-go.herokuapp.com/projetos
+```
 
 <table border=2>
 <tr>
@@ -124,6 +128,10 @@ com o status "Em desenvolvimento".</p>
 
 <h4>PESSOAS</h4>
 
+```
+https://sistema-aprendizes-brisanet-go.herokuapp.com/pessoas
+```
+
 <table border=2>
 <tr>
  <th>GET</th>
@@ -209,6 +217,10 @@ com o status "Em desenvolvimento".</p>
 
 <h4>EQUIPES</h4>
 
+```
+https://sistema-aprendizes-brisanet-go.herokuapp.com/equipes
+```
+
 <table border=2>
   <tr>
     <th>GET</th>
@@ -218,7 +230,7 @@ com o status "Em desenvolvimento".</p>
   </tr>
   <tr>
     <td>/equipes</td>
-    <td>/equipes/td>
+    <td>/equipes</td>
     <td>/equipes/:id</td>
     <td>/equipes/:id</td>
   </tr>
@@ -249,26 +261,96 @@ com o status "Em desenvolvimento".</p>
         <li>Nome da equipe</li>
         <li>Pessoas que estão na equipe</li>
       </ul>
+      <p>O GET de projetos de uma equipe retorna todos os projetos associados à equipe do ID informado na rota.</p>
     </td>
   </tr>
   <tr>
     <td>
-    
+     <p>Para realizar um novo registro com a função <b>POST</b>, apenas o nome da equipe deverá ser informado.</p>
     </td>
   </tr>
+  <tr>
+    <td>
+      <p>Assim como no POST, a função <b>PUT</b> irá alterar apenas o nome da equipe, recebendo o id na rota como parâmetro.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Para deletar uma equipe, através do <b>DELETE</b>, será necessário apenas passar o ID da equipe como parâmetro na rota.</p>
+    </td>
+ </tr>
+</table>
+
+<hr>
+
+<h4>TASKS</h4>
+
+```
+https://sistema-aprendizes-brisanet-go.herokuapp.com/tasks
+```
+
+<table border=2>
+<tr>
+ <th>GET</th>
+ <th>POST</th>
+ <th>PUT</th>
+ <th>DELETE</th>
+</tr>
+
+<tr>
+ <td>/tasks</td>
+ <td>/tasks</td>
+ <td>/tasks/:id</td>
+ <td>/tasks/:id</td>
+<tr>
+
+<tr>
+ <td>/tasks/:id</td>
+ <td></td>
+ <td>/tasks/:id/status</td>
+ <td></td>
+<tr>
 </table>
  
-- TASKS: 
- <div>GET:</div>
- <div>/tasks</div>
- <div>/tasks/:id</div>
- <div>------------------------------------</div>
- <div>POST:</div>
- <div>/tasks</div>
- <div>------------------------------------</div>
- <div>PUT:</div>
- <div>/tasks/:id</div>
- <div>------------------------------------</div>
- <div>DELETE:</div>
- <div>/taks/:id</div>
- <div>------------------------------------</div>
+ <table border = 1>
+  <tr>
+    <th>DETALHES</th>
+  </tr>
+
+  <tr>
+    <td>
+      <p>As funções <b>GET</b> retornam as seguintes informações:</p>
+      <ul>
+        <li>ID da task</li>
+        <li>Descrição</li>
+        <li>Status</li>
+        <li>ID da pessoa responsável pela task</li>
+        <li>Nome da pessoa responsável</li>
+        <li>ID do projeto que a task está associada</li>
+        <li>Nome do projeto</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+     <p>Para realizar um novo registro com a função <b>POST</b>, os seguintes dados devem ser informados:</p>
+     <ul>
+       <li>Descrição da Task</li>
+       <li>ID da pessoa que ficará responsável</li>
+       <li>ID do projeto associado</li>
+     </ul>
+     <p>Para atribuir uma task a uma pessoa, essa pessoa precisa estar na equipe que está responsável pela pelo projeto que a task será atribuída, e esse projeto precisa estar com o status "Em desenvolvimento".</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>A função <b>PUT</b> apenas com ID poderá ser usada para alterar informações de Descrição, Pessoa e Projeto.</p>
+      <p>O segundo PUT, relacionado ao status, só altera o Status da Task.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Para deletar uma Task, através do <b>DELETE</b>, será necessário apenas passar o ID da Task como parâmetro na rota.</p>
+    </td>
+ </tr>
+</table>
