@@ -201,7 +201,7 @@ com o status "Em desenvolvimento".</p>
  </tr>
  <tr>
   <td>
-   <p>Para deletar um projeto, através do <b>DELETE</b>, será necessário apenas passar o ID do projeto como parâmetro na rota.</p>
+   <p>Para deletar uma pessoa, através do <b>DELETE</b>, será necessário apenas passar o ID da pessoa como parâmetro na rota.</p>
   </td>
  </tr>
 </table>
