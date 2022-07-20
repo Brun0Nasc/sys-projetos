@@ -28,7 +28,7 @@ func (h handler) AddPessoa(c *gin.Context) {
 		if eqId, err := strconv.Atoi(*body.EquipeID); err == nil {
 			pessoa.Nome_Pessoa = body.Nome_Pessoa
 			pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-			pessoa.EquipeID = eqId
+			*pessoa.EquipeID = eqId
 		}
 		if result := h.DB.Create(&pessoa); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)

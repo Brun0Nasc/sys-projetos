@@ -34,7 +34,7 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 		if eqId, err := strconv.Atoi(*body.EquipeID); err == nil {
 			pessoa.Nome_Pessoa = body.Nome_Pessoa
 			pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-			pessoa.EquipeID = eqId
+			*pessoa.EquipeID = eqId
 		}
 		if result := h.DB.Raw("update pessoas set nome_pessoa = ?, funcao_pessoa = ?, equipe_id = ? where id_pessoa = ?", 
 		pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID, pessoa.ID_Pessoa).Scan(&pessoa); result.Error != nil {
