@@ -5,7 +5,8 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 ## Detalhes
 
-- Utilizando Go e Gin para desenvolvimento, e o software Insomnia para testes;
+- Utilizando linguagem Go com Gin para desenvolvimento, e o software Insomnia para testes;
+- GORM para conexão com banco de dados PostgreSQL;
 - Disponível em (HEROKU): https://sistema-aprendizes-brisanet-go.herokuapp.com/
 - Front-End (React) em desenvolvimento.
 <div style="display: inline_block"><br>
@@ -35,8 +36,8 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 | Front-End | ⌛ |
 | Testes e2e com Cypress | ❌ | 
 
-### ROTAS
-<hr>
+## ROTAS
+
 <h4>PROJETOS</h4>
 
 ```
