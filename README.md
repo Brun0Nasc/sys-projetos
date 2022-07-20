@@ -122,7 +122,6 @@ com o status "Em desenvolvimento".</p>
 </table>
 <hr>
 
-
 <h4>PESSOAS</h4>
 
 <table border=2>
@@ -205,26 +204,43 @@ com o status "Em desenvolvimento".</p>
   </td>
  </tr>
 </table>
+
 <hr>
+
+<h4>EQUIPES</h4>
+
+<table border=2>
+  <tr>
+    <th>GET</th>
+    <th>POST</th>
+    <th>PUT</th>
+    <th>DELETE</th>
+  </tr>
+  <tr>
+    <td>/equipes</td>
+    <td>/equipes/td>
+    <td>/equipes/:id</td>
+    <td>/equipes/:id</td>
+  </tr>
+  <tr>
+    <td>/equipes/:id</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>/equipes/:id/projetos</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
  
-- EQUIPES: 
- <div>GET:</div>
- <div>/equipes</div>
- <div>/equipes/:id</div>
- <div>/equipes/:id/pessoas</div>
- <div>/equipes/:id/projetos</div>
- <div>------------------------------------</div>
- <div>POST:</div>
- <div>/equipes</div>
- <div>------------------------------------</div>
- <div>PUT:</div>
- <div>/equipes/:id</div>
- <div>------------------------------------</div>
- <div>DELETE:</div>
- <div>/equipes/:id</div>
- <div>------------------------------------</div>
- <div>ㅤ </div>
- <div>ㅤ </div>
+<table border = 1>
+  <tr>
+    <th>DETALHES</th>
+  </tr>
+</table>
  
 - TASKS: 
  <div>GET:</div>
