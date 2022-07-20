@@ -1,14 +1,26 @@
-## API com Banco de Dados implementado e Front-End
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+## API com Banco de Dados e Front-End - Aprendizes Brisanet
 
 Sistema que mantém projetos. Cada projeto recebe uma equipe, e cada equipe pode receber um número não delimitado de pessoas. Cada projeto tem tasks,
 cada task pode ser atribuída a uma determinada pessoa que está na equipe do projeto.
 
+## Índice 
+
+* [Detalhes](#detalhes)
+* [Equipe](#equipe)
+* [Andamento do Projeto](#andamento-do-projeto)
+* [Rotas](#rotas)
+* [Projetos](#projetos)
+* [Pessoas](#pessoas)
+* [Equipes](#equipes)
+* [Tasks](#tasks)
+
 ## Detalhes
 
-- Utilizando linguagem Go com Gin para desenvolvimento, e o software Insomnia para testes;
-- GORM para conexão com banco de dados PostgreSQL;
-- Disponível em (HEROKU): https://sistema-aprendizes-brisanet-go.herokuapp.com/
-- Front-End (React) em desenvolvimento.
+- Utilizando linguagem `Go` com `Gin` para desenvolvimento, e o software `Insomnia` para testes;
+- `GORM` para conexão com banco de dados `PostgreSQL`;
+- Disponível no `Heroku`: https://sistema-aprendizes-brisanet-go.herokuapp.com/
+- Front-End em `React`(Em desenvolvimento)
 <div style="display: inline_block"><br>
 <img align="center" alt="bruno-Golang" height="60" width="70" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" />
 <img align="center" alt="bruno-Gin" height="50" width="60" src="https://avatars.githubusercontent.com/u/15729372?s=280&v=4" />
@@ -18,9 +30,9 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 
 ## Equipe:
-- <a href="https://github.com/Brun0Nasc"> Bruno do Nascimento:</a> Reestruturação da API; Implementação do Banco de Dados; Revisão e Reestruturação de Rotas e Funções; Criação do BD; Definição das Consultas do BD.
-- <a href="https://github.com/Lucasmartinsn"> Lucas Martins:</a> Estruturação do Front-End (em desenvolvimento)
-- <a href="https://github.com/IaraFV"> Iara Ferreira:</a> Estruturação do Front-End (em desenvolvimento)
+- <a href="https://github.com/Brun0Nasc"> Bruno do Nascimento</a>: `Reestruturação da API` `Implementação do Banco de Dados` `Revisão e Reestruturação de Rotas e Funções` `Criação do BD` `Definição das Consultas do BD.`
+- <a href="https://github.com/Lucasmartinsn"> Lucas Martins:</a> `Criação do Front-End (em desenvolvimento)`
+- <a href="https://github.com/IaraFV"> Iara Ferreira:</a> `Criação do Front-End (em desenvolvimento)`
 
 
 ## Andamento do projeto
