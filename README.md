@@ -240,6 +240,22 @@ com o status "Em desenvolvimento".</p>
   <tr>
     <th>DETALHES</th>
   </tr>
+
+  <tr>
+    <td>
+      <p>As funções <b>GET</b> retornam as seguintes informações:</p>
+      <ul>
+        <li>ID da equipe</li>
+        <li>Nome da equipe</li>
+        <li>Pessoas que estão na equipe</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      
+    </td>
+  </tr>
 </table>
  
 - TASKS: 
