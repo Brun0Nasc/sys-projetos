@@ -15,13 +15,13 @@ import (
 
 func main() {
 	//Arquivo de configuração que vai adicionar as informações do Banco de Dados
-	viper.SetConfigFile("./pkg/common/envs/.env")
+	//viper.SetConfigFile("./pkg/common/envs/.env")
 	viper.ReadInConfig()
 
 	//Definição da porta em que a API vai rodar (Nesse caso vai pegar automaticamente do Heroku)
 	//Pegando link do Banco de Dados do arquivo .env
 	port := os.Getenv("PORT")
-	dbUrl := viper.Get("DB_URL").(string)
+	dbUrl := os.Getenv("DB_URL")
 
 	//Atribuição de rotas à variável 'r' e definição das configurações cors 
 	r := gin.Default()

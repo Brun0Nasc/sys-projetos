@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 19 08:00:01 2022
+# Make data base, printed on Thu Jul 21 07:52:29 2022
 
 # Variables
 
@@ -47,7 +47,7 @@ VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/dbus-update-activation-environment
 # environment
-JOURNAL_STREAM = 8:58513
+JOURNAL_STREAM = 8:57367
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -65,9 +65,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 2202
+MANAGERPID = 2232
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-7ff379ee-140d-45b0-8926-acc9ceaabca3.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-93df6625-ed10-47a7-8b98-bbf135a7fa5b.sock
 # environment
 VSCODE_CWD = /home/brisa
 # default
@@ -77,7 +77,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2415,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2415
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2444,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2444
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
 # environment
@@ -87,7 +87,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 7414bc5953304c88988a833c47a12142
+INVOCATION_ID = 70d19237c5e448109db46ca372dd4601
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -95,7 +95,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 4007
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3026
 # automatic
 %F = $(notdir $%)
 # environment
@@ -107,7 +107,7 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2380
+SSH_AGENT_PID = 2409
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
@@ -205,7 +205,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4182
+VSCODE_PID = 3739
 # variable set hash-table stats:
 # Load=98/1024=10%, Rehash=0, Collisions=15/123=12%
 
@@ -266,7 +266,7 @@ server:
 # strcache performance: lookups = 25 / hit rate = 20%
 # hash-table stats:
 # Load=20/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Tue Jul 19 08:00:01 2022
+# Finished Make data base on Thu Jul 21 07:52:29 2022
 
  
 make: *** No rule to make target 'all'.  Stop.
