@@ -1,4 +1,11 @@
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+<br>
+![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 ## API com Banco de Dados e Front-End - Aprendizes Brisanet
 
 Sistema que mantém projetos. Cada projeto recebe uma equipe, e cada equipe pode receber um número não delimitado de pessoas. Cada projeto tem tasks,
@@ -21,12 +28,6 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 - `GORM` para conexão com banco de dados `PostgreSQL`;
 - Disponível no `Heroku`: https://sistema-aprendizes-brisanet-go.herokuapp.com/
 - Front-End em `React`(Em desenvolvimento)
-<div style="display: inline_block"><br>
-<img align="center" alt="bruno-Golang" height="60" width="70" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" />
-<img align="center" alt="bruno-Gin" height="50" width="60" src="https://avatars.githubusercontent.com/u/15729372?s=280&v=4" />
-<img align="center" alt="bruno-Postgres" height="50" width="60" src="https://wiki.postgresql.org/images/3/30/PostgreSQL_logo.3colors.120x120.png"/>
-<img align="center" alt="bruno-React" height="50" width="60" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"/>
-</div>
 
 
 ## Equipe:
