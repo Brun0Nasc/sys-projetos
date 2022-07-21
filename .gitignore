@@ -3,3 +3,4 @@
 .vscode/dryrun.log
 .vscode/configurationCache.log
 cmd/main.go
+pkg/common/envs/.env
