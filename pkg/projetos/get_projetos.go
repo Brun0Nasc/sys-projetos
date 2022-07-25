@@ -9,22 +9,24 @@ import (
 )
 
 type Projeto struct {
-	ID_Projeto 		uint 			`gorm:"primary_key" json:"id_projeto"`
-	Nome_Projeto 	string 			`json:"nome_projeto"`
-	EquipeID 		int 			`json:"equipe_id"`
-	Status			string			`json:"status"`
-	DataInicio 		*time.Time 		`json:"data_inicio"`
-	DataConclusao 	*time.Time		`json:"data_conclusao"`
+	ID_Projeto 			uint 			`json:"id_projeto"`
+	Nome_Projeto 		string 			`json:"nome_projeto"`
+	Descricao_Projeto 	string 			`json:"descricao_projeto"`
+	EquipeID 			int 			`json:"equipe_id"`
+	Status				string			`json:"status"`
+	DataInicio 			*time.Time 		`json:"data_inicio"`
+	DataConclusao 		*time.Time		`json:"data_conclusao"`
 }
 
 type BodyGetProjetos struct {
-	ID_Projeto 		uint 			`json:"id_projeto"`
-	Nome_Projeto 	string 			`json:"nome_projeto"`
-	Status 			string 			`json:"status"`
-	DataInicio 		*time.Time 		`json:"data_inicio"`
-	DataConclusao 	*time.Time		`json:"data_conclusao"`
-	Equipe			models.Equipe	`json:"equipe"`
-	Tasks			*[]models.Task 	`json:"tasks"`
+	ID_Projeto 			uint 			`json:"id_projeto"`
+	Nome_Projeto 		string 			`json:"nome_projeto"`
+	Descricao_Projeto 	string 			`json:"descricao_projeto"`
+	Status 				string 			`json:"status"`
+	DataInicio 			*time.Time 		`json:"data_inicio"`
+	DataConclusao 		*time.Time		`json:"data_conclusao"`
+	Equipe				models.Equipe	`json:"equipe"`
+	Tasks				*[]models.Task 	`json:"tasks"`
 }
 
 func (h handler) GetProjetos(c *gin.Context) {
@@ -52,6 +54,7 @@ func (h handler) GetProjetos(c *gin.Context) {
 		p := BodyGetProjetos {
 			ID_Projeto: projetos[i].ID_Projeto,
 			Nome_Projeto: projetos[i].Nome_Projeto,
+			Descricao_Projeto: projetos[i].Descricao_Projeto,
 			Status: projetos[i].Status,
 			DataInicio: projetos[i].DataInicio,
 			DataConclusao: projetos[i].DataConclusao,
