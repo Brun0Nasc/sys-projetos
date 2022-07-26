@@ -2,7 +2,6 @@ package pessoas
 
 import (
     "net/http"
-	"strconv"
     "github.com/gin-gonic/gin"
     "github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 )
@@ -23,12 +22,11 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
-	if body.EquipeID != ""{
-		if eqId, err := strconv.Atoi(body.EquipeID); err == nil {
+	if body.EquipeID != 0{
 			pessoa.Nome_Pessoa = body.Nome_Pessoa
 			pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-			pessoa.EquipeID = eqId
-		}
+			pessoa.EquipeID = body.EquipeID
+
 		if result := h.DB.Raw("update pessoas set nome_pessoa = ?, funcao_pessoa = ?, equipe_id = ? where id_pessoa = ?", 
 		pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa, pessoa.EquipeID, pessoa.ID_Pessoa).Scan(&pessoa).Find(&pessoa); result.Error != nil {
 			c.AbortWithError(http.StatusNotModified, result.Error)
