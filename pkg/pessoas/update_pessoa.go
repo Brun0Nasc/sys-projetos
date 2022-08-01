@@ -46,3 +46,22 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 
 	c.JSON(http.StatusOK, &pessoa)
 }
+
+func (h handler) FavoritarPessoa(c *gin.Context) {
+	id := c.Param("id")
+	body := models.Pessoa{}
+
+	if err := c.BindJSON(&body); err != nil {
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	var pessoa models.Pessoa
+
+	if result := h.DB.Model(&pessoa).Where("id_pessoa = ?", id).Update("favoritar", body.Favoritar); result.Error != nil {
+		c.AbortWithError(http.StatusNotModified, result.Error)
+		return
+	}
+
+	c.JSON(http.StatusOK, &pessoa)
+}

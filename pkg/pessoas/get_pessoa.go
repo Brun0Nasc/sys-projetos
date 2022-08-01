@@ -53,6 +53,7 @@ func (h handler) GetPessoa(c *gin.Context) {
 	pessoa.EquipeID = eq
 	pessoa.Equipe = equipe
 	pessoa.Tasks = &tasks
+	pessoa.Favoritar = pessoas.Favoritar
 
 	c.JSON(http.StatusOK, &pessoa)
 }

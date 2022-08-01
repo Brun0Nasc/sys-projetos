@@ -16,6 +16,7 @@ type GetPessoasBody struct{
 	EquipeID 		*int 			`json:"equipe_id"`
 	Equipe 			*models.Equipe 	`json:"equipe"`
 	Tasks 			*[]models.Task	`json:"tasks"`
+	Favoritar		string			`json:"favoritar"`
 }
 
 func (h handler) GetPessoas(c *gin.Context) {
@@ -70,6 +71,7 @@ func (h handler) GetPessoas(c *gin.Context) {
 			EquipeID: eq,
 			Equipe: equipe,
 			Tasks: &tasks,
+			Favoritar: pessoas[i].Favoritar,
 		}
 
 		// Preenchendo a lista de pessoas com todas as informações desejáveis para requisições
