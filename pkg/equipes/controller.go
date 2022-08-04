@@ -17,7 +17,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	//
+	//Rotas Get, Post, Put e Delete, referentes a Equipes
 	routes := r.Group("/equipes")
 	routes.GET("/", h.GetEquipes)
 	routes.GET("/:id", h.GetEquipe)

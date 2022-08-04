@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
-
+// 
 type EquipeProjetos struct {
 	Nome_Equipe 	string  `json:"nome_equipe"`
 	ID_Projeto 		uint 	`json:"id_projeto"`
