@@ -2,7 +2,6 @@ package tasks
 
 import (
 	"net/http"
-	"strconv"
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
@@ -10,8 +9,8 @@ import (
 type AddTaskRequestBody struct {
 	Descricao_Task  string 	`json:"descricao_task"`
 	Nivel			string	`json:"nivel"`
-	PessoaID		string 	`json:"pessoa_id"`
-	ProjetoID		string 	`json:"projeto_id"`
+	PessoaID		int 	`json:"pessoa_id"`
+	ProjetoID		int 	`json:"projeto_id"`
 }
 
 func (h handler) AddTask(c *gin.Context) {
@@ -24,20 +23,12 @@ func (h handler) AddTask(c *gin.Context) {
 	}
 
 	var task models.Task
-   
-	prId, err := strconv.Atoi(body.ProjetoID)
-	peId, err2 := strconv.Atoi(body.PessoaID)
 
-	if err == nil && err2 == nil{
-		task.Descricao_Task = body.Descricao_Task
-		task.Nivel = body.Nivel
-		task.PessoaID = peId
-		task.ProjetoID = prId
-		task.Status = "A fazer"
-	} else{
-		c.AbortWithError(http.StatusBadRequest, err)
-		return
-	}
+	task.Descricao_Task = body.Descricao_Task
+	task.Nivel = body.Nivel
+	task.PessoaID = body.PessoaID
+	task.ProjetoID = body.PessoaID
+	task.Status = "A fazer"
 
 	var equipe int
 	if result := h.DB.Raw("select equipe_id from projetos where id_projeto = ?", task.ProjetoID).Scan(&equipe); result.Error != nil {
