@@ -41,13 +41,13 @@ func (h handler) AddTask(c *gin.Context) {
 	var checkS int
 	verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null"
 
-	if result := h.DB.Raw(verifica_equipe, task.PessoaID, equipe).Scan(&checkE); result.Error != nil {
+	if result := h.DB.Raw(verifica_equipe, body.PessoaID, equipe).Scan(&checkE); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
 
 	if(checkE > 0){
-		if result := h.DB.Raw(verifica_status, task.ProjetoID).Scan(&checkS); result.Error != nil {
+		if result := h.DB.Raw(verifica_status, body.ProjetoID).Scan(&checkS); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return
 		}
