@@ -37,7 +37,7 @@ func (h handler) AddTask(c *gin.Context) {
 	}
 
 	var checkE int
-	verifica_equipe := "select count(pe.id_pessoa) from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe inner join projetos as pr on pr.equipe_id = eq.id_equipe where id_pessoa = ? and pr.status = 'Em desenvolvimento' and pr.equipe_id = ?"
+	verifica_equipe := "select count(pe.id_pessoa) from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe inner join projetos as pr on pr.equipe_id = eq.id_equipe where pe.id_pessoa = ? and pr.status = 'Em desenvolvimento' and pr.equipe_id = ?"
 	var checkS int
 	verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null"
 
