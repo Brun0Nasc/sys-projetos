@@ -2,15 +2,15 @@ package tasks
 
 import (
 	"net/http"
-	"strconv"
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
 
 type AddTaskRequestBody struct {
 	Descricao_Task  string 	`json:"descricao_task"`
-	PessoaID		string 	`json:"pessoa_id"`
-	ProjetoID		string 	`json:"projeto_id"`
+	Nivel			string	`json:"nivel"`
+	PessoaID		int 	`json:"pessoa_id"`
+	ProjetoID		int 	`json:"projeto_id"`
 }
 
 func (h handler) AddTask(c *gin.Context) {
@@ -23,19 +23,11 @@ func (h handler) AddTask(c *gin.Context) {
 	}
 
 	var task models.Task
-   
-	prId, err := strconv.Atoi(body.ProjetoID)
-	peId, err2 := strconv.Atoi(body.PessoaID)
 
-	if err == nil && err2 == nil{
-		task.Descricao_Task = body.Descricao_Task
-		task.PessoaID = peId
-		task.ProjetoID = prId
-		task.Status = "A fazer"
-	} else{
-		c.AbortWithError(http.StatusBadRequest, err)
-		return
-	}
+	task.Descricao_Task = body.Descricao_Task
+	task.PessoaID = body.PessoaID
+	task.ProjetoID = body.ProjetoID
+	task.Status = "A fazer"
 
 	var equipe int
 	if result := h.DB.Raw("select equipe_id from projetos where id_projeto = ?", task.ProjetoID).Scan(&equipe); result.Error != nil {
@@ -67,10 +59,10 @@ func (h handler) AddTask(c *gin.Context) {
 		
 			c.JSON(http.StatusCreated, &task)
 		} else {
-			c.JSON(http.StatusOK, gin.H{"Message":"Tasks só podem ser cadastradas em projetos que estão 'Em desenvolvimento' e estão em alguma equipe."})
+			c.JSON(http.StatusNotFound, gin.H{"Message":"Tasks só podem ser cadastradas em projetos que estão 'Em desenvolvimento' e estão em alguma equipe."})
 		}
 	} else {
-		c.JSON(http.StatusOK, gin.H{"Message":"Tasks só podem ser atribuidas a pessoas que estão na equipe responsável pelo projeto."})
+		c.JSON(http.StatusNotFound, gin.H{"Message":"Tasks só podem ser atribuidas a pessoas que estão na equipe responsável pelo projeto."})
 	}
 	
 }
