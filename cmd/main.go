@@ -14,21 +14,29 @@ import (
 )
 
 func main() {
-	viper.SetConfigFile("./pkg/common/envs/.env")
+	//Arquivo de configuração que vai adicionar as informações do Banco de Dados
+	//viper.SetConfigFile("./pkg/common/envs/.env")
 	viper.ReadInConfig()
 
+	//Definição da porta em que a API vai rodar (Nesse caso vai pegar automaticamente do Heroku)
+	//Pegando link do Banco de Dados do arquivo .env
 	port := os.Getenv("PORT")
-	dbUrl := viper.Get("DB_URL").(string)
+	dbUrl := os.Getenv("DB_URL")
 
+	//Atribuição de rotas à variável 'r' e definição das configurações cors 
 	r := gin.Default()
 	r.Use(cors.Default())
 
+	//Variável de inicialização do Banco de Dados
 	h := db.Init(dbUrl)
 
+	//Carregamento de rotas de cada elemento da API
 	pessoas.RegisterRoutes(r, h)
 	equipes.RegisterRoutes(r, h)
 	projetos.RegisterRoutes(r, h)
 	tasks.RegisterRoutes(r, h)
 
+	//Comando para fazer o programa rodar
 	r.Run(":" + port)
+	//r.Run("localhost:3030")
 }

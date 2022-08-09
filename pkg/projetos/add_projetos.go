@@ -8,8 +8,9 @@ import (
 )
 
 type AddProjetoRequestBody struct {
-	Nome_Projeto string `json:"nome_projeto"`
-	EquipeID 	 string `json:"equipe_id"`
+	Nome_Projeto 		string `json:"nome_projeto"`
+	Descricao_Projeto 	string `json:"descricao_projeto"`
+	EquipeID 	 		string `json:"equipe_id"`
 }
 
 func (h handler) AddProjeto(c *gin.Context) {
@@ -25,6 +26,7 @@ func (h handler) AddProjeto(c *gin.Context) {
 
 	if eqId, err := strconv.Atoi(body.EquipeID); err == nil{
 		projeto.Nome_Projeto = body.Nome_Projeto
+		projeto.Descricao_Projeto = body.Descricao_Projeto
 		projeto.EquipeID = eqId
 		projeto.Status = "Em planejamento"
 	}

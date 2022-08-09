@@ -2,7 +2,6 @@ package pessoas
 
 import (
 	"net/http"
-	"strconv"
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +9,7 @@ import (
 type AddPessoaRequestBody struct {
 	Nome_Pessoa		string  `json:"nome_pessoa"`
 	Funcao_Pessoa	string  `json:"funcao_pessoa"`
-	EquipeID		*string  `json:"equipe_id"`
+	EquipeID		int  	`json:"equipe_id"`
 }
 
 func (h handler) AddPessoa(c *gin.Context) {
@@ -24,12 +23,10 @@ func (h handler) AddPessoa(c *gin.Context) {
 
 	var pessoa models.Pessoa
 
-	if body.EquipeID != nil{
-		if eqId, err := strconv.Atoi(*body.EquipeID); err == nil {
+	if body.EquipeID != 0{
 			pessoa.Nome_Pessoa = body.Nome_Pessoa
 			pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-			pessoa.EquipeID = eqId
-		}
+			pessoa.EquipeID = body.EquipeID
 		if result := h.DB.Create(&pessoa); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return
@@ -38,8 +35,8 @@ func (h handler) AddPessoa(c *gin.Context) {
 	} else {
 		pessoa.Nome_Pessoa = body.Nome_Pessoa
 		pessoa.Funcao_Pessoa = body.Funcao_Pessoa
-		
-		if result := h.DB.Create(&pessoa); result.Error != nil {
+		if result := h.DB.Raw(`INSERT INTO pessoas(nome_pessoa, funcao_pessoa, equipe_id) 
+		VALUES(?,?,NULL)`, pessoa.Nome_Pessoa, pessoa.Funcao_Pessoa).Scan(&pessoa).Last(&pessoa); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return
 		}

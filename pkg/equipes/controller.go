@@ -11,18 +11,18 @@ type handler struct {
 }
 
 func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
+	//Registro das rotas de equipes
 	
 	h := &handler{
 		DB: db,
 	}
 
+	//Rotas Get, Post, Put e Delete, referentes a Equipes
 	routes := r.Group("/equipes")
 	routes.GET("/", h.GetEquipes)
-	//routes.GET("/projetos", h.GetEquipesProjetos)
-	routes.POST("/", h.AddEquipe)
 	routes.GET("/:id", h.GetEquipe)
 	routes.GET("/:id/projetos", h.GetEquipeProjeto)
-	routes.GET("/:id/pessoas", h.GetEquipeMembros)
+	routes.POST("/", h.AddEquipe)
 	routes.PUT("/:id", h.UpdateEquipe)
 	routes.DELETE("/:id", h.DeleteEquipe)
 }

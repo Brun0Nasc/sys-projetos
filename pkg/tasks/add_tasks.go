@@ -25,8 +25,9 @@ func (h handler) AddTask(c *gin.Context) {
 	var task models.Task
 
 	task.Descricao_Task = body.Descricao_Task
+	task.Nivel = body.Nivel
 	task.PessoaID = body.PessoaID
-	task.ProjetoID = body.ProjetoID
+	task.ProjetoID = body.PessoaID
 	task.Status = "A fazer"
 
 	var equipe int

@@ -1,17 +1,17 @@
 package projetos
 
 import (
-    "net/http"
-	"time"
-    "github.com/gin-gonic/gin"
-    "github.com/Brun0Nasc/sys-projetos/pkg/common/models"
+	"net/http"
 	"strconv"
+
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
+	"github.com/gin-gonic/gin"
 )
 
 type UpdateProjetoRequestBody struct {
-	ID_Projeto	 uint	`json:"id_projeto"`
-	Nome_Projeto string `json:"nome_projeto"`
-	EquipeID 	 string	`json:"equipe_id"`
+	Nome_Projeto 		string `json:"nome_projeto"`
+	Descricao_Projeto 	string `json:"descricao_projeto"`
+	EquipeID 	 		string	`json:"equipe_id"`
 }
 
 type UpdateStatusRequestBody struct {
@@ -37,11 +37,12 @@ func (h handler) UpdateProjeto(c *gin.Context) {
 
 	if eqId, err := strconv.Atoi(body.EquipeID); err == nil {
 		projeto.Nome_Projeto = body.Nome_Projeto
+		projeto.Descricao_Projeto = body.Descricao_Projeto
 		projeto.EquipeID = eqId
 	}
 
-	if result := h.DB.Raw(`update projetos set nome_projeto = ?, equipe_id = ? where id_projeto = ?`, 
-	projeto.Nome_Projeto, projeto.EquipeID, projeto.ID_Projeto).Scan(&projeto); result.Error != nil {
+	if result := h.DB.Raw(`update projetos set nome_projeto = ?, descricao_projeto = ?, equipe_id = ? where id_projeto = ?`, 
+	projeto.Nome_Projeto, projeto.Descricao_Projeto, projeto.EquipeID, id).Scan(&projeto); result.Error != nil {
 		c.AbortWithError(http.StatusNotModified, result.Error)
 		return
 	}
@@ -86,13 +87,24 @@ func (h handler) UpdateStatus(c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{"Message":"Essa equipe já tem um projeto Em desenvolvimento"})
 		}
 	} else if projeto.Status == "Concluído" {
-		dt := time.Now()
-		sql := "UPDATE projetos SET status = ?, data_conclusao = ? WHERE id_projeto = ?"
-		if result := h.DB.Raw(sql, projeto.Status, dt, id).Scan(&projeto); result.Error != nil {
+		ver_task := `select count(tk) from tasks as tk join projetos as pr on tk.projeto_id = pr.id_projeto
+		where (tk.status = 'A fazer' or tk.status = 'Fazendo') and pr.id_projeto = ?`
+
+		if result := h.DB.Raw(ver_task, id).Scan(&check); result.Error != nil{
 			c.AbortWithError(http.StatusNotModified, result.Error)
 			return
 		}
 
+		if check == 0{
+			sql := "UPDATE projetos SET status = ?, data_conclusao = CURRENT_DATE WHERE id_projeto = ?"
+			if result := h.DB.Raw(sql, projeto.Status, id).Scan(&projeto); result.Error != nil {
+				c.AbortWithError(http.StatusNotModified, result.Error)
+				return
+			}
+		} else {
+			c.JSON(http.StatusOK, gin.H{"Erro":"Projetos só podem ser macados como concluídos se todas suas tasks estiverem concluídas."})
+			return
+		}
 		c.JSON(http.StatusOK, &projeto)
 	}
 
