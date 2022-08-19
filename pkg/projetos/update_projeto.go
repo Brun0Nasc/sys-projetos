@@ -2,16 +2,15 @@ package projetos
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 	"github.com/gin-gonic/gin"
 )
 
 type UpdateProjetoRequestBody struct {
-	Nome_Projeto 		string `json:"nome_projeto"`
-	Descricao_Projeto 	string `json:"descricao_projeto"`
-	EquipeID 	 		string	`json:"equipe_id"`
+	Nome_Projeto 		string 	`json:"nome_projeto"`
+	Descricao_Projeto 	string 	`json:"descricao_projeto"`
+	EquipeID 	 		int		`json:"equipe_id"`
 }
 
 type UpdateStatusRequestBody struct {
@@ -35,11 +34,9 @@ func (h handler) UpdateProjeto(c *gin.Context) {
 		return
 	}
 
-	if eqId, err := strconv.Atoi(body.EquipeID); err == nil {
-		projeto.Nome_Projeto = body.Nome_Projeto
-		projeto.Descricao_Projeto = body.Descricao_Projeto
-		projeto.EquipeID = eqId
-	}
+	projeto.Nome_Projeto = body.Nome_Projeto
+	projeto.Descricao_Projeto = body.Descricao_Projeto
+	projeto.EquipeID = body.EquipeID
 
 	if result := h.DB.Raw(`update projetos set nome_projeto = ?, descricao_projeto = ?, equipe_id = ? where id_projeto = ?`, 
 	projeto.Nome_Projeto, projeto.Descricao_Projeto, projeto.EquipeID, id).Scan(&projeto); result.Error != nil {
