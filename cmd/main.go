@@ -8,6 +8,7 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/pkg/pessoas"
 	"github.com/Brun0Nasc/sys-projetos/pkg/projetos"
 	"github.com/Brun0Nasc/sys-projetos/pkg/tasks"
+	"github.com/Brun0Nasc/sys-projetos/pkg/user"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -35,6 +36,7 @@ func main() {
 	equipes.RegisterRoutes(r, h)
 	projetos.RegisterRoutes(r, h)
 	tasks.RegisterRoutes(r, h)
+	user.RegisterRoutes(r, h)
 
 	//Comando para fazer o programa rodar
 	r.Run(":" + port)
