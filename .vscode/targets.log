@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul 25 07:46:49 2022
+# Make data base, printed on Fri Aug 19 11:38:25 2022
 
 # Variables
 
@@ -26,8 +26,6 @@ DESKTOP_SESSION = ubuntu
 XDG_SESSION_CLASS = user
 # environment
 XDG_SESSION_TYPE = x11
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
@@ -47,9 +45,9 @@ SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupport":true}
 # environment
-_ = /usr/share/code/code
+_ = /usr/bin/dbus-update-activation-environment
 # environment
-JOURNAL_STREAM = 8:54894
+JOURNAL_STREAM = 8:45764
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -57,21 +55,21 @@ MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/github-desktop.desktop
 # environment
 USERNAME = brisa
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
-MANAGERPID = 2238
-# environment
-LESSOPEN = | /usr/bin/lesspipe %s
+MANAGERPID = 2411
 # environment
 VSCODE_CWD = /home/brisa
+# environment
+GOPROXY = https://proxy.golang.org,direct
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -79,55 +77,53 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2453,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2453
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2624,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2624
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
 # environment
-XDG_MENU_PREFIX = gnome-
+GOPATH = /home/brisa/go
 # environment
-VSCODE_LOG_STACK = false
+XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 35515ee8d7ad4ecdb3236ff6f5f0ec0a
+INVOCATION_ID = 6783900d3e4b4b7db7102068878246e5
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
-# environment
-LS_COLORS = 
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5724
+GIO_LAUNCHED_DESKTOP_FILE_PID = 84145
 # automatic
 %F = $(notdir $%)
 # environment
 DISPLAY = :1
 # environment
-VSCODE_PIPE_LOGGING = true
-# environment
 PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2418
+SSH_AGENT_PID = 2589
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+GOMODCACHE = /home/brisa/go/pkg/mod
 # environment
 HOME = /home/brisa
 # environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
+VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/brisa/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+VSCODE_CODE_CACHE_PATH = /home/brisa/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 LOGNAME = brisa
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -145,9 +141,9 @@ QT_IM_MODULE = ibus
 # environment
 SHLVL = 0
 # environment
-GNOME_SHELL_SESSION_MODE = ubuntu
+LOCAL_GIT_DIRECTORY = /usr/lib/github-desktop/resources/app/git
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-b4573ddc-ef7d-4c29-954e-799ef40414a6.sock
+GNOME_SHELL_SESSION_MODE = ubuntu
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -167,7 +163,7 @@ MAKE_COMMAND := make
 # environment
 LANGUAGE = pt_BR:pt:en
 # environment
-VSCODE_IPC_HOOK = /run/user/1001/vscode-5bff865f-1.68.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1001/vscode-5bff865f-1.69.2-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -207,9 +203,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5724
+VSCODE_PID = 84330
 # variable set hash-table stats:
-# Load=98/1024=10%, Rehash=0, Collisions=13/123=11%
+# Load=96/1024=9%, Rehash=0, Collisions=16/121=13%
 
 # Pattern-specific Variable Values
 
@@ -268,6 +264,6 @@ server:
 # strcache performance: lookups = 25 / hit rate = 20%
 # hash-table stats:
 # Load=20/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Mon Jul 25 07:46:49 2022
+# Finished Make data base on Fri Aug 19 11:38:25 2022
 
  
