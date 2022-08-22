@@ -37,6 +37,7 @@ func main() {
 	projetos.RegisterRoutes(r, h)
 	tasks.RegisterRoutes(r, h)
 	user.RegisterRoutes(r, h)
+	login.RegisterRoutes(r, h)
 
 	//Comando para fazer o programa rodar
 	r.Run(":" + port)
