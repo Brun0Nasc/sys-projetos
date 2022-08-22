@@ -7,6 +7,12 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 )
 
+type EquipesGetBody struct {
+	ID_Equipe 	uint 				`json:"id_equipe"`
+	Nome_Equipe string 				`json:"nome_equipe"`
+	Pessoas 	[]models.Pessoa 	`json:"pessoas"`
+}
+
 func (h handler) GetEquipe(c *gin.Context) {
 	id := c.Param("id")
 
