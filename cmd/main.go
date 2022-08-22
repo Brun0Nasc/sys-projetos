@@ -9,6 +9,7 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/pkg/projetos"
 	"github.com/Brun0Nasc/sys-projetos/pkg/tasks"
 	"github.com/Brun0Nasc/sys-projetos/pkg/user"
+	"github.com/Brun0Nasc/sys-projetos/pkg/login"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
