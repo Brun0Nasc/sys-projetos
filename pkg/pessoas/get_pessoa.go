@@ -8,7 +8,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
+type GetPessoasBody struct{
+	ID_Pessoa 		uint 			`json:"id_pessoa"`
+	Nome_Pessoa 	string 			`json:"nome_pessoa"`
+	Funcao_Pessoa 	string 			`json:"funcao_pessoa"`
+	DataContratacao time.Time		`json:"data_contratacao"`
+	EquipeID 		*int 			`json:"equipe_id"`
+	Equipe 			*models.Equipe 	`json:"equipe"`
+	Tasks 			*[]models.Task	`json:"tasks"`
+	Favoritar		int				`json:"favoritar"`
+}
 func (h handler) GetPessoa(c *gin.Context) {
 	id := c.Param("id")
 
