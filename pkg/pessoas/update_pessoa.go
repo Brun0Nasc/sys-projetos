@@ -6,6 +6,10 @@ import (
     "github.com/Brun0Nasc/sys-projetos/pkg/common/models"
 )
 
+type FavoritarBody struct {
+	Favoritar int `json:"favoritar"`
+}
+
 func (h handler) UpdatePessoa(c *gin.Context) {
 	id := c.Param("id")
 	body := AddPessoaRequestBody{}
@@ -49,8 +53,8 @@ func (h handler) UpdatePessoa(c *gin.Context) {
 
 func (h handler) FavoritarPessoa(c *gin.Context) {
 	id := c.Param("id")
-	body := models.Pessoa{}
-
+	var body FavoritarBody
+	
 	if err := c.BindJSON(&body); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
@@ -58,10 +62,14 @@ func (h handler) FavoritarPessoa(c *gin.Context) {
 
 	var pessoa models.Pessoa
 
-	if result := h.DB.Model(&pessoa).Where("id_pessoa = ?", id).Update("favoritar", body.Favoritar); result.Error != nil {
-		c.AbortWithError(http.StatusNotModified, result.Error)
+	if result := h.DB.First(&pessoa, id); result.Error != nil {
+		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
+
+	pessoa.Favoritar = body.Favoritar
+
+	h.DB.Save(&pessoa)
 
 	c.JSON(http.StatusOK, &pessoa)
 }
