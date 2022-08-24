@@ -1,6 +1,7 @@
 package pessoas
 
 import (
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/middlewares"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -14,7 +15,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	routes := r.Group("/pessoas")
+	routes := r.Group("/pessoas", middlewares.Auth())
 	routes.POST("/", h.AddPessoa)
 	routes.GET("/", h.GetPessoas)
 	routes.GET("/:id", h.GetPessoa)
