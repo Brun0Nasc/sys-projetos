@@ -30,16 +30,28 @@ func (h handler) AddTask(c *gin.Context) {
 	task.ProjetoID = body.ProjetoID
 	task.Status = "A fazer"
 
+	// Pegando ID da equipe em que o Projeto está cadastrado
 	var equipe int
-	if result := h.DB.Raw("select equipe_id from projetos where id_projeto = ?", task.ProjetoID).Scan(&equipe); result.Error != nil {
+	if result := h.DB.Raw("select equipe_id from projetos where id_projeto = ? and equipe_id is not null", task.ProjetoID).Scan(&equipe); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
 
+	/* Verifica se o projeto está cadastrado em alguma equipe */
+	if equipe == 0 {
+		c.JSON(http.StatusNotAcceptable, gin.H{"error":"O projeto informado não está atribuído a nenhuma equipe"})
+		return
+	}
+
+	// A variável checkE vai armazenar o resultado do count que o sql verifica_equipe vai retornar
 	var checkE int
-	verifica_equipe := "select count(pe.id_pessoa) from pessoas as pe inner join equipes as eq on pe.equipe_id = eq.id_equipe inner join projetos as pr on pr.equipe_id = eq.id_equipe where pe.id_pessoa = ? and pr.status = 'Em desenvolvimento' and pr.equipe_id = ?"
-	var checkS int
-	verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento' and equipe_id is not null"
+
+	/* verifica_equipe vai retornar um count que vai indicar se a pessoa que pegou essa task está realmente na equipe
+	responsável pelo projeto, e se o projeto em questão está com o status 'Em desenvolvimento', pois uma task só
+	pode ser cadastrada em projetos em desenvolvimento */
+	verifica_equipe := `select count(pe.id_pessoa) from pessoas as pe
+	inner join projetos as pr on pe.equipe_id = pr.equipe_id
+	where pe.id_pessoa = ? and pr.equipe_id = ?`
 
 	if result := h.DB.Raw(verifica_equipe, body.PessoaID, equipe).Scan(&checkE); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
@@ -47,6 +59,10 @@ func (h handler) AddTask(c *gin.Context) {
 	}
 
 	if(checkE > 0){
+
+		var checkS int
+		verifica_status := "select count(id_projeto) from projetos where id_projeto = ? and status = 'Em desenvolvimento'"
+
 		if result := h.DB.Raw(verifica_status, body.ProjetoID).Scan(&checkS); result.Error != nil {
 			c.AbortWithError(http.StatusNotFound, result.Error)
 			return
@@ -60,10 +76,12 @@ func (h handler) AddTask(c *gin.Context) {
 		
 			c.JSON(http.StatusCreated, &task)
 		} else {
-			c.JSON(http.StatusNotFound, gin.H{"Message":"Tasks só podem ser cadastradas em projetos que estão 'Em desenvolvimento' e estão em alguma equipe."})
+			c.JSON(http.StatusNotFound, gin.H{"error":"Tasks só podem ser cadastradas em projetos que estão 'Em desenvolvimento'."})
+			return
 		}
 	} else {
-		c.JSON(http.StatusNotFound, gin.H{"Message":"Tasks só podem ser atribuidas a pessoas que estão na equipe responsável pelo projeto."})
+		c.JSON(http.StatusNotFound, gin.H{"error":"Esta pessoa não está na mesma equipe que o projeto."})
+		return
 	}
 	
 }

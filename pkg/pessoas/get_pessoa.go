@@ -16,7 +16,7 @@ type GetPessoasBody struct{
 	EquipeID 		*int 			`json:"equipe_id"`
 	Equipe 			*models.Equipe 	`json:"equipe"`
 	Tasks 			*[]models.Task	`json:"tasks"`
-	Favoritar		int				`json:"favoritar"`
+	Favoritar		uint			`json:"favoritar"`
 }
 func (h handler) GetPessoa(c *gin.Context) {
 	id := c.Param("id")

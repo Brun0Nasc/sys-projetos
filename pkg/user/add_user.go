@@ -14,19 +14,18 @@ type AddUserRequestBody struct {
 }
 
 func (h handler) AddUser(c *gin.Context) {
-	//Variável do tipo AddEquipeRequestBody que vai receber as informações passadas através do JSON
+	//Variável que vai receber as informações passadas através do JSON
 	body := AddUserRequestBody{}
 
-	//Verificando o corpo de requisição
 	if err := c.ShouldBindJSON(&body); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
 
-	//Variável do tipo equipe, que foi definido no pacote models, que vai criar o registro no banco de dados
+	//Variável do tipo User, que foi definido no pacote models, que vai ser usada para gravar no BD
 	var user models.User
 
-	//Transferência de informação que o body recebeu para o elemento equipe
+	//Transferência de informação que o body recebeu para o elemento user
 	user.Nome_User = body.Nome_User
 	user.Email = body.Email
 	user.Senha = services.SHA256Encoder(body.Senha)

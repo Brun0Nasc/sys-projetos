@@ -7,6 +7,6 @@ type Pessoa struct {
     Nome_Pessoa		string			`json:"nome_pessoa"`
 	Funcao_Pessoa	string			`json:"funcao_pessoa"`
 	EquipeID		int				`json:"equipe_id"`
-	Favoritar		int				`json:"favoritar"`
+	Favoritar		uint			`json:"favoritar"`
 	DataContratacao time.Time		`json:"data_contratacao"`
 }

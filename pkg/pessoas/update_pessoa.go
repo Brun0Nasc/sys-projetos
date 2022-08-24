@@ -7,7 +7,7 @@ import (
 )
 
 type FavoritarBody struct {
-	Favoritar int `json:"favoritar"`
+	Favoritar uint `json:"favoritar"`
 }
 
 func (h handler) UpdatePessoa(c *gin.Context) {
