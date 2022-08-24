@@ -1,6 +1,7 @@
 package equipes
 
 import (
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/middlewares"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -17,7 +18,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	}
 
 	//Rotas Get, Post, Put e Delete, referentes a Equipes
-	routes := r.Group("/equipes")
+	routes := r.Group("/equipes", middlewares.Auth())
 	routes.GET("/", h.GetEquipes)
 	routes.GET("/:id", h.GetEquipe)
 	routes.GET("/:id/projetos", h.GetEquipeProjeto)
