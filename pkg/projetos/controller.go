@@ -1,6 +1,7 @@
 package projetos
 
 import (
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/middlewares"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -14,7 +15,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	routes := r.Group("/projetos")
+	routes := r.Group("/projetos", middlewares.Auth())
 	routes.POST("/", h.AddProjeto)
 	routes.GET("/", h.GetProjetos)
 	routes.GET("/:id", h.GetProjeto)

@@ -1,6 +1,7 @@
 package tasks
 
 import (
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/middlewares"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -14,7 +15,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	routes := r.Group("/tasks")
+	routes := r.Group("/tasks", middlewares.Auth())
 	routes.POST("/", h.AddTask)
 	routes.GET("/", h.GetTasks)
 	routes.GET("/:id", h.GetTask)

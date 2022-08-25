@@ -1,9 +1,9 @@
 package user
 
 import (
+	"github.com/Brun0Nasc/sys-projetos/pkg/common/middlewares"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	
 )
 
 type handler struct {
@@ -16,7 +16,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 	
-	routes := r.Group("/user")
+	routes := r.Group("/user", middlewares.Auth())
 	routes.POST("/", h.AddUser)
 }
 
