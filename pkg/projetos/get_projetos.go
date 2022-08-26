@@ -10,7 +10,7 @@ import (
 func (h handler) GetProjetos(c *gin.Context) {
 	var projetos []models.Projeto
 
-	if result := h.DB.Find(&projetos); result.Error != nil {
+	if result := h.DB.Order("id_projeto").Find(&projetos); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return
 	}
