@@ -10,7 +10,7 @@ type DBEquipes struct {
 	DB *sql.DB
 }
 
-func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipes) {
+func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipes) *modelData.Equipes{
 	sqlStatement := `INSERT INTO equipes
 	(nome_equipe)
 	VALUES($1::TEXT)`
@@ -19,4 +19,17 @@ func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipes) {
 		fmt.Println(err)
 	}
 	fmt.Println("deu tudo certo")
+
+	return req
+}
+
+func (postgres *DBEquipes) ListarEquipes() *modelData.Equipes{
+	sqlStatement := `SELECT * FROM equipes ORDER BY id_equipe`
+	rows, err := postgres.DB.Exec(sqlStatement)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("deu tudo certo")
+
+	return rows
 }

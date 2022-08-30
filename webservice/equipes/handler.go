@@ -20,3 +20,15 @@ func novaEquipe(c *gin.Context) {
 
 	equipe.NovaEquipe(c, &req)
 }
+
+func listarEquipes(c *gin.Context) {
+	fmt.Println("Tentando listar equipes")
+	req := modelApresentacao.ReqEquipes{}
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(400, gin.H{
+			"message": "Could not list." + err.Error(),
+		})
+		return
+	}
+	equipe.ListarEquipes()
+}
