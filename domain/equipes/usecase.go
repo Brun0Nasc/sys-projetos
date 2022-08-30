@@ -2,18 +2,20 @@ package equipe
 
 import (
 	"github.com/Brun0Nasc/sys-projetos/config/database"
+	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
+	"github.com/Brun0Nasc/sys-projetos/infra/equipes"
+
 	"github.com/gin-gonic/gin"
 )
 
-func NovaEquipe(c *gin.Context) {
+func NovaEquipe(c *gin.Context, req *modelApresentacao.ReqEquipes) {
 	db := database.Conectar()
-	equipeRepo := equipe.NovoRepo(db)
-	
-	str := *req.Nome
+	defer db.Close()
+	equipesRepo := equipes.NovoRepo(db)
 
-	str = "Equipe: " + str
+	str := *req.Nome_Equipe
 
-	req.Nome = &str
+	req.Nome_Equipe = &str
 
-	equipeRepo.NovaEquipe()
+	equipesRepo.NovaEquipe(req)
 }
