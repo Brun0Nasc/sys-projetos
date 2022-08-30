@@ -12,6 +12,8 @@ type handler struct {
 
 func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	//Registro das rotas de equipes
+
+	r.Use(middlewares.CORSMiddleware())
 	
 	h := &handler{
 		DB: db,

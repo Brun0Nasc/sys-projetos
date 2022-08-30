@@ -21,7 +21,7 @@ func NewJWTService() *jwtService {
 }
 
 type Claim struct {
-	Sum uint `json:"sum"`
+	Sub uint `json:"sub"`
 	jwt.StandardClaims
 }
 
