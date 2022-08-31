@@ -22,7 +22,15 @@ func NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context) {
 func ListarEquipes(c *gin.Context) []modelApresentacao.ReqEquipe{
 	db := database.Conectar()
 	defer db.Close()
-	
+
 	equipesRepo := equipes.NovoRepo(db)
 	return equipesRepo.ListarEquipes(c)
+}
+
+func BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
+	db := database.Conectar()
+	defer db.Close()
+
+	equipesRepo := equipes.NovoRepo(db)
+	return equipesRepo.BuscarEquipe(id)
 }

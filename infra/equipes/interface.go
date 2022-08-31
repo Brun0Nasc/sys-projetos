@@ -8,4 +8,5 @@ import (
 type IEquipe interface {
 	NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context)
 	ListarEquipes(c *gin.Context) []modelApresentacao.ReqEquipe
+	BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error)
 }

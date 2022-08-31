@@ -25,3 +25,6 @@ func (r *repositorio) NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Contex
 func (r *repositorio) ListarEquipes(c *gin.Context) []modelApresentacao.ReqEquipe {
 	return r.Data.ListarEquipes(c)
 }
+func (r *repositorio) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
+	return r.Data.BuscarEquipe(id)
+}

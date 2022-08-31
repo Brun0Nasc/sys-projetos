@@ -1,6 +1,7 @@
 package equipes
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 
@@ -27,4 +28,18 @@ func novaEquipe(c *gin.Context) {
 func listarEquipes(c *gin.Context) {
 	fmt.Println("Tentando listar equipes") 
 	c.JSON(http.StatusOK, equipe.ListarEquipes(c))
+}
+
+func buscarEquipe(c *gin.Context) {
+	id := c.Param("id")
+	fmt.Println("Tentando encontrar equipe")
+	if equipe, err := equipe.BuscarEquipe(id); err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado " + err.Error()})
+		} else {
+			c.JSON(http.StatusNotFound, gin.H{"error":"" + err.Error()})
+		}
+	} else {
+		c.JSON(http.StatusOK, equipe)
+	}
 }
