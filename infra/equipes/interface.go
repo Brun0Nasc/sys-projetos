@@ -8,4 +8,5 @@ type IEquipe interface {
 	NovaEquipe(req *modelApresentacao.ReqEquipe) (*modelApresentacao.ReqEquipe, error)
 	ListarEquipes() ([]modelApresentacao.ReqEquipe, error)
 	BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error)
+	DeletarEquipe(id string) error
 }

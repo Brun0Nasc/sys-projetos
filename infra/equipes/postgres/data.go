@@ -62,3 +62,15 @@ func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe
 	fmt.Println("Busca deu certo!")
 	return equipe, nil
 }
+
+func (postgres *DBEquipes) DeletarEquipe(id string) error {
+	sqlStatement := `DELETE FROM equipes WHERE id_equipe = $1`
+
+	_, err := postgres.DB.Exec(sqlStatement, id)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Delete deu certo!")
+	return nil
+}

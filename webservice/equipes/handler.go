@@ -61,3 +61,15 @@ func buscarEquipe(c *gin.Context) {
 		return
 	}
 }
+
+func deletarEquipe(c *gin.Context) {
+	id := c.Param("id")
+	fmt.Println("Tentando deletar equipe")
+	if err := equipe.DeletarEquipe(id); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"err":err.Error()})
+		return
+	} else {
+		c.JSON(http.StatusOK, gin.H{"message":"Cadastro deletado com sucesso!"})
+		return
+	}
+}

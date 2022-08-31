@@ -27,3 +27,6 @@ func (r *repositorio) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {
 func (r *repositorio) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
 	return r.Data.BuscarEquipe(id)
 }
+func (r *repositorio) DeletarEquipe(id string) error {
+	return r.Data.DeletarEquipe(id)
+}
