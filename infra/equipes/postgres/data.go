@@ -23,12 +23,9 @@ func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipe) (*modelApresentacao
 	
 	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe); err != nil {
 		return nil, err
-	} else {
-		return &equipe, nil
 	}
-
-	fmt.Println("deu tudo certo")
-	
+	fmt.Println("Insert deu certo")
+	return &equipe, nil
 }
 
 func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {

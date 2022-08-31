@@ -18,7 +18,7 @@ func novoRepo(novoDB *sql.DB) *repositorio {
 	}
 }
 
-func (r *repositorio) NovaEquipe(req *modelApresentacao.ReqEquipe) error{
+func (r *repositorio) NovaEquipe(req *modelApresentacao.ReqEquipe) (*modelApresentacao.ReqEquipe, error){
 	return r.Data.NovaEquipe(&modelData.Equipe{Nome_Equipe: req.Nome_Equipe})
 }
 func (r *repositorio) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {

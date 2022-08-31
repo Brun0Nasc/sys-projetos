@@ -6,7 +6,7 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes"
 )
 
-func NovaEquipe(req *modelApresentacao.ReqEquipe) error{
+func NovaEquipe(req *modelApresentacao.ReqEquipe)(*modelApresentacao.ReqEquipe, error){
 	db := database.Conectar()
 	defer db.Close()
 	equipesRepo := equipes.NovoRepo(db)

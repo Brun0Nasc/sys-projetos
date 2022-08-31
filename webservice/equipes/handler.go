@@ -16,17 +16,17 @@ func novaEquipe(c *gin.Context) {
 	req := modelApresentacao.ReqEquipe{}
 	if err := c.BindJSON(&req); err != nil {
 		c.JSON(400, gin.H{
-			"message": "Could not create. Parameters were not passed correctly " + err.Error(),
+			"message": "Could not create. Parameters were not passed correctly ", "err":err.Error(),
 		})
 		return
 	}
 
-	if err := equipe.NovaEquipe(&req); err != nil {
+	if equipe, err := equipe.NovaEquipe(&req); err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error":err.Error()})
 		return
+	} else{
+		c.JSON(http.StatusCreated, equipe)
 	}
-	
-	c.JSON(http.StatusCreated, gin.H{"OK":"Registro adicionado com Sucesso!"})
 }
 
 func listarEquipes(c *gin.Context) {
@@ -34,11 +34,14 @@ func listarEquipes(c *gin.Context) {
 	if equipes, err := equipe.ListarEquipes(); err != nil {
 		if err == sql.ErrNoRows {
 			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado", "err":err.Error()})
+			return
 		} else {
 			c.JSON(http.StatusNotFound, gin.H{"error":err.Error()})
+			return
 		}
 	} else {
 		c.JSON(http.StatusOK, equipes)
+		return
 	}
 }
 
@@ -48,10 +51,13 @@ func buscarEquipe(c *gin.Context) {
 	if equipe, err := equipe.BuscarEquipe(id); err != nil {
 		if err == sql.ErrNoRows {
 			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado", "err":err.Error()})
+			return
 		} else {
 			c.JSON(http.StatusNotFound, gin.H{"error":err.Error()})
+			return
 		}
 	} else {
 		c.JSON(http.StatusOK, equipe)
+		return
 	}
 }
