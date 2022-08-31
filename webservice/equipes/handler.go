@@ -29,9 +29,9 @@ func listarEquipes(c *gin.Context) {
 	fmt.Println("Tentando listar equipes") 
 	if equipes, err := equipe.ListarEquipes(); err != nil {
 		if err == sql.ErrNoRows {
-			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado ", "err":err.Error()})
+			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado", "err":err.Error()})
 		} else {
-			c.JSON(http.StatusNotFound, gin.H{"error":"" + err.Error()})
+			c.JSON(http.StatusNotFound, gin.H{"error":err.Error()})
 		}
 	} else {
 		c.JSON(http.StatusOK, equipes)
