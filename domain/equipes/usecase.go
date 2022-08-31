@@ -4,10 +4,9 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/config/database"
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes"
-	"github.com/gin-gonic/gin"
 )
 
-func NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context) {
+func NovaEquipe(req *modelApresentacao.ReqEquipe) error{
 	db := database.Conectar()
 	defer db.Close()
 	equipesRepo := equipes.NovoRepo(db)
@@ -16,7 +15,7 @@ func NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context) {
 
 	req.Nome_Equipe = &str
 
-	equipesRepo.NovaEquipe(req, c)
+	return equipesRepo.NovaEquipe(req)
 }
 
 func ListarEquipes() ([]modelApresentacao.ReqEquipe, error){

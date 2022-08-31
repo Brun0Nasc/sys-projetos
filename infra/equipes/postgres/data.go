@@ -3,26 +3,32 @@ package postgres
 import (
 	"database/sql"
 	"fmt"
-	"net/http"
-
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/equipes/model"
-	"github.com/gin-gonic/gin"
 )
 
 type DBEquipes struct {
 	DB *sql.DB
 }
 
-func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipe, c *gin.Context) {
+func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipe) (*modelApresentacao.ReqEquipe, error) {
 	sqlStatement := `INSERT INTO equipes
 	(nome_equipe)
-	VALUES($1::TEXT)`
-	_, err := postgres.DB.Exec(sqlStatement, req.Nome_Equipe)
-	if err != nil {
-		c.AbortWithError(http.StatusNotFound, err)
+	VALUES($1::VARCHAR(80))
+	RETURNING *`
+
+	var equipe = *&modelApresentacao.ReqEquipe{}
+
+	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe)
+	
+	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe); err != nil {
+		return nil, err
+	} else {
+		return &equipe, nil
 	}
+
 	fmt.Println("deu tudo certo")
+	
 }
 
 func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {

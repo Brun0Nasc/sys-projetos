@@ -21,7 +21,11 @@ func novaEquipe(c *gin.Context) {
 		return
 	}
 
-	equipe.NovaEquipe(&req, c)
+	if err := equipe.NovaEquipe(&req); err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error":err.Error()})
+		return
+	}
+	
 	c.JSON(http.StatusCreated, gin.H{"OK":"Registro adicionado com Sucesso!"})
 }
 
@@ -45,7 +49,7 @@ func buscarEquipe(c *gin.Context) {
 		if err == sql.ErrNoRows {
 			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado", "err":err.Error()})
 		} else {
-			c.JSON(http.StatusNotFound, gin.H{"error":"" + err.Error()})
+			c.JSON(http.StatusNotFound, gin.H{"error":err.Error()})
 		}
 	} else {
 		c.JSON(http.StatusOK, equipe)
