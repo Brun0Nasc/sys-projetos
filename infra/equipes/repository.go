@@ -22,8 +22,8 @@ func novoRepo(novoDB *sql.DB) *repositorio {
 func (r *repositorio) NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context) {
 	r.Data.NovaEquipe(&modelData.Equipe{Nome_Equipe: req.Nome_Equipe}, c)
 }
-func (r *repositorio) ListarEquipes(c *gin.Context) []modelApresentacao.ReqEquipe {
-	return r.Data.ListarEquipes(c)
+func (r *repositorio) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {
+	return r.Data.ListarEquipes()
 }
 func (r *repositorio) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
 	return r.Data.BuscarEquipe(id)

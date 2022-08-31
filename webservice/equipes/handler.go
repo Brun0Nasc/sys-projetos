@@ -27,7 +27,15 @@ func novaEquipe(c *gin.Context) {
 
 func listarEquipes(c *gin.Context) {
 	fmt.Println("Tentando listar equipes") 
-	c.JSON(http.StatusOK, equipe.ListarEquipes(c))
+	if equipes, err := equipe.ListarEquipes(); err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado ", "err":err.Error()})
+		} else {
+			c.JSON(http.StatusNotFound, gin.H{"error":"" + err.Error()})
+		}
+	} else {
+		c.JSON(http.StatusOK, equipes)
+	}
 }
 
 func buscarEquipe(c *gin.Context) {
@@ -35,7 +43,7 @@ func buscarEquipe(c *gin.Context) {
 	fmt.Println("Tentando encontrar equipe")
 	if equipe, err := equipe.BuscarEquipe(id); err != nil {
 		if err == sql.ErrNoRows {
-			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado " + err.Error()})
+			c.JSON(http.StatusOK, gin.H{"message":"Nenhum registro encontrado", "err":err.Error()})
 		} else {
 			c.JSON(http.StatusNotFound, gin.H{"error":"" + err.Error()})
 		}

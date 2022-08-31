@@ -19,12 +19,12 @@ func NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context) {
 	equipesRepo.NovaEquipe(req, c)
 }
 
-func ListarEquipes(c *gin.Context) []modelApresentacao.ReqEquipe{
+func ListarEquipes() ([]modelApresentacao.ReqEquipe, error){
 	db := database.Conectar()
 	defer db.Close()
 
 	equipesRepo := equipes.NovoRepo(db)
-	return equipesRepo.ListarEquipes(c)
+	return equipesRepo.ListarEquipes()
 }
 
 func BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
