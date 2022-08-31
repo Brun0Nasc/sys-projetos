@@ -1,16 +1,13 @@
 package equipe
 
 import (
-	"net/http"
-
 	"github.com/Brun0Nasc/sys-projetos/config/database"
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes"
-
 	"github.com/gin-gonic/gin"
 )
 
-func NovaEquipe(c *gin.Context, req *modelApresentacao.ReqEquipes) {
+func NovaEquipe(req *modelApresentacao.ReqEquipe, c *gin.Context) {
 	db := database.Conectar()
 	defer db.Close()
 	equipesRepo := equipes.NovoRepo(db)
@@ -19,16 +16,13 @@ func NovaEquipe(c *gin.Context, req *modelApresentacao.ReqEquipes) {
 
 	req.Nome_Equipe = &str
 
-	equipesRepo.NovaEquipe(req)
-
-	c.JSON(http.StatusCreated, req)
+	equipesRepo.NovaEquipe(req, c)
 }
 
-func ListarEquipes() {
+func ListarEquipes(c *gin.Context) []modelApresentacao.ReqEquipe{
 	db := database.Conectar()
 	defer db.Close()
-	equipesRepo := equipes.NovoRepo(db)
-	equipesRepo.ListarEquipes()
-
 	
+	equipesRepo := equipes.NovoRepo(db)
+	return equipesRepo.ListarEquipes(c)
 }
