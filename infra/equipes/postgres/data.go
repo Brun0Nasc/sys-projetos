@@ -3,6 +3,7 @@ package postgres
 import (
 	"database/sql"
 	"fmt"
+
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/equipes/model"
 )
@@ -17,15 +18,15 @@ func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipe) (*modelApresentacao
 	VALUES($1::VARCHAR(80))
 	RETURNING *`
 
-	var equipe = *&modelApresentacao.ReqEquipe{}
+	var equipe = &modelApresentacao.ReqEquipe{}
 
 	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe)
 	
-	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe); err != nil {
+	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {
 		return nil, err
 	}
-	fmt.Println("Insert deu certo")
-	return &equipe, nil
+
+	return equipe, nil
 }
 
 func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {
@@ -38,7 +39,7 @@ func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error
 		return nil, err // em caso de erro na consulta, a requisição será avortada e retornar um status 404 e o erro
 	}
 	for rows.Next() { // percorrendo linhas retornadas no sql
-		if err := rows.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe); err != nil { // escaneando linha por linha e gravando na estrutura de equipe
+		if err := rows.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil { // escaneando linha por linha e gravando na estrutura de equipe
 			return nil, err // se houver algum erro, a função retorna ele
 		}
 		res = append(res, equipe) // preenchendo lista a cada iteração
@@ -52,12 +53,8 @@ func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe
 	var equipe = &modelApresentacao.ReqEquipe{}
 
 	row := postgres.DB.QueryRow(sqlStatement, id)
-	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe); err != nil {
-		if err == sql.ErrNoRows {
-			return nil, err
-		} else {
-			return nil, err
-		}
+	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {
+		return nil, err
 	}
 	fmt.Println("Busca deu certo!")
 	return equipe, nil
@@ -73,4 +70,18 @@ func (postgres *DBEquipes) DeletarEquipe(id string) error {
 
 	fmt.Println("Delete deu certo!")
 	return nil
+}
+
+func (postgres *DBEquipes) AtualizarEquipe(id string, req *modelData.Equipe) (*modelApresentacao.ReqEquipe, error ){
+	sqlStatement := `UPDATE equipes SET nome_equipe = $1::VARCHAR(80) 
+	WHERE id_equipe = $2 RETURNING *`
+	var equipe = &modelApresentacao.ReqEquipe{} 
+
+	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe, id)
+
+	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {
+		return nil, err
+	}
+	
+	return equipe, nil
 }

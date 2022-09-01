@@ -9,4 +9,5 @@ type IEquipe interface {
 	ListarEquipes() ([]modelApresentacao.ReqEquipe, error)
 	BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error)
 	DeletarEquipe(id string) error
+	AtualizarEquipe(id string, req *modelApresentacao.ReqEquipe) (*modelApresentacao.ReqEquipe, error)
 }

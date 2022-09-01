@@ -1,4 +1,4 @@
-package equipe
+package equipes
 
 import (
 	"github.com/Brun0Nasc/sys-projetos/config/database"
@@ -40,4 +40,16 @@ func DeletarEquipe(id string) error {
 
 	equipesRepo := equipes.NovoRepo(db)
 	return equipesRepo.DeletarEquipe(id)
+}
+
+func AtualizarEquipe(id string, req *modelApresentacao.ReqEquipe) (*modelApresentacao.ReqEquipe, error){
+	db := database.Conectar()
+	defer db.Close()
+	equipesRepo := equipes.NovoRepo(db)
+
+	str := *req.Nome_Equipe
+
+	req.Nome_Equipe = &str
+
+	return equipesRepo.AtualizarEquipe(id, req)
 }

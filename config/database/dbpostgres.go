@@ -11,7 +11,7 @@ import (
 var host string = "localhost"
 var user string = "root"
 var password string = "root"
-var dbname string = "sys_projetos"
+var dbname string = "bd_projetos"
 const port = 5432
 
 func Conectar() *sql.DB {
