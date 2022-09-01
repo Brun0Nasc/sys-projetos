@@ -21,3 +21,11 @@ func ListarPessoas() ([]modelApresentacao.ReqPessoa, error) {
 
 	return pessoasRepo.ListarPessoas()
 }
+
+func BuscarPessoa(id string) (*modelApresentacao.ReqPessoa, error) {
+	db := database.Conectar()
+	defer db.Close()
+	pessoasRepo := pessoas.NovoRepo(db)
+
+	return pessoasRepo.BuscarPessoa(id)
+}

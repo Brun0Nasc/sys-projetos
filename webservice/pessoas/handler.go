@@ -47,3 +47,21 @@ func listarPessoas(c *gin.Context) {
 		c.JSON(http.StatusOK, res)
 	}
 }
+
+func buscarPessoa(c *gin.Context) {
+	fmt.Println("Tentando buscar pessoa")
+
+	id := c.Param("id")
+
+	res, err := pessoas.BuscarPessoa(id)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(200, gin.H{"message":"Cadastro não encontrado.", "err":err.Error()})
+		} else {
+			c.JSON(404, gin.H{"err":err.Error()})
+		}
+		return
+	}
+
+	c.JSON(200, res)
+}

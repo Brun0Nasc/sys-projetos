@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"database/sql"
+
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/pessoas/model"
 )
@@ -48,4 +49,18 @@ func (postgres *DBPessoas) ListarPessoas() ([]modelApresentacao.ReqPessoa, error
 	}
 
 	return res, nil
+}
+
+func (postgres *DBPessoas) BuscarPessoa(id string) (*modelApresentacao.ReqPessoa, error) {
+	sqlStatement := `SELECT * FROM pessoas WHERE id_pessoa = $1`
+	res := modelApresentacao.ReqPessoa{}
+
+	row := postgres.DB.QueryRow(sqlStatement, id)
+
+	if err := row.Scan(&res.ID_Pessoa, &res.Nome_Pessoa, &res.Funcao_Pessoa,
+	&res.EquipeID, &res.Favoritar, &res.DataContratacao, &res.UpdatedAt); err != nil {
+		return nil, err
+	}
+
+	return &res, nil
 }
