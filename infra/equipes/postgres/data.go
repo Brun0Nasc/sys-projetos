@@ -49,6 +49,7 @@ func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error
 	return res, nil // retornando resposta do tipo []modelApresentacao.ReqEquipe
 }
 
+// A função ListarMembros será usada apenas pela função BuscarEquipe, e vai servir para exibir os membros da equipe buscada
 func (postgres *DBEquipes) ListarMembros(id string) ([]*modelPessoa.ReqPessoa, error){
 	sqlStatement := `SELECT * FROM pessoas WHERE equipe_id = $1`
 	var pessoa = &modelPessoa.ReqPessoa{}
