@@ -8,6 +8,7 @@ import (
 
 type AddTaskRequestBody struct {
 	Descricao_Task  string 	`json:"descricao_task"`
+	Comentario		string	`json:"comentario"`
 	Nivel			string	`json:"nivel"`
 	PessoaID		int 	`json:"pessoa_id"`
 	ProjetoID		int 	`json:"projeto_id"`
@@ -25,6 +26,7 @@ func (h handler) AddTask(c *gin.Context) {
 	var task models.Task
 
 	task.Descricao_Task = body.Descricao_Task
+	task.Comentario = body.Comentario
 	task.Nivel = body.Nivel
 	task.PessoaID = body.PessoaID
 	task.ProjetoID = body.ProjetoID
