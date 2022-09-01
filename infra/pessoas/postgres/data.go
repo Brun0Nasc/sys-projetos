@@ -64,3 +64,21 @@ func (postgres *DBPessoas) BuscarPessoa(id string) (*modelApresentacao.ReqPessoa
 
 	return &res, nil
 }
+
+func (postgres *DBPessoas) AtualizarPessoa(id string, req *modelData.Pessoa) (*modelApresentacao.ReqPessoa, error) {
+	sqlStatement := `UPDATE pessoas 
+	SET nome_pessoa = $1::VARCHAR(80), funcao_pessoa = $2::VARCHAR(80), equipe_id = $3::BIGINT 
+	WHERE id_pessoa = $4
+	RETURNING *;`
+
+	res := &modelApresentacao.ReqPessoa{}
+
+	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Pessoa, req.Funcao_Pessoa, req.EquipeID, id)
+
+	if err := row.Scan(&res.ID_Pessoa, &res.Nome_Pessoa, &res.Funcao_Pessoa, &res.EquipeID,
+	&res.Favoritar, &res.DataContratacao, &res.UpdatedAt); err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}

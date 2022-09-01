@@ -29,3 +29,11 @@ func BuscarPessoa(id string) (*modelApresentacao.ReqPessoa, error) {
 
 	return pessoasRepo.BuscarPessoa(id)
 }
+
+func AtualizarPessoa(id string, req *modelApresentacao.ReqPessoa) (*modelApresentacao.ReqPessoa, error) {
+	db := database.Conectar()
+	defer db.Close()
+	pessoasRepo := pessoas.NovoRepo(db)
+
+	return pessoasRepo.AtualizarPessoa(id, req)
+}

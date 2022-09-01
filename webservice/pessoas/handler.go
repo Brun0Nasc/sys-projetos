@@ -65,3 +65,26 @@ func buscarPessoa(c *gin.Context) {
 
 	c.JSON(200, res)
 }
+
+func atualizarPessoa(c *gin.Context) {
+	fmt.Println("Tentando atualizar pessoa")
+
+	id := c.Param("id")
+	req := modelApresentacao.ReqPessoa{}
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(400, gin.H{
+			"message":"Could not create. Parameters were not passed correctly",
+			"err":err.Error(),
+		})
+		return
+	}
+
+	res, err := pessoas.AtualizarPessoa(id, &req)
+	if err != nil {
+		c.JSON(http.StatusNotModified, gin.H{"message":"Algo deu errado", "err":err.Error()})
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, res)
+}

@@ -35,7 +35,11 @@ func (r *repositorio) DeletarPessoa(id string) error{
 	return nil
 }
 func (r *repositorio) AtualizarPessoa(id string, req *modelApresentacao.ReqPessoa) (*modelApresentacao.ReqPessoa, error) {
-	return nil, nil
+	return r.Data.AtualizarPessoa(id, &modelData.Pessoa{
+		Nome_Pessoa: req.Nome_Pessoa,
+		Funcao_Pessoa: req.Funcao_Pessoa,
+		EquipeID: req.EquipeID,
+	})
 }
 func (r *repositorio) FavoritarPessoa(id string) error {
 	return nil
