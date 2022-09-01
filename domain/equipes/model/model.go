@@ -1,14 +1,14 @@
 package equipes
 
 import (
+	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
 	"time"
-	modelPessoa "github.com/Brun0Nasc/sys-projetos/infra/pessoas/model"
 )
 
 type ReqEquipe struct {
-	ID_Equipe   *uint      `json:"id_equipe"`
-	Nome_Equipe *string    `json:"nome_equipe,omitempty"`
-	Pessoas 	[]modelPessoa.
-	CreatedAt   *time.Time `json:"created_at"`
-	UpdatedAt   *time.Time `json:"updated_at"`
+	ID_Equipe   *uint                    `json:"id_equipe"`
+	Nome_Equipe *string                  `json:"nome_equipe,omitempty"`
+	Pessoas     []*modelPessoa.ReqPessoa `json:"pessoas,omitempty"`
+	CreatedAt   *time.Time               `json:"created_at"`
+	UpdatedAt   *time.Time               `json:"updated_at"`
 }
