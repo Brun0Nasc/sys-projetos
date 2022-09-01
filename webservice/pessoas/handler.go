@@ -1,6 +1,7 @@
 package pessoas
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 
@@ -29,5 +30,20 @@ func novaPessoa(c *gin.Context) {
 		return
 	} else {
 		c.JSON(http.StatusCreated, res)
+	}
+}
+
+func listarPessoas(c *gin.Context) {
+	fmt.Println("Tentando listar pessoas")
+
+	if res, err := pessoas.ListarPessoas(); err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(200, gin.H{"message":"Não há dados cadastrados no banco.", "err":err.Error()})
+		} else {
+			c.JSON(404, gin.H{"err":err.Error()})
+		}
+		return
+	} else {
+		c.JSON(http.StatusOK, res)
 	}
 }

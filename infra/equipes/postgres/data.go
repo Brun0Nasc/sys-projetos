@@ -50,10 +50,10 @@ func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error
 }
 
 // A função ListarMembros será usada apenas pela função BuscarEquipe, e vai servir para exibir os membros da equipe buscada
-func (postgres *DBEquipes) ListarMembros(id string) ([]*modelPessoa.ReqPessoa, error){
+func (postgres *DBEquipes) ListarMembros(id string) ([]modelPessoa.ReqPessoa, error){
 	sqlStatement := `SELECT * FROM pessoas WHERE equipe_id = $1`
-	var pessoa = &modelPessoa.ReqPessoa{}
-	var res = []*modelPessoa.ReqPessoa{}
+	var pessoa = modelPessoa.ReqPessoa{}
+	var res = []modelPessoa.ReqPessoa{}
 	
 	rows, err := postgres.DB.Query(sqlStatement, id)
 	if err != nil {
@@ -77,7 +77,7 @@ func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe
 
 	pessoas, err := postgres.ListarMembros(id)
 
-	if err != nil {
+	if err != nil{
 		if err == sql.ErrNoRows{
 			pessoas = nil
 		} else {
@@ -85,7 +85,7 @@ func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe
 		}
 	}
 
-	equipe.Pessoas = pessoas
+	equipe.Pessoas = &pessoas
 
 	row := postgres.DB.QueryRow(sqlStatement, id)
 	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {

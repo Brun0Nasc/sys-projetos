@@ -27,3 +27,25 @@ func (postgres *DBPessoas) NovaPessoa(req *modelData.Pessoa) (*modelApresentacao
 
 	return pessoa, nil
 }
+
+func (postgres *DBPessoas) ListarPessoas() ([]modelApresentacao.ReqPessoa, error) {
+	sqlStatement := `SELECT * FROM pessoas ORDER BY id_pessoa;`
+
+	rows, err := postgres.DB.Query(sqlStatement)
+	if err != nil {
+		return nil, err
+	}
+
+	pessoa := modelApresentacao.ReqPessoa{}
+	res := []modelApresentacao.ReqPessoa{}
+
+	for rows.Next() {
+		if err := rows.Scan(&pessoa.ID_Pessoa, &pessoa.Nome_Pessoa, &pessoa.Funcao_Pessoa,
+		&pessoa.EquipeID, &pessoa.Favoritar, &pessoa.DataContratacao, &pessoa.UpdatedAt); err != nil {
+			return nil, err
+		}
+		res = append(res, pessoa)
+	}
+
+	return res, nil
+}

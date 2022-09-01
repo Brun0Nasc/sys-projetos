@@ -25,8 +25,8 @@ func (r *repositorio) NovaPessoa(req *modelApresentacao.ReqPessoa) (*modelAprese
 		EquipeID: req.EquipeID,
 	})
 }
-func (r *repositorio) ListarPessoas() ([]*modelApresentacao.ReqPessoa, error){
-	return nil, nil
+func (r *repositorio) ListarPessoas() ([]modelApresentacao.ReqPessoa, error){
+	return r.Data.ListarPessoas()
 }
 func (r *repositorio) BuscarPessoa(id string) (*modelApresentacao.ReqPessoa, error){
 	return nil, nil
