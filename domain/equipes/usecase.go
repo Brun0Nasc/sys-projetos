@@ -3,6 +3,7 @@ package equipes
 import (
 	"github.com/Brun0Nasc/sys-projetos/config/database"
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
+	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes"
 )
 
@@ -24,6 +25,14 @@ func ListarEquipes() ([]modelApresentacao.ReqEquipe, error){
 
 	equipesRepo := equipes.NovoRepo(db)
 	return equipesRepo.ListarEquipes()
+}
+
+func ListarMembros(id string) ([]modelPessoa.ReqPessoa, error) {
+	db := database.Conectar()
+	defer db.Close()
+
+	equipesRepo := equipes.NovoRepo(db)
+	return equipesRepo.ListarMembros(id)
 }
 
 func BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {

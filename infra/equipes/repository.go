@@ -5,6 +5,7 @@ import (
 
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/equipes/model"
+	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes/postgres"
 )
 
@@ -23,6 +24,9 @@ func (r *repositorio) NovaEquipe(req *modelApresentacao.ReqEquipe) (*modelAprese
 }
 func (r *repositorio) ListarEquipes() ([]modelApresentacao.ReqEquipe, error) {
 	return r.Data.ListarEquipes()
+}
+func (r *repositorio) ListarMembros(id string) ([]modelPessoa.ReqPessoa, error){
+	return r.Data.ListarMembros(id)
 }
 func (r *repositorio) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
 	return r.Data.BuscarEquipe(id)
