@@ -37,3 +37,11 @@ func AtualizarPessoa(id string, req *modelApresentacao.ReqPessoa) (*modelApresen
 
 	return pessoasRepo.AtualizarPessoa(id, req)
 }
+
+func DeletarPessoa(id string) error {
+	db := database.Conectar()
+	defer db.Close()
+	pessoasRepo := pessoas.NovoRepo(db)
+
+	return pessoasRepo.DeletarPessoa(id)
+}

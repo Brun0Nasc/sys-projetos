@@ -32,7 +32,7 @@ func (r *repositorio) BuscarPessoa(id string) (*modelApresentacao.ReqPessoa, err
 	return r.Data.BuscarPessoa(id)
 }
 func (r *repositorio) DeletarPessoa(id string) error{
-	return nil
+	return r.Data.DeletarPessoa(id)
 }
 func (r *repositorio) AtualizarPessoa(id string, req *modelApresentacao.ReqPessoa) (*modelApresentacao.ReqPessoa, error) {
 	return r.Data.AtualizarPessoa(id, &modelData.Pessoa{

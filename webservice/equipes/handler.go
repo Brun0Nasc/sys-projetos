@@ -66,11 +66,9 @@ func deletarEquipe(c *gin.Context) {
 	id := c.Param("id")
 	fmt.Println("Tentando deletar equipe")
 	if err := equipes.DeletarEquipe(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"err":err.Error()})
-		return
+		c.JSON(http.StatusNotFound, gin.H{"err":err.Error()})
 	} else {
 		c.JSON(http.StatusOK, gin.H{"message":"Cadastro deletado com sucesso!"})
-		return
 	}
 }
 

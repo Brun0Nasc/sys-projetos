@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"database/sql"
+	"fmt"
 
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/pessoas/model"
@@ -81,4 +82,20 @@ func (postgres *DBPessoas) AtualizarPessoa(id string, req *modelData.Pessoa) (*m
 	}
 
 	return res, nil
+}
+
+func (postgres *DBPessoas) DeletarPessoa(id string) error {
+	if _, err := postgres.BuscarPessoa(id); err != nil {
+		return err
+	} else {
+		sqlStatement := `DELETE FROM pessoas WHERE id_pessoa = $1`
+
+		_, err := postgres.DB.Exec(sqlStatement, id)
+		if err != nil {
+			return err
+		}
+
+		fmt.Println("Deletado com sucesso!")
+		return nil
+	}
 }

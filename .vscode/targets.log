@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Sep  1 07:48:36 2022
+# Make data base, printed on Fri Sep  2 07:50:27 2022
 
 # Variables
 
@@ -47,7 +45,7 @@ VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/dbus-update-activation-environment
 # environment
-JOURNAL_STREAM = 8:59422
+JOURNAL_STREAM = 8:60507
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -63,7 +61,7 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/d
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
 # environment
-MANAGERPID = 2431
+MANAGERPID = 2393
 # environment
 VSCODE_CWD = /home/brisa
 # default
@@ -73,7 +71,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2642,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2642
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2605,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2605
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
 # environment
@@ -81,7 +79,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = b24a1750dd354e48851b2da8f1f00673
+INVOCATION_ID = 8700f93c40a14e7dab45f22212c9ef65
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -89,7 +87,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3422
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3139
 # automatic
 %F = $(notdir $%)
 # environment
@@ -99,7 +97,7 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2607
+SSH_AGENT_PID = 2570
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
@@ -197,7 +195,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3689
+VSCODE_PID = 4369
 # variable set hash-table stats:
 # Load=93/1024=9%, Rehash=0, Collisions=15/118=13%
 
@@ -227,7 +225,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-01 07:48:25.618395373
+#  Last modified 2022-09-01 11:16:17.309626527
 #  File has been updated.
 #  Successfully updated.
 
@@ -258,6 +256,8 @@ server:
 # strcache performance: lookups = 29 / hit rate = 17%
 # hash-table stats:
 # Load=24/8192=0%, Rehash=0, Collisions=1/29=3%
-# Finished Make data base on Thu Sep  1 07:48:36 2022
+# Finished Make data base on Fri Sep  2 07:50:27 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+

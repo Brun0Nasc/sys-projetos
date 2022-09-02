@@ -88,3 +88,17 @@ func atualizarPessoa(c *gin.Context) {
 
 	c.JSON(200, res)
 }
+
+func deletarPessoa(c *gin.Context) {
+	fmt.Println("Tentando deletar pessoa.")
+	id := c.Param("id")
+
+	err := pessoas.DeletarPessoa(id)
+	if err != nil {
+		c.JSON(404, gin.H{"err":err.Error()})
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, gin.H{"message":"Cadastro deletado com sucesso!"})
+}
