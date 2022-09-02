@@ -99,3 +99,30 @@ func (postgres *DBPessoas) DeletarPessoa(id string) error {
 		return nil
 	}
 }
+
+func (postgres *DBPessoas) Favoritar(id string) error {
+	sqlStatement := `select favoritar from pessoas where id_pessoa=$1`
+	sqlFav := `UPDATE pessoas SET favoritar = $1 WHERE id_pessoa = $2`
+
+	var favoritar int
+	var v int
+
+	row := postgres.DB.QueryRow(sqlStatement, id)
+
+	if err := row.Scan(&favoritar); err != nil {
+		return err
+	}
+
+	if favoritar == 0 {
+		v = 1
+	} else {
+		v = 0
+	}
+
+	_, err := postgres.DB.Exec(sqlFav, v, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

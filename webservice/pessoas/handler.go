@@ -102,3 +102,17 @@ func deletarPessoa(c *gin.Context) {
 
 	c.JSON(200, gin.H{"message":"Cadastro deletado com sucesso!"})
 }
+
+func favoritar(c *gin.Context) {
+	fmt.Println("Tentando favoritar.")
+	id := c.Param("id")
+
+	err := pessoas.Favoritar(id)
+	if err != nil {
+		c.JSON(404, gin.H{"err":err.Error()})
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, gin.H{"message":"Pessoa favoritada!"})
+}

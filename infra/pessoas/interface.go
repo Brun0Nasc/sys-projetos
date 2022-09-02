@@ -10,5 +10,5 @@ type IPessoa interface {
 	BuscarPessoa(id string) (*modelApresentacao.ReqPessoa, error)
 	DeletarPessoa(id string) error
 	AtualizarPessoa(id string, req *modelApresentacao.ReqPessoa) (*modelApresentacao.ReqPessoa, error)
-	FavoritarPessoa(id string) error
+	Favoritar(id string) error
 }

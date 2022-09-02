@@ -45,3 +45,11 @@ func DeletarPessoa(id string) error {
 
 	return pessoasRepo.DeletarPessoa(id)
 }
+
+func Favoritar(id string) error {
+	db := database.Conectar()
+	defer db.Close()
+	pessoasRepo := pessoas.NovoRepo(db)
+
+	return pessoasRepo.Favoritar(id)
+}

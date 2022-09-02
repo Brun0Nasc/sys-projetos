@@ -41,6 +41,6 @@ func (r *repositorio) AtualizarPessoa(id string, req *modelApresentacao.ReqPesso
 		EquipeID: req.EquipeID,
 	})
 }
-func (r *repositorio) FavoritarPessoa(id string) error {
-	return nil
+func (r *repositorio) Favoritar(id string) error {
+	return r.Data.Favoritar(id)
 }
