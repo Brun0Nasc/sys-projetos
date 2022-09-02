@@ -13,12 +13,12 @@ type DBProjetos struct {
 }
 
 func (postgres *DBProjetos) NovoProjeto(req *modelData.Projeto) (*modelApresentacao.ReqProjeto, error) {
+	var projeto = &modelApresentacao.ReqProjeto{}
+	
 	sqlStatement := `INSERT INTO projetos
 	(nome_projeto, descricao_projeto, equipe_id)
 	VALUES($1::VARCHAR(80), $2::TEXT, $3::BIGINT)
 	RETURNING *`
-
-	var projeto = &modelApresentacao.ReqProjeto{}
 
 	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Projeto, req.Descricao_Projeto, req.EquipeID)
 
@@ -56,7 +56,7 @@ func (postgres *DBProjetos) ListarProjetos() ([]modelApresentacao.ReqProjeto, er
 }
 
 func (postgres *DBProjetos) BuscarProjeto(id string) (*modelApresentacao.ReqProjeto, error) {
-	sqlStatement := `SELECT * FROM pessoas WHERE id_projeto = $1`
+	sqlStatement := `SELECT * FROM projetos WHERE id_projeto = $1`
 	res := modelApresentacao.ReqProjeto{}
 
 	row := postgres.DB.QueryRow(sqlStatement, id)
