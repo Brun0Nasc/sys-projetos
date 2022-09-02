@@ -63,6 +63,14 @@ func AtualizarProjeto(id string, req *modelApresentacao.ReqProjeto) (*modelApres
 	return projetosRepo.AtualizarProjeto(id, req)
 }
 
+func AtualizarStatus(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error){
+	db := database.Conectar()
+	defer db.Close()
+	projetosRepo := projetos.NovoRepo(db)
+
+	return projetosRepo.AtualizarStatus(id, req)
+}
+
 func DeletarProjeto(id string) error {
 	db := database.Conectar()
 	defer db.Close()

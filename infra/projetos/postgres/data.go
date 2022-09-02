@@ -105,3 +105,29 @@ func (postgres *DBProjetos) DeletarProjeto(id string) error {
 		return nil
 	}
 }
+
+func (postgres *DBProjetos) AtualizarStatus(id string, req *modelData.Projeto) (*modelApresentacao.ReqProjeto, error) {
+	sqlStatement := `UPDATE projetos
+	SET status=$1::VARCHAR(80)
+	WHERE id_projeto=$2
+	RETURNING *;`
+
+	if req.Status == "Concluído"{
+		sqlStatement = `UPDATE projetos
+		SET status=$1::VARCHAR(80), data_conclusao = now()
+		WHERE id_projeto=$2
+		RETURNING *;`
+	}
+
+	res := modelApresentacao.ReqProjeto{}
+
+	row := postgres.DB.QueryRow(sqlStatement, req.Status, id)
+
+	if err := row.Scan(&res.ID_Projeto, &res.Nome_Projeto, &res.Descricao_Projeto,
+	&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao);
+	err != nil {
+		return nil, err
+	}
+
+	return &res, nil
+}

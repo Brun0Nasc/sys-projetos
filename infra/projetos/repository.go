@@ -38,6 +38,9 @@ func (r *repositorio) AtualizarProjeto(id string, req *modelApresentacao.ReqProj
 		EquipeID: req.EquipeID,
 	})
 }
+func (r *repositorio) AtualizarStatus(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error){
+	return r.Data.AtualizarStatus(id, &modelData.Projeto{Status: req.Status})
+}
 func (r *repositorio) DeletarProjeto(id string) error {
 	return r.Data.DeletarProjeto(id)
 }

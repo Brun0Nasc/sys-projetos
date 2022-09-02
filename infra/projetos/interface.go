@@ -9,6 +9,6 @@ type IProjeto interface {
 	ListarProjetos() ([]modelApresentacao.ReqProjeto, error)
 	BuscarProjeto(id string) (*modelApresentacao.ReqProjeto, error)
 	AtualizarProjeto(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error)
-	//AtualizarStatus(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error)
+	AtualizarStatus(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error)
 	DeletarProjeto(id string) error
 }
