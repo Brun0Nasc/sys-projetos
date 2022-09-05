@@ -30,3 +30,11 @@ func ListarTasks() ([]modelApresentacao.ReqTask, error) {
 
 	return tasksRepo.ListarTasks()
 }
+
+func BuscarTask(id string) (*modelApresentacao.ReqTask, error) {
+	db := database.Conectar()
+	defer db.Close()
+	tasksRepo := tasks.NovoRepo(db)
+
+	return tasksRepo.BuscarTask(id)
+}

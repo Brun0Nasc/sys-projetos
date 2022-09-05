@@ -56,3 +56,21 @@ func listarTasks(c *gin.Context) {
 
 	c.JSON(200, res)
 }
+
+func buscarTask(c *gin.Context) {
+	fmt.Println("Tentando buscar task")
+	id := c.Param("id")
+
+	res, err := tasks.BuscarTask(id)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(200, gin.H{"message":"Nenhum cadastro encontrado", "err":err.Error()})
+			return
+		} else {
+			c.JSON(404, gin.H{"err":err.Error()})
+			return
+		}
+	}
+
+	c.JSON(200, res)
+}
