@@ -38,3 +38,27 @@ func BuscarTask(id string) (*modelApresentacao.ReqTask, error) {
 
 	return tasksRepo.BuscarTask(id)
 }
+
+func AtualizarTask(id string, req *modelApresentacao.ReqTask) (*modelApresentacao.ReqTask, error) {
+	db := database.Conectar()
+	defer db.Close()
+	tasksRepo := tasks.NovoRepo(db)
+
+	return tasksRepo.AtualizarTask(id, req)
+}
+
+func AtualizarStatus(id string, req *modelApresentacao.ReqTask) (*modelApresentacao.ReqTask, error) {
+	db := database.Conectar()
+	defer db.Close()
+	tasksRepo := tasks.NovoRepo(db)
+
+	return tasksRepo.AtualizarStatus(id, req)
+}
+
+func DeletarTask(id string) error {
+	db := database.Conectar()
+	defer db.Close()
+	tasksRepo := tasks.NovoRepo(db)
+
+	return tasksRepo.DeletarTask(id)
+}
