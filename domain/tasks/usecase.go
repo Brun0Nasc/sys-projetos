@@ -22,3 +22,11 @@ func NovaTask(req *modelApresentacao.ReqTask) (*modelApresentacao.ReqTask, error
 
 	return tasksRepo.NovaTask(req)
 }
+
+func ListarTasks() ([]modelApresentacao.ReqTask, error) {
+	db := database.Conectar()
+	defer db.Close()
+	tasksRepo := tasks.NovoRepo(db)
+
+	return tasksRepo.ListarTasks()
+}

@@ -1,6 +1,7 @@
 package tasks
 
 import (
+	"database/sql"
 	"fmt"
 
 	"github.com/Brun0Nasc/sys-projetos/domain/tasks"
@@ -37,4 +38,21 @@ func novaTask(c *gin.Context) {
 	}
 
 	c.JSON(201, res)
+}
+
+func listarTasks(c *gin.Context) {
+	fmt.Println("Tentando listar tasks")
+	
+	res, err := tasks.ListarTasks()
+	if err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(200, gin.H{"message":"Nenhum cadastro encontrado", "err":err.Error()})
+			return
+		} else {
+			c.JSON(404, gin.H{"err":err.Error()})
+			return
+		}
+	}
+
+	c.JSON(200, res)
 }
