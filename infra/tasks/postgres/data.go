@@ -142,3 +142,26 @@ func (postgres *DBTasks) VerificaPessoa(idPessoa int, idProjeto int) (bool, erro
 		return true, nil
 	}
 }
+
+func (postgres *DBTasks) TasksPessoa(id string) ([]modelApresentacao.ReqTask, error) {
+	sqlStatement := `SELECT * FROM tasks WHERE pessoa_id =$1 ORDER BY id_task;`
+
+	rows, err := postgres.DB.Query(sqlStatement, id)
+	if err != nil {
+		return nil, err
+	}
+
+	task := modelApresentacao.ReqTask{}
+	res := []modelApresentacao.ReqTask{}
+
+	for rows.Next() {
+		if err := rows.Scan(&task.ID_Task, &task.Descricao_Task, &task.Comentario, &task.PessoaID, 
+		&task.ProjetoID, &task.Status, &task.Nivel, &task.CreatedAt, &task.UpdatedAt); err != nil {
+			return nil, err
+		}
+		res = append(res, task)
+	}
+
+	fmt.Println("Listando tasks de uma pessoa")
+	return res, nil
+}

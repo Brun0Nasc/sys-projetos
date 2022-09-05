@@ -56,3 +56,7 @@ func (r *repositorio) DeletarTask(id string) error {
 func (r *repositorio) VerificaPessoa(idPessoa int, idProjeto int) (bool, error) {
 	return r.Data.VerificaPessoa(idPessoa, idProjeto)
 }
+
+func (r *repositorio) TasksPessoa(id string) ([]modelApresentacao.ReqTask, error) {
+	return r.Data.TasksPessoa(id)
+}

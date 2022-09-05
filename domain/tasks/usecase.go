@@ -62,3 +62,11 @@ func DeletarTask(id string) error {
 
 	return tasksRepo.DeletarTask(id)
 }
+
+func TasksPessoa(id string) ([]modelApresentacao.ReqTask, error) {
+	db := database.Conectar()
+	defer db.Close()
+	tasksRepo := tasks.NovoRepo(db)
+
+	return tasksRepo.TasksPessoa(id)
+}
