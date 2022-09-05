@@ -18,27 +18,27 @@ func novoRepo(novoDB *sql.DB) *repositorio {
 	}
 }
 
-func (r *repositorio) NovoProjeto(req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error){
+func (r *repositorio) NovoProjeto(req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error) {
 	return r.Data.NovoProjeto(&modelData.Projeto{
-		Nome_Projeto: req.Nome_Projeto,
+		Nome_Projeto:      req.Nome_Projeto,
 		Descricao_Projeto: req.Descricao_Projeto,
-		EquipeID: req.EquipeID,
+		EquipeID:          req.EquipeID,
 	})
 }
-func (r *repositorio) ListarProjetos() ([]modelApresentacao.ReqProjeto, error){
+func (r *repositorio) ListarProjetos() ([]modelApresentacao.ReqProjeto, error) {
 	return r.Data.ListarProjetos()
 }
-func (r *repositorio) BuscarProjeto(id string) (*modelApresentacao.ReqProjeto, error){
+func (r *repositorio) BuscarProjeto(id string) (*modelApresentacao.ReqProjeto, error) {
 	return r.Data.BuscarProjeto(id)
 }
-func (r *repositorio) AtualizarProjeto(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error){
+func (r *repositorio) AtualizarProjeto(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error) {
 	return r.Data.AtualizarProjeto(id, &modelData.Projeto{
-		Nome_Projeto: req.Nome_Projeto,
+		Nome_Projeto:      req.Nome_Projeto,
 		Descricao_Projeto: req.Descricao_Projeto,
-		EquipeID: req.EquipeID,
+		EquipeID:          req.EquipeID,
 	})
 }
-func (r *repositorio) AtualizarStatus(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error){
+func (r *repositorio) AtualizarStatus(id string, req *modelApresentacao.ReqProjeto) (*modelApresentacao.ReqProjeto, error) {
 	return r.Data.AtualizarStatus(id, &modelData.Projeto{Status: req.Status})
 }
 func (r *repositorio) DeletarProjeto(id string) error {

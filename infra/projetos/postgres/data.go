@@ -14,7 +14,7 @@ type DBProjetos struct {
 
 func (postgres *DBProjetos) NovoProjeto(req *modelData.Projeto) (*modelApresentacao.ReqProjeto, error) {
 	var projeto = &modelApresentacao.ReqProjeto{}
-	
+
 	sqlStatement := `INSERT INTO projetos
 	(nome_projeto, descricao_projeto, equipe_id)
 	VALUES($1::VARCHAR(80), $2::TEXT, $3::BIGINT)
@@ -23,8 +23,7 @@ func (postgres *DBProjetos) NovoProjeto(req *modelData.Projeto) (*modelApresenta
 	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Projeto, req.Descricao_Projeto, req.EquipeID)
 
 	if err := row.Scan(&projeto.ID_Projeto, &projeto.Nome_Projeto, &projeto.Descricao_Projeto,
-	&projeto.EquipeID, &projeto.Status, &projeto.DataInicio, &projeto.UpdatedAt, &projeto.DataConclusao);
-	err != nil {
+		&projeto.EquipeID, &projeto.Status, &projeto.DataInicio, &projeto.UpdatedAt, &projeto.DataConclusao); err != nil {
 		return nil, err
 	}
 
@@ -45,8 +44,7 @@ func (postgres *DBProjetos) ListarProjetos() ([]modelApresentacao.ReqProjeto, er
 
 	for rows.Next() {
 		if err := rows.Scan(&projeto.ID_Projeto, &projeto.Nome_Projeto, &projeto.Descricao_Projeto,
-		&projeto.EquipeID, &projeto.Status, &projeto.DataInicio, &projeto.UpdatedAt, &projeto.DataConclusao);
-		err != nil {
+			&projeto.EquipeID, &projeto.Status, &projeto.DataInicio, &projeto.UpdatedAt, &projeto.DataConclusao); err != nil {
 			return nil, err
 		}
 		res = append(res, projeto)
@@ -62,8 +60,7 @@ func (postgres *DBProjetos) BuscarProjeto(id string) (*modelApresentacao.ReqProj
 	row := postgres.DB.QueryRow(sqlStatement, id)
 
 	if err := row.Scan(&res.ID_Projeto, &res.Nome_Projeto, &res.Descricao_Projeto,
-	&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao);
-	err != nil {
+		&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao); err != nil {
 		return nil, err
 	}
 
@@ -82,8 +79,7 @@ func (postgres *DBProjetos) AtualizarProjeto(id string, req *modelData.Projeto) 
 	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Projeto, req.Descricao_Projeto, req.EquipeID, id)
 
 	if err := row.Scan(&res.ID_Projeto, &res.Nome_Projeto, &res.Descricao_Projeto,
-	&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao);
-	err != nil {
+		&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao); err != nil {
 		return nil, err
 	}
 
@@ -112,7 +108,7 @@ func (postgres *DBProjetos) AtualizarStatus(id string, req *modelData.Projeto) (
 	WHERE id_projeto=$2
 	RETURNING *;`
 
-	if req.Status == "Concluído"{
+	if req.Status == "Concluído" {
 		sqlStatement = `UPDATE projetos
 		SET status=$1::VARCHAR(80), data_conclusao = now()
 		WHERE id_projeto=$2
@@ -124,8 +120,7 @@ func (postgres *DBProjetos) AtualizarStatus(id string, req *modelData.Projeto) (
 	row := postgres.DB.QueryRow(sqlStatement, req.Status, id)
 
 	if err := row.Scan(&res.ID_Projeto, &res.Nome_Projeto, &res.Descricao_Projeto,
-	&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao);
-	err != nil {
+		&res.EquipeID, &res.Status, &res.DataInicio, &res.UpdatedAt, &res.DataConclusao); err != nil {
 		return nil, err
 	}
 
