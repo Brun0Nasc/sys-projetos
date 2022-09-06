@@ -9,7 +9,7 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/webservice/projetos"
 	"github.com/Brun0Nasc/sys-projetos/webservice/tasks"
 	"github.com/Brun0Nasc/sys-projetos/webservice/user"
-	"github.com/Brun0Nasc/sys-projetos/zpkg/common/middlewares"
+	"github.com/Brun0Nasc/sys-projetos/config/middlewares"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 )
