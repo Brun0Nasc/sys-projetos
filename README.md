@@ -56,6 +56,75 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 ## ROTAS
 
+### EQUIPES
+```
+https://sistema-aprendizes-brisanet-go.herokuapp.com/equipes
+```
+
+| GET | POST | PUT | DELETE |
+|-----|------|-----|--------|
+| /equipes | /equipes | /equipes/:id | /equipes/:id |
+| /equipes/:id/ | | |
+
+#### DETALHES
+`/equipes/` A função de *GET* geral retorna os dados básicos de equipe:
+```json
+	{
+		"id_equipe": 1,
+		"nome_equipe": "Os Vingadores",
+		"created_at": "2022-09-06T17:15:42.71278Z",
+		"updated_at": "2022-09-06T17:15:42.71278Z"
+	}
+```
+
+`/equipes/1/` A função específica de *GET* retorna junto aos dados de equipe, os membros dela:
+```json
+{
+	"id_equipe": 1,
+	"nome_equipe": "Os Vingadores",
+	"pessoas": [
+		{
+			"id_pessoa": 4,
+			"nome_pessoa": "Wanda Maximoff",
+			"funcao_pessoa": "Feiticeira Escarlate",
+			"equipe_id": 1,
+			"favoritar": 0,
+			"data_contratacao": "2022-09-06T17:16:14.553395Z",
+			"updated_at": "2022-09-06T17:16:14.553395Z"
+		},
+		{
+			"id_pessoa": 3,
+			"nome_pessoa": "Natasha Romanoff",
+			"funcao_pessoa": "Viúva Negra",
+			"equipe_id": 1,
+			"favoritar": 0,
+			"data_contratacao": "2022-09-06T17:16:14.553395Z",
+			"updated_at": "2022-09-06T17:16:14.553395Z"
+		},
+		{
+			"id_pessoa": 2,
+			"nome_pessoa": "Steve Rogers",
+			"funcao_pessoa": "Capitão América",
+			"equipe_id": 1,
+			"favoritar": 0,
+			"data_contratacao": "2022-09-06T17:16:14.553395Z",
+			"updated_at": "2022-09-06T17:16:14.553395Z"
+		},
+		{
+			"id_pessoa": 1,
+			"nome_pessoa": "Tony Stark",
+			"funcao_pessoa": "Homem de Ferro",
+			"equipe_id": 1,
+			"favoritar": 0,
+			"data_contratacao": "2022-09-06T17:16:14.553395Z",
+			"updated_at": "2022-09-06T17:16:14.553395Z"
+		}
+	],
+	"created_at": "2022-09-06T17:15:42.71278Z",
+	"updated_at": "2022-09-06T17:15:42.71278Z"
+}
+```
+<hr/>
 ### PROJETOS
 
 ```
