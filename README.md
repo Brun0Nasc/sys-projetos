@@ -27,7 +27,13 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 - Utilizando linguagem `Go` com `Gin` para desenvolvimento, e o software `Insomnia` para testes;
 - Disponível no `Heroku`: https://sistema-aprendizes-brisanet-go.herokuapp.com/
 - Front-End em `React`(Em desenvolvimento)
-
+- Detalhes para login: 
+```json
+{
+  "email":"admin",
+  "senha":"admin123"
+}
+```
 
 ## Equipe:
 - <a href="https://github.com/Brun0Nasc"> Bruno do Nascimento</a>: `Reestruturação da API` `Implementação do Banco de Dados` `Revisão e Reestruturação de Rotas e Funções` `Criação do BD` `Definição das Consultas do BD.`
@@ -50,93 +56,63 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 
 ## ROTAS
 
-<h4>PROJETOS</h4>
+### PROJETOS
 
 ```
 https://sistema-aprendizes-brisanet-go.herokuapp.com/projetos
 ```
 
-<table border=2>
-<tr>
- <th>GET</th>
- <th>POST</th>
- <th>PUT</th>
- <th>DELETE</th>
-</tr>
-<tr>
-  <td>
-   <div>/projetos</div>
-  </td>
-  <td>
-   <div>/projetos</div>
-  </td>
-  <td>
-   <div>/projetos/:id</div>
-  </td>
-  <td>
-   <div>/projetos/:id</div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div>/projetos/:id</div>
-  </td>
-  <td></td>
-  <td>
-   <div>/projetos/:id/status</div>
-  </td>
-  <td></td>
- </tr>
-</table>
+| GET | POST | PUT | DELETE |
+|-----|------|-----|--------|
+| /projetos | /projetos | /projetos/:id | /projetos/:id |
+| /projetos/:id | | /projetos/:id/status | |
 
-<table border=1>
-<th>
- DETALHES
-</th>
-<tr>
-<td>
-<p>As funções <b>GET</b> retornam os seguintes dados:</p>
-<ul>
-<li>ID do projeto</li>
-<li>Nome do projeto</li>
-<li>Status do projeto</li>
-<li>Data de início</li>
-<li>Data de conclusão</li>
-<li>Equipe responsável pelo projeto</li>
-<li>Tasks atribuídas ao projeto</li>
-</ul>
-</td>
-</tr>
+#### DETALHES
+`/projetos/` `/projetos/:id/` As funções *GET* retornam os seguintes dados: 
+```json 
+{
+		"id_projeto": 1,
+		"nome_projeto": "Guerra Infinita",
+		"descricao_projeto": "Salvar universo da extinção",
+		"equipe_id": 1,
+		"status": "Em planejamento",
+		"data_inicio": "2022-09-06T17:20:17.605881Z",
+		"updated_at": "2022-09-06T17:20:17.605881Z",
+		"data_conclusao": null
+} 
+```
 
-<tr>
-<td>
-<p>Para realizar um novo registro com a função <b>POST</b>, os seguintes dados deverão ser informados:</p>
-<ul>
- <li>Nome do projeto</li>
- <li>ID da equipe que ficará responsável pelo projeto</li>
-</ul>
-<p>Dados como Status, Data de Inicio e Data de Conclusão são automáticos, todo projeto inicia automáticamente com o status
-"Em planejamento". É possível alterar o status de desenvolvimento do projeto, mas apenas um projeto por equipe pode estar
-com o status "Em desenvolvimento".</p>
-</td>
-</tr>
+Para dar *POST* em um novo projeto, a estrutura será a seguinte:
+```json 
+{
+		"nome_projeto": "Guerra Infinita",
+		"descricao_projeto": "Salvar universo da extinção",
+		"equipe_id": 1
+} 
+```
 
-<tr>
-<td>
-<p>Nas funções <b>PUT</b>, dois tipos de atualização podem ser feitas:</p>
-<ul>
- <li>Mudança de nome e/ou equipe do projeto</li>
- <li>Atualização do status do projeto</li>
-</ul>
-</td>
-</tr>
+Para dar *PUT* nas informações gerais de um projeto, a estrutura será a mesma que a de *POST*:
+```json 
+{
+		"nome_projeto": "Guerra Infinita",
+		"descricao_projeto": "Salvar universo da extinção",
+		"equipe_id": 1
+} 
+```
 
-<tr>
-<td>
-<p>Para deletar um projeto, através do <b>DELETE</b>, será necessário apenas passar o ID do projeto como parâmetro na rota.</p>
-</td>
-</tr>
-</table>
+Para dar *PUT* atualizando o status do projeto, a única informação necessária será a de status:
+```json 
+{
+		"status": "Concluído"
+} 
+```
+
+Para deletar através do *DELETE*, apenas o id do projeto que será deletado precisa ser passado, se for deletado corretamente, a resposta será a seguinte:
+```json 
+{
+		"message":"Cadastro deletado com sucesso"
+} 
+```
 <hr>
 
 <h4>PESSOAS</h4>
