@@ -24,7 +24,7 @@ func main() {
 	pr := r.Group("projetos", middlewares.Auth())
 	tk := r.Group("tasks", middlewares.Auth())
 	us := r.Group("user", middlewares.Auth())
-	lg := r.Group("login", middlewares.Auth())
+	lg := r.Group("login")
 
 	equipes.Router(eq)
 	pessoas.Router(pe)
