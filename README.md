@@ -137,7 +137,7 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/projetos
 | /projetos/:id | | /projetos/:id/status | |
 
 #### DETALHES
-`/projetos/` `/projetos/:id/` As funções *GET* retornam os seguintes dados: 
+`/projetos/` `/projetos/1/` As funções *GET* retornam os seguintes dados: 
 ```json 
 {
 		"id_projeto": 1,
@@ -151,7 +151,7 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/projetos
 } 
 ```
 
-Para dar *POST* em um novo projeto, a estrutura será a seguinte:
+`/projetos/` Para dar *POST* em um novo projeto, a estrutura será a seguinte:
 ```json 
 {
 		"nome_projeto": "Guerra Infinita",
@@ -160,7 +160,7 @@ Para dar *POST* em um novo projeto, a estrutura será a seguinte:
 } 
 ```
 
-Para dar *PUT* nas informações gerais de um projeto, a estrutura será a mesma que a de *POST*:
+`/projetos/1/` Para dar *PUT* nas informações gerais de um projeto, a estrutura será a mesma que a de *POST*:
 ```json 
 {
 		"nome_projeto": "Guerra Infinita",
@@ -169,14 +169,14 @@ Para dar *PUT* nas informações gerais de um projeto, a estrutura será a mesma
 } 
 ```
 
-Para dar *PUT* atualizando o status do projeto, a única informação necessária será a de status:
+`/projetos/1/status/` Para dar *PUT* atualizando o status do projeto, a única informação necessária será a de status:
 ```json 
 {
 		"status": "Concluído"
 } 
 ```
 
-Para deletar através do *DELETE*, apenas o id do projeto que será deletado precisa ser passado, se for deletado corretamente, a resposta será a seguinte:
+`/projetos/1/` Para deletar através do *DELETE*, apenas o id do projeto que será deletado precisa ser passado, se for deletado corretamente, a resposta será a seguinte:
 ```json 
 {
 		"message":"Cadastro deletado com sucesso"
