@@ -10,9 +10,9 @@ import (
 )
 
 var host string = os.Getenv("DB_HOST")
-var user string = os.Getenv("DB_HOST")
-var password string = os.Getenv("DB_HOST")
-var dbname string = os.Getenv("DB_HOST")
+var user string = os.Getenv("DB_USER")
+var password string = os.Getenv("DB_PASSWORD")
+var dbname string = os.Getenv("DB_NAME")
 const port = 5432
 
 func Conectar() *sql.DB {
