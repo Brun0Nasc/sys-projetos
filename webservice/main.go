@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/Brun0Nasc/sys-projetos/webservice/equipes"
 	"github.com/Brun0Nasc/sys-projetos/webservice/login"
 	"github.com/Brun0Nasc/sys-projetos/webservice/pessoas"
@@ -9,10 +11,13 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/webservice/user"
 	"github.com/Brun0Nasc/sys-projetos/zpkg/common/middlewares"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 func main() {
+	port := os.Getenv("PORT")
 	r := gin.Default()
+	r.Use(cors.Default())
 
 	eq := r.Group("equipes", middlewares.Auth())
 	pe := r.Group("pessoas", middlewares.Auth())
@@ -28,5 +33,5 @@ func main() {
 	user.Router(us)
 	login.Router(lg)
 
-	r.Run("localhost:3030")
+	r.Run(":" + port)
 }

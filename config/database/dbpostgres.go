@@ -4,14 +4,15 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 )
 
-var host string = "localhost"
-var user string = "root"
-var password string = "root"
-var dbname string = "bd_projetos"
+var host string = os.Getenv("DB_HOST")
+var user string = os.Getenv("DB_HOST")
+var password string = os.Getenv("DB_HOST")
+var dbname string = os.Getenv("DB_HOST")
 const port = 5432
 
 func Conectar() *sql.DB {
