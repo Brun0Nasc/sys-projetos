@@ -124,7 +124,30 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/equipes
 	"updated_at": "2022-09-06T17:15:42.71278Z"
 }
 ```
+
+`/equipes/` Para dar *POST* em uma nova equipe, a estrutura será a seguinte:
+```json
+{
+	"nome_equipe":"Equipe 1",
+}
+```
+
+`/equipes/1/` Para atualizar equipes através do *PUT*, o único dado mutável será o nome da equipe:
+```json
+{
+	"nome_equipe":"Equipe 1",
+}
+```
+
+`equipes/1/` Para excluir uma equipe através do *DELETE* só será necessário passar o id da equipe na rota, a resposta será a seguinte:
+```json 
+{
+		"message":"Cadastro deletado com sucesso"
+} 
+```
+
 <hr/>
+
 ### PROJETOS
 
 ```
@@ -268,74 +291,6 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/pessoas
   <td>
    <p>Para deletar uma pessoa, através do <b>DELETE</b>, será necessário apenas passar o ID da pessoa como parâmetro na rota.</p>
   </td>
- </tr>
-</table>
-
-<hr>
-
-<h4>EQUIPES</h4>
-
-```
-https://sistema-aprendizes-brisanet-go.herokuapp.com/equipes
-```
-
-<table border=2>
-  <tr>
-    <th>GET</th>
-    <th>POST</th>
-    <th>PUT</th>
-    <th>DELETE</th>
-  </tr>
-  <tr>
-    <td>/equipes</td>
-    <td>/equipes</td>
-    <td>/equipes/:id</td>
-    <td>/equipes/:id</td>
-  </tr>
-  <tr>
-    <td>/equipes/:id</td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>/equipes/:id/projetos</td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
- 
-<table border = 1>
-  <tr>
-    <th>DETALHES</th>
-  </tr>
-
-  <tr>
-    <td>
-      <p>As funções <b>GET</b> retornam as seguintes informações:</p>
-      <ul>
-        <li>ID da equipe</li>
-        <li>Nome da equipe</li>
-        <li>Pessoas que estão na equipe</li>
-      </ul>
-      <p>O GET de projetos de uma equipe retorna todos os projetos associados à equipe do ID informado na rota.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-     <p>Para realizar um novo registro com a função <b>POST</b>, apenas o nome da equipe deverá ser informado.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p>Assim como no POST, a função <b>PUT</b> irá alterar apenas o nome da equipe, recebendo o id na rota como parâmetro.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p>Para deletar uma equipe, através do <b>DELETE</b>, será necessário apenas passar o ID da equipe como parâmetro na rota.</p>
-    </td>
  </tr>
 </table>
 
