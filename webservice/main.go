@@ -23,7 +23,7 @@ func main() {
 	pe := r.Group("pessoas", middlewares.Auth())
 	pr := r.Group("projetos", middlewares.Auth())
 	tk := r.Group("tasks", middlewares.Auth())
-	us := r.Group("user")
+	us := r.Group("user", middlewares.Auth())
 	lg := r.Group("login", middlewares.Auth())
 
 	equipes.Router(eq)
