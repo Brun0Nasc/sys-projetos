@@ -2,4 +2,3 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/brisa/Documentos/GitHub/sys-projetos'
 go run webservice/main.go
 make: Leaving directory '/home/brisa/Documentos/GitHub/sys-projetos'
- 
