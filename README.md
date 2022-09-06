@@ -15,9 +15,9 @@ cada task pode ser atribuída a uma determinada pessoa que está na equipe do pr
 * [Equipe](#equipe)
 * [Andamento do Projeto](#andamento-do-projeto)
 * [Rotas](#rotas)
-* [Projetos](#projetos)
-* [Pessoas](#pessoas)
 * [Equipes](#equipes)
+* [Pessoas](#pessoas)
+* [Projetos](#projetos)
 * [Tasks](#tasks)
 
 ## Detalhes
@@ -126,14 +126,14 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/equipes
 `/equipes/` Para dar *POST* em uma nova equipe, a estrutura será a seguinte:
 ```json
 {
-	"nome_equipe":"Equipe 1",
+	"nome_equipe":"Equipe 1"
 }
 ```
 
 `/equipes/1/` Para atualizar equipes através do *PUT*, o único dado mutável será o nome da equipe:
 ```json
 {
-	"nome_equipe":"Equipe 1",
+	"nome_equipe":"Equipe 1"
 }
 ```
 
@@ -146,6 +146,27 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/equipes
 
 <hr/>
 
+### PESSOAS
+| GET | POST | PUT | DELETE |
+|-----|------|-----|--------|
+| /pessoas/ | /pessoas/ | /pessoas/:id/ | /pessoas/:id/ |
+| /pessoas/:id | | /pessoas/:id/favoritar/ | |
+
+`/pessoas/` A função de *GET* geral retorna os dados básicos de pessoas:
+```json
+{
+	"id_pessoa": 1,
+	"nome_pessoa": "Tony Stark",
+	"funcao_pessoa": "Homem de Ferro",
+	"equipe_id": 1,
+	"favoritar": 0,
+	"data_contratacao": "2022-09-06T17:16:14.553395Z",
+	"updated_at": "2022-09-06T17:16:14.553395Z"
+}
+```
+
+<hr/>
+
 ### PROJETOS
 
 ```
@@ -154,8 +175,8 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/projetos
 
 | GET | POST | PUT | DELETE |
 |-----|------|-----|--------|
-| /projetos | /projetos | /projetos/:id | /projetos/:id |
-| /projetos/:id | | /projetos/:id/status | |
+| /projetos/ | /projetos/ | /projetos/:id/ | /projetos/:id/ |
+| /projetos/:id/ | | /projetos/:id/status/ | |
 
 #### DETALHES
 `/projetos/` `/projetos/1/` As funções *GET* retornam os seguintes dados: 
