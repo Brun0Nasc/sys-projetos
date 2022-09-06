@@ -87,7 +87,7 @@ func atualizarTask(c *gin.Context) {
 		if err == sql.ErrNoRows{
 			c.JSON(200, gin.H{"message":"Esse cadastro não existe", "err":err.Error()})
 		} else {
-			c.JSON(304, gin.H{"err":err.Error()})
+			c.JSON(404, gin.H{"err":err.Error()})
 		}
 		return
 	}
@@ -105,9 +105,12 @@ func atualizarStatus(c *gin.Context) {
 		if err == sql.ErrNoRows{
 			c.JSON(200, gin.H{"message":"Esse cadastro não existe", "err":err.Error()})
 		} else {
-			c.JSON(304, gin.H{"err":err.Error()})
+			c.JSON(404, gin.H{"err":err.Error()})
 		}
 		return
+	}
+	if err == nil && res == nil {
+		c.JSON(404, gin.H{"err":"Um projeto só pode ser marcado como concluído se todas as suas tasks estiverem concluídas."})
 	}
 
 	c.JSON(200, res)

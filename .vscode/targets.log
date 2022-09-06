@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Sep  2 07:50:27 2022
+# Make data base, printed on Tue Sep  6 07:57:44 2022
 
 # Variables
 
@@ -45,7 +47,7 @@ VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/dbus-update-activation-environment
 # environment
-JOURNAL_STREAM = 8:60507
+JOURNAL_STREAM = 8:46528
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -59,11 +61,15 @@ USERNAME = brisa
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
 # environment
-MANAGERPID = 2393
+MANAGERPID = 2412
 # environment
 VSCODE_CWD = /home/brisa
+# environment
+GOPROXY = https://proxy.golang.org,direct
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -71,15 +77,17 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2605,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2605
+SESSION_MANAGER = local/brisa-OptiPlex-5090:@/tmp/.ICE-unix/2622,unix/brisa-OptiPlex-5090:/tmp/.ICE-unix/2622
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
+# environment
+GOPATH = /home/brisa/go
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 8700f93c40a14e7dab45f22212c9ef65
+INVOCATION_ID = 5fecf5496eae4ebe95a4df444410d815
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -87,7 +95,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3139
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4063
 # automatic
 %F = $(notdir $%)
 # environment
@@ -97,13 +105,13 @@ PWD = /home/brisa/Documentos/GitHub/sys-projetos
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2570
+SSH_AGENT_PID = 2587
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = Unity
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+GOMODCACHE = /home/brisa/go/pkg/mod
 # environment
 HOME = /home/brisa
 # environment
@@ -195,9 +203,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4369
+VSCODE_PID = 4425
 # variable set hash-table stats:
-# Load=93/1024=9%, Rehash=0, Collisions=15/118=13%
+# Load=96/1024=9%, Rehash=0, Collisions=16/121=13%
 
 # Pattern-specific Variable Values
 
@@ -205,9 +213,9 @@ VSCODE_PID = 4369
 
 # Directories
 
-# . (device 66307, inode 8393569): 18 files, no impossibilities.
+# . (device 66307, inode 8393569): 16 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -250,14 +258,12 @@ server:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 199 B / avg = 8 B
-# current buf: size = 8162 B / used = 199 B / count = 24 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 22 / storage = 185 B / avg = 8 B
+# current buf: size = 8162 B / used = 185 B / count = 22 / avg = 8 B
 
-# strcache performance: lookups = 29 / hit rate = 17%
+# strcache performance: lookups = 27 / hit rate = 18%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=1/29=3%
-# Finished Make data base on Fri Sep  2 07:50:27 2022
+# Load=22/8192=0%, Rehash=0, Collisions=1/27=4%
+# Finished Make data base on Tue Sep  6 07:57:44 2022
 
  
-make: *** No rule to make target 'all'.  Stop.
-

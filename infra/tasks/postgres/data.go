@@ -165,3 +165,17 @@ func (postgres *DBTasks) TasksPessoa(id string) ([]modelApresentacao.ReqTask, er
 	fmt.Println("Listando tasks de uma pessoa")
 	return res, nil
 }
+
+func (postgres *DBTasks) CheckStatus(id string) (*int, error) {
+	sqlStatement := `SELECT count(id_task) FROM tasks WHERE projeto_id = $1 AND status != 'Concluído'`
+
+	n := 0
+
+	row := postgres.DB.QueryRow(sqlStatement, id)
+
+	if err := row.Scan(&n); err != nil {
+		return nil, err
+	}
+
+	return &n, nil
+}

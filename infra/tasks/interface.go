@@ -11,4 +11,5 @@ type ITask interface {
 	DeletarTask(id string) error
 	VerificaPessoa(idPessoa int, idProjeto int) (bool, error)
 	TasksPessoa(id string) ([]modelApresentacao.ReqTask, error)
+	CheckStatus(id string) (*int, error)
 }

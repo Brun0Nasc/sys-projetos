@@ -60,3 +60,7 @@ func (r *repositorio) VerificaPessoa(idPessoa int, idProjeto int) (bool, error) 
 func (r *repositorio) TasksPessoa(id string) ([]modelApresentacao.ReqTask, error) {
 	return r.Data.TasksPessoa(id)
 }
+
+func (r *repositorio) CheckStatus(id string) (*int, error) {
+	return r.Data.CheckStatus(id)
+}
