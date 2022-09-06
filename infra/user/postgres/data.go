@@ -15,8 +15,8 @@ type DBUser struct {
 func (postgres *DBUser) NovoUser(req *modelData.User) (*modelApresentacao.ReqUser, error) {
 	var user = &modelApresentacao.ReqUser{}
 
-	sqlStatement := `INSERT INTO user
-	(nome_user, email, senha) VALUES($1::VARCHAR(80), $2::VARCHAR(80), &3::VARCHAR(80))
+	sqlStatement := `INSERT INTO "user" (nome_user, email, senha) 
+	VALUES($1::VARCHAR(80), $2::VARCHAR(80), $3::VARCHAR(80))
 	RETURNING *`
 
 	row := postgres.DB.QueryRow(sqlStatement, req.Nome_User, req.Email, req.Senha)

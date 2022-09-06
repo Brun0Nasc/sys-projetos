@@ -79,6 +79,20 @@ BEFORE UPDATE ON "tasks"
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
+CREATE TABLE "user" (
+  "id_user" bigserial PRIMARY KEY,
+  "nome_user" varchar(80) not null,
+  "email" varchar(80) not null unique,
+  "senha" varchar(80) not null,
+  "created_at" timestamp not null default (now()),
+  "updated_at" timestamp not null default (now())
+);
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON "user"
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
 CREATE INDEX ON "equipes" ("id_equipe");
 
 CREATE INDEX ON "pessoas" ("id_pessoa");
