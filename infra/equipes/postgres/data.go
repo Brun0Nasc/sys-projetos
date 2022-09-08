@@ -14,20 +14,23 @@ type DBEquipes struct {
 	DB *sql.DB
 }
 
-func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipe) (*modelApresentacao.ReqEquipe, error) {
+// A função adiciona uma nova equipe recebendo um corpo de requisição e retornando um corpo de resposta ou um erro
+func (postgres *DBEquipes) NovaEquipe(req *modelData.Equipe) (*modelApresentacao.ReqEquipe, error) { 
 	sqlStatement := `INSERT INTO equipes
 	(nome_equipe)
 	VALUES($1::VARCHAR(80))
-	RETURNING *`
+	RETURNING *` // Comando sql que adiciona registro no banco e retorna registro adicionado
 
-	var equipe = &modelApresentacao.ReqEquipe{}
+	var equipe = &modelApresentacao.ReqEquipe{} // Modelo que será usado para preencher e adicionar registro no banco
 
-	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe)
+	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe) // Executando comando sql e recebendo a linha de resposta sql
 
+	// Escaneando e testando informações recebidas após a execução do sql
 	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {
 		return nil, err
 	}
 
+	// Retornando equipe adicionada e erro nulo
 	return equipe, nil
 }
 
@@ -52,15 +55,17 @@ func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error
 
 // A função ListarMembros será usada apenas pela função BuscarEquipe, e vai servir para exibir os membros da equipe buscada
 func (postgres *DBEquipes) ListarMembros(id string) ([]modelPessoa.ReqPessoa, error) {
-	sqlStatement := `SELECT * FROM pessoas WHERE equipe_id = $1 ORDER BY id_pessoa`
-	var pessoa = modelPessoa.ReqPessoa{}
-	var res = []modelPessoa.ReqPessoa{}
+	sqlStatement := `SELECT * FROM pessoas WHERE equipe_id = $1 ORDER BY id_pessoa` // O comando vai selecionar as pessoas q forem da equipe especificada pelo id
+	var pessoa = modelPessoa.ReqPessoa{} // Estrutura individual de pessoa
+	var res = []modelPessoa.ReqPessoa{} // Lista que será preenchida e exibida no final
 
+	// Executando sql e recebendo as linhas ou o erro
 	rows, err := postgres.DB.Query(sqlStatement, id)
 	if err != nil {
 		return nil, err
 	}
 
+	// Percorrendo linhas retornadas do banco de dados e escaneando uma por uma na variável pessoa para adicionar na lista res
 	for rows.Next() {
 		if err := rows.Scan(&pessoa.ID_Pessoa, &pessoa.Nome_Pessoa, &pessoa.Funcao_Pessoa,
 			&pessoa.EquipeID, &pessoa.Favoritar, &pessoa.DataContratacao, &pessoa.UpdatedAt); err != nil {
@@ -69,15 +74,17 @@ func (postgres *DBEquipes) ListarMembros(id string) ([]modelPessoa.ReqPessoa, er
 		res = append(res, pessoa)
 	}
 
+	// retornando resposta e erro nulo
 	return res, nil
 }
 
 func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error) {
-	sqlStatement := `SELECT * FROM equipes WHERE id_equipe = $1`
-	var equipe = &modelApresentacao.ReqEquipe{}
+	sqlStatement := `SELECT * FROM equipes WHERE id_equipe = $1` // Selecionando uma única equipe
+	var equipe = &modelApresentacao.ReqEquipe{} // Modelo que será preenchido e exibido no final
 
-	pessoas, err := postgres.ListarMembros(id)
+	pessoas, err := postgres.ListarMembros(id) // Chamando função para listar os membros da equipe especificada
 
+	// Testando erros da função chamada
 	if err != nil {
 		if err == sql.ErrNoRows {
 			pessoas = nil
@@ -86,13 +93,16 @@ func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe
 		}
 	}
 
+	// Preenchendo campo de pessoas com o resultado da listagem de membros da equipe
 	equipe.Pessoas = &pessoas
 
+	// executando sql e gravando resposta dentro da estrutura equipe
 	row := postgres.DB.QueryRow(sqlStatement, id)
 	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {
 		return nil, err
 	}
 	fmt.Println("Busca deu certo!")
+	// retornando resposta e erro nulo
 	return equipe, nil
 }
 
