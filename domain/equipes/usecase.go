@@ -4,6 +4,7 @@ import (
 	"github.com/Brun0Nasc/sys-projetos/config/database"
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
+	modelProjetos "github.com/Brun0Nasc/sys-projetos/domain/projetos/model"
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes"
 )
 
@@ -61,4 +62,12 @@ func AtualizarEquipe(id string, req *modelApresentacao.ReqEquipe) (*modelApresen
 	req.Nome_Equipe = &str
 
 	return equipesRepo.AtualizarEquipe(id, req)
+}
+
+func ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error) {
+	db := database.Conectar()
+	defer db.Close()
+	equipesRepo := equipes.NovoRepo(db)
+
+	return equipesRepo.ProjetosEquipe(id)
 }

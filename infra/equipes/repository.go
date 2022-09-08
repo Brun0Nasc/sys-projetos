@@ -6,6 +6,7 @@ import (
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/equipes/model"
 	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
+	modelProjetos "github.com/Brun0Nasc/sys-projetos/domain/projetos/model"
 	"github.com/Brun0Nasc/sys-projetos/infra/equipes/postgres"
 )
 
@@ -36,4 +37,7 @@ func (r *repositorio) DeletarEquipe(id string) error {
 }
 func (r *repositorio) AtualizarEquipe(id string, req *modelApresentacao.ReqEquipe) (*modelApresentacao.ReqEquipe, error) {
 	return r.Data.AtualizarEquipe(id, &modelData.Equipe{Nome_Equipe: req.Nome_Equipe})
+}
+func (r *repositorio) ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error) {
+	return r.Data.ProjetosEquipe(id)
 }

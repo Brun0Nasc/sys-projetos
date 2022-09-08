@@ -91,3 +91,19 @@ func atualizarEquipe(c *gin.Context) {
 		c.JSON(http.StatusOK, res)
 	}
 }
+
+func projetosEquipe(c *gin.Context) {
+	id := c.Param("id")
+	fmt.Println("Tentando listar projetos de uma equipe")
+	
+	res, err := equipes.ProjetosEquipe(id)
+	if err != nil {
+		if err == sql.ErrNoRows{
+			c.JSON(200, gin.H{"message":"Essa equipe ainda não possui projetos", "err":err.Error()})
+		} else {
+			c.JSON(404, gin.H{"err":err.Error()})
+		}
+		return
+	}
+	c.JSON(200, res)
+}

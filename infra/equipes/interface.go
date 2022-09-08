@@ -3,6 +3,7 @@ package equipes
 import (
 	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
+	modelProjetos "github.com/Brun0Nasc/sys-projetos/domain/projetos/model"
 )
 
 type IEquipe interface {
@@ -12,4 +13,5 @@ type IEquipe interface {
 	BuscarEquipe(id string) (*modelApresentacao.ReqEquipe, error)
 	DeletarEquipe(id string) error
 	AtualizarEquipe(id string, req *modelApresentacao.ReqEquipe) (*modelApresentacao.ReqEquipe, error)
+	ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error)
 }

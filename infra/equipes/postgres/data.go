@@ -6,6 +6,7 @@ import (
 
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/equipes/model"
 	modelPessoa "github.com/Brun0Nasc/sys-projetos/domain/pessoas/model"
+	modelProjetos "github.com/Brun0Nasc/sys-projetos/domain/projetos/model"
 	modelData "github.com/Brun0Nasc/sys-projetos/infra/equipes/model"
 )
 
@@ -123,4 +124,25 @@ func (postgres *DBEquipes) AtualizarEquipe(id string, req *modelData.Equipe) (*m
 	}
 
 	return equipe, nil
+}
+
+func (postgres *DBEquipes) ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error) {
+	sqlStatement := `SELECT * FROM projetos WHERE equipe_id = $1`
+	var projeto = modelProjetos.ReqProjeto{}
+	var res = []modelProjetos.ReqProjeto{}
+
+	rows, err := postgres.DB.Query(sqlStatement, id)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next(){
+		if err := rows.Scan(&projeto.ID_Projeto, &projeto.Nome_Projeto, &projeto.Descricao_Projeto,
+		&projeto.EquipeID, &projeto.Status, &projeto.DataInicio, &projeto.UpdatedAt, &projeto.DataConclusao); err != nil {
+			return nil, err
+		}
+		res = append(res, projeto)
+	}
+
+	return res, nil
 }
