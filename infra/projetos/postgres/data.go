@@ -50,6 +50,7 @@ func (postgres *DBProjetos) ListarProjetos() ([]modelApresentacao.ReqProjeto, er
 		res = append(res, projeto)
 	}
 
+	fmt.Println("Listagem deu certo")
 	return res, nil
 }
 
@@ -64,6 +65,7 @@ func (postgres *DBProjetos) BuscarProjeto(id string) (*modelApresentacao.ReqProj
 		return nil, err
 	}
 
+	fmt.Println("Buscar projeto deu certo")
 	return &res, nil
 }
 
@@ -83,6 +85,7 @@ func (postgres *DBProjetos) AtualizarProjeto(id string, req *modelData.Projeto) 
 		return nil, err
 	}
 
+	fmt.Println("Projeto atualizado")
 	return res, nil
 }
 
@@ -124,5 +127,6 @@ func (postgres *DBProjetos) AtualizarStatus(id string, req *modelData.Projeto) (
 		return nil, err
 	}
 
+	fmt.Println("Status do projeto atualizado")
 	return &res, nil
 }

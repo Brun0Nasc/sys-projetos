@@ -21,12 +21,14 @@ func novaEquipe(c *gin.Context) {
 		return
 	}
 
-	if res, err := equipes.NovaEquipe(&req); err != nil {
+	res, err := equipes.NovaEquipe(&req)
+
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
 		return
-	} else{
-		c.JSON(http.StatusCreated, res)
 	}
+
+	c.JSON(http.StatusCreated, res)
 }
 
 func listarEquipes(c *gin.Context) {
@@ -65,11 +67,15 @@ func buscarEquipe(c *gin.Context) {
 func deletarEquipe(c *gin.Context) {
 	id := c.Param("id")
 	fmt.Println("Tentando deletar equipe")
-	if err := equipes.DeletarEquipe(id); err != nil {
+
+	err := equipes.DeletarEquipe(id)
+
+	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"err":err.Error()})
-	} else {
-		c.JSON(http.StatusOK, gin.H{"message":"Cadastro deletado com sucesso!"})
+		return
 	}
+
+	c.JSON(http.StatusOK, gin.H{"message":"Cadastro deletado com sucesso!"})
 }
 
 func atualizarEquipe(c *gin.Context) {
@@ -84,12 +90,14 @@ func atualizarEquipe(c *gin.Context) {
 		return
 	}
 
-	if res, err := equipes.AtualizarEquipe(id, &req); err != nil {
+	res, err := equipes.AtualizarEquipe(id, &req)
+	
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
 		return
-	} else {
-		c.JSON(http.StatusOK, res)
 	}
+
+	c.JSON(http.StatusOK, res)
 }
 
 func projetosEquipe(c *gin.Context) {
