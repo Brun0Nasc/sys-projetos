@@ -52,7 +52,7 @@ func (postgres *DBEquipes) ListarEquipes() ([]modelApresentacao.ReqEquipe, error
 
 // A função ListarMembros será usada apenas pela função BuscarEquipe, e vai servir para exibir os membros da equipe buscada
 func (postgres *DBEquipes) ListarMembros(id string) ([]modelPessoa.ReqPessoa, error) {
-	sqlStatement := `SELECT * FROM pessoas WHERE equipe_id = $1`
+	sqlStatement := `SELECT * FROM pessoas WHERE equipe_id = $1 ORDER BY id_pessoa`
 	var pessoa = modelPessoa.ReqPessoa{}
 	var res = []modelPessoa.ReqPessoa{}
 
@@ -127,7 +127,7 @@ func (postgres *DBEquipes) AtualizarEquipe(id string, req *modelData.Equipe) (*m
 }
 
 func (postgres *DBEquipes) ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error) {
-	sqlStatement := `SELECT * FROM projetos WHERE equipe_id = $1`
+	sqlStatement := `SELECT * FROM projetos WHERE equipe_id = $1 ORDER BY id_projeto`
 	var projeto = modelProjetos.ReqProjeto{}
 	var res = []modelProjetos.ReqProjeto{}
 
