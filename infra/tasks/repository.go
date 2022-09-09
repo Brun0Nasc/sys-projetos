@@ -20,7 +20,6 @@ func novoRepo(novoDB *sql.DB) *repositorio {
 func (r *repositorio) NovaTask(req *modelApresentacao.ReqTask) (*modelApresentacao.ReqTask, error) {
 	return r.Data.NovaTask(&modelData.Task{
 		Descricao_Task: req.Descricao_Task,
-		Comentario:     req.Comentario,
 		Nivel:          req.Nivel,
 		PessoaID:       req.PessoaID,
 		ProjetoID:      req.ProjetoID,
@@ -38,7 +37,6 @@ func (r *repositorio) BuscarTask(id string) (*modelApresentacao.ReqTask, error) 
 func (r *repositorio) AtualizarTask(id string, req *modelApresentacao.ReqTask) (*modelApresentacao.ReqTask, error) {
 	return r.Data.AtualizarTask(id, &modelData.Task{
 		Descricao_Task: req.Descricao_Task,
-		Comentario:     req.Comentario,
 		Nivel:          req.Nivel,
 		PessoaID:       req.PessoaID,
 		ProjetoID:      req.ProjetoID,

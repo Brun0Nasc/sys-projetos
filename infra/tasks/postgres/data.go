@@ -20,9 +20,9 @@ func (postgres *DBTasks) NovaTask(req *modelData.Task) (*modelApresentacao.ReqTa
 	VALUES($1::TEXT, $2::TEXT, $3::VARCHAR(80), $4::BIGINT, $5::BIGINT)
 	RETURNING *`
 
-	row := postgres.DB.QueryRow(sqlStatement, req.Descricao_Task, req.Comentario, req.Nivel, req.PessoaID, req.ProjetoID)
+	row := postgres.DB.QueryRow(sqlStatement, req.Descricao_Task, req.Nivel, req.PessoaID, req.ProjetoID)
 
-	if err := row.Scan(&task.ID_Task, &task.Descricao_Task, &task.Comentario, &task.PessoaID, 
+	if err := row.Scan(&task.ID_Task, &task.Descricao_Task, &task.PessoaID, 
 	&task.ProjetoID, &task.Status, &task.Nivel, &task.CreatedAt, &task.UpdatedAt); 
 	err != nil {
 		return nil, err
@@ -33,7 +33,9 @@ func (postgres *DBTasks) NovaTask(req *modelData.Task) (*modelApresentacao.ReqTa
 }
 
 func (postgres *DBTasks) ListarTasks() ([]modelApresentacao.ReqTask, error) {
-	sqlStatement := `SELECT * FROM tasks ORDER BY id_task;`
+	sqlStatement := `SELECT tk.*, pe.nome_pessoa FROM tasks as tk
+	join pessoas as pe on tk.pessoa_id = pe.id_pessoa
+	 ORDER BY id_task;`
 
 	rows, err := postgres.DB.Query(sqlStatement)
 	if err != nil {
@@ -44,8 +46,8 @@ func (postgres *DBTasks) ListarTasks() ([]modelApresentacao.ReqTask, error) {
 	res := []modelApresentacao.ReqTask{}
 
 	for rows.Next() {
-		if err := rows.Scan(&task.ID_Task, &task.Descricao_Task, &task.Comentario, &task.PessoaID, 
-		&task.ProjetoID, &task.Status, &task.Nivel, &task.CreatedAt, &task.UpdatedAt); err != nil {
+		if err := rows.Scan(&task.ID_Task, &task.Descricao_Task, &task.PessoaID, 
+		&task.ProjetoID, &task.Status, &task.Nivel, &task.CreatedAt, &task.UpdatedAt, &task.Nome_Pessoa); err != nil {
 			return nil, err
 		}
 		res = append(res, task)
@@ -56,13 +58,15 @@ func (postgres *DBTasks) ListarTasks() ([]modelApresentacao.ReqTask, error) {
 }
 
 func (postgres *DBTasks) BuscarTask(id string) (*modelApresentacao.ReqTask, error) {
-	sqlStatement := `SELECT * FROM tasks WHERE id_task = $1`
+	sqlStatement := `SELECT tk.*, pe.nome_pessoa FROM tasks as tk
+	join pessoas as pe on tk.pessoa_id = pe.id_pessoa
+	WHERE id_task=$1;`
 	res := modelApresentacao.ReqTask{}
 
 	row := postgres.DB.QueryRow(sqlStatement, id)
 
-	if err := row.Scan(&res.ID_Task, &res.Descricao_Task, &res.Comentario, &res.PessoaID, 
-		&res.ProjetoID, &res.Status, &res.Nivel, &res.CreatedAt, &res.UpdatedAt); err != nil {
+	if err := row.Scan(&res.ID_Task, &res.Descricao_Task, &res.PessoaID, 
+		&res.ProjetoID, &res.Status, &res.Nivel, &res.CreatedAt, &res.UpdatedAt, &res.Nome_Pessoa); err != nil {
 		return nil, err
 	}
 
@@ -77,10 +81,10 @@ func (postgres *DBTasks) AtualizarTask(id string, req *modelData.Task) (*modelAp
 
 	res := &modelApresentacao.ReqTask{}
 
-	row := postgres.DB.QueryRow(sqlStatement, req.Descricao_Task, req.Comentario, req.Nivel, req.PessoaID,
+	row := postgres.DB.QueryRow(sqlStatement, req.Descricao_Task, req.Nivel, req.PessoaID,
 	req.ProjetoID, id)
 
-	if err := row.Scan(&res.ID_Task, &res.Descricao_Task, &res.Comentario, &res.PessoaID, 
+	if err := row.Scan(&res.ID_Task, &res.Descricao_Task, &res.PessoaID, 
 		&res.ProjetoID, &res.Status, &res.Nivel, &res.CreatedAt, &res.UpdatedAt); err != nil {
 		return nil, err
 	}
@@ -99,7 +103,7 @@ func (postgres *DBTasks) AtualizarStatus(id string, req *modelData.Task) (*model
 
 	row := postgres.DB.QueryRow(sqlStatement, req.Status, id)
 
-	if err := row.Scan(&res.ID_Task, &res.Descricao_Task, &res.Comentario, &res.PessoaID, 
+	if err := row.Scan(&res.ID_Task, &res.Descricao_Task, &res.PessoaID, 
 		&res.ProjetoID, &res.Status, &res.Nivel, &res.CreatedAt, &res.UpdatedAt); err != nil {
 		return nil, err
 	}
@@ -155,7 +159,7 @@ func (postgres *DBTasks) TasksPessoa(id string) ([]modelApresentacao.ReqTask, er
 	res := []modelApresentacao.ReqTask{}
 
 	for rows.Next() {
-		if err := rows.Scan(&task.ID_Task, &task.Descricao_Task, &task.Comentario, &task.PessoaID, 
+		if err := rows.Scan(&task.ID_Task, &task.Descricao_Task, &task.PessoaID, 
 		&task.ProjetoID, &task.Status, &task.Nivel, &task.CreatedAt, &task.UpdatedAt); err != nil {
 			return nil, err
 		}
