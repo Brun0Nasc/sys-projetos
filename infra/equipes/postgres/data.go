@@ -107,9 +107,9 @@ func (postgres *DBEquipes) BuscarEquipe(id string) (*modelApresentacao.ReqEquipe
 }
 
 func (postgres *DBEquipes) DeletarEquipe(id string) error {
-	if _, err := postgres.BuscarEquipe(id); err != nil {
+	if _, err := postgres.BuscarEquipe(id); err != nil { // Primeiro verifica se a equipe indicada pelo id existe no banco de dados
 		return err
-	} else {
+	} else { // Se existir, o processo de deletar é feito normalmente
 		sqlStatement := `DELETE FROM equipes WHERE id_equipe = $1`
 
 		_, err := postgres.DB.Exec(sqlStatement, id)
@@ -125,28 +125,28 @@ func (postgres *DBEquipes) DeletarEquipe(id string) error {
 func (postgres *DBEquipes) AtualizarEquipe(id string, req *modelData.Equipe) (*modelApresentacao.ReqEquipe, error) {
 	sqlStatement := `UPDATE equipes SET nome_equipe = $1::VARCHAR(80) 
 	WHERE id_equipe = $2 RETURNING *`
-	var equipe = &modelApresentacao.ReqEquipe{}
+	var equipe = &modelApresentacao.ReqEquipe{} // modelo de requisição que vai ser usado para mandar os dados para o banco
 
-	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe, id)
+	row := postgres.DB.QueryRow(sqlStatement, req.Nome_Equipe, id) // execução da query e retorno dos dados
 
-	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil {
+	if err := row.Scan(&equipe.ID_Equipe, &equipe.Nome_Equipe, &equipe.CreatedAt, &equipe.UpdatedAt); err != nil { // gravando os dados retornados numa variável de retorno
 		return nil, err
 	}
 
-	return equipe, nil
+	return equipe, nil // retornando resultado
 }
 
-func (postgres *DBEquipes) ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error) {
-	sqlStatement := `SELECT * FROM projetos WHERE equipe_id = $1 ORDER BY id_projeto`
-	var projeto = modelProjetos.ReqProjeto{}
-	var res = []modelProjetos.ReqProjeto{}
+func (postgres *DBEquipes) ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto, error) { // Função para exibir projetos de uma equipe que tem uma rota própria pra isso
+	sqlStatement := `SELECT * FROM projetos WHERE equipe_id = $1 ORDER BY id_projeto` // Busca na tabela de projetos usando id de equipe
+	var projeto = modelProjetos.ReqProjeto{} // estrutura única de projetos que vai ser usada pra preencher a lista de projetos
+	var res = []modelProjetos.ReqProjeto{} // lista que vai retornar como resposta com todos os projetos encontrados
 
-	rows, err := postgres.DB.Query(sqlStatement, id)
+	rows, err := postgres.DB.Query(sqlStatement, id) // executando query e testando erros
 	if err != nil {
 		return nil, err
 	}
 
-	for rows.Next(){
+	for rows.Next(){ // gravando dados retornados pelo banco na estrutura de projetos e colocando na lista que será retornada
 		if err := rows.Scan(&projeto.ID_Projeto, &projeto.Nome_Projeto, &projeto.Descricao_Projeto,
 		&projeto.EquipeID, &projeto.Status, &projeto.DataInicio, &projeto.UpdatedAt, &projeto.DataConclusao); err != nil {
 			return nil, err
@@ -154,5 +154,5 @@ func (postgres *DBEquipes) ProjetosEquipe(id string) ([]modelProjetos.ReqProjeto
 		res = append(res, projeto)
 	}
 
-	return res, nil
+	return res, nil // resposta da requisição
 }
