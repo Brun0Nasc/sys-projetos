@@ -57,15 +57,15 @@ func (postgres *DBPessoas) BuscarPessoa(id string) (*modelApresentacao.ReqPessoa
 	sqlStatement := `SELECT * FROM pessoas WHERE id_pessoa = $1`
 	res := modelApresentacao.ReqPessoa{}
 
-	tks, err := tasks.TasksPessoa(id)
-	if err != nil {
-		return nil, err
-	}
-
 	row := postgres.DB.QueryRow(sqlStatement, id)
 
 	if err := row.Scan(&res.ID_Pessoa, &res.Nome_Pessoa, &res.Funcao_Pessoa,
 	&res.EquipeID, &res.Favoritar, &res.DataContratacao, &res.UpdatedAt); err != nil {
+		return nil, err
+	}
+
+	tks, err := tasks.TasksPessoa(id)
+	if err != nil {
 		return nil, err
 	}
 
