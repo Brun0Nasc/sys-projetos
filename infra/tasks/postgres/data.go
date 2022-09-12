@@ -16,8 +16,8 @@ func (postgres *DBTasks) NovaTask(req *modelData.Task) (*modelApresentacao.ReqTa
 	var task = &modelApresentacao.ReqTask{}
 
 	sqlStatement := `INSERT INTO tasks
-	(descricao_task, comentario, nivel, pessoa_id, projeto_id)
-	VALUES($1::TEXT, $2::TEXT, $3::VARCHAR(80), $4::BIGINT, $5::BIGINT)
+	(descricao_task, nivel, pessoa_id, projeto_id)
+	VALUES($1::TEXT, $2::VARCHAR(80), $3::BIGINT, $4::BIGINT)
 	RETURNING *`
 
 	row := postgres.DB.QueryRow(sqlStatement, req.Descricao_Task, req.Nivel, req.PessoaID, req.ProjetoID)
@@ -75,8 +75,8 @@ func (postgres *DBTasks) BuscarTask(id string) (*modelApresentacao.ReqTask, erro
 }
 
 func (postgres *DBTasks) AtualizarTask(id string, req *modelData.Task) (*modelApresentacao.ReqTask, error) {
-	sqlStatement := `UPDATE tasks SET descricao_task = $1::TEXT, comentario = $2::TEXT,
-	nivel = $3::VARCHAR(80), pessoa_id = $4::BIGINT, projeto_id = $5::BIGINT WHERE id_task = $6
+	sqlStatement := `UPDATE tasks SET descricao_task = $1::TEXT,
+	nivel = $2::VARCHAR(80), pessoa_id = $3::BIGINT, projeto_id = $4::BIGINT WHERE id_task = $5
 	RETURNING *`
 
 	res := &modelApresentacao.ReqTask{}
