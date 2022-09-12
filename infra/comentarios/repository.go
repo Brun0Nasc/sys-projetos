@@ -18,13 +18,22 @@ func novoRepo(novoDB *sql.DB) *repositorio {
 	}
 }
 
-func (r *repositorio) NovoComentario(req *modelApresentacao.ReqComentario) (*modelApresentacao.ReqComentario, error) {
-	return r.Data.NovoComentario(&modelData.Comentario{
-		Task_ID: req.Task_ID,
+func (r *repositorio) NovoComentario(id *uint, req *modelApresentacao.ReqComentario) (*modelApresentacao.ReqComentario, error) {
+	return r.Data.NovoComentario(id, &modelData.Comentario{
 		Comentario: req.Comentario,
 	})
 }
 
-func (r *repositorio) ListarComentarios(id string) ([]*modelApresentacao.ReqComentario, error){
+func (r *repositorio) ListarComentarios(id string) ([]modelApresentacao.ReqComentario, error){
 	return r.Data.ListarComentarios(id)
+}
+
+func (r *repositorio) AtualizarComentario(id string, req *modelApresentacao.ReqComentario) (*modelApresentacao.ReqComentario, error) {
+	return r.Data.AtualizarComentario(id, &modelData.Comentario{
+		Comentario: req.Comentario,
+	})
+}
+
+func (r *repositorio) DeletarComentario(id string) error {
+	return r.Data.DeletarComentario(id)
 }

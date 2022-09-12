@@ -3,10 +3,12 @@ package tasks
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 
+	"github.com/Brun0Nasc/sys-projetos/domain/comentarios"
+	modelComentario "github.com/Brun0Nasc/sys-projetos/domain/comentarios/model"
 	"github.com/Brun0Nasc/sys-projetos/domain/tasks"
 	modelApresentacao "github.com/Brun0Nasc/sys-projetos/domain/tasks/model"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -128,4 +130,72 @@ func deletarTask(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"message":"Cadastro deletado com sucesso"})
+}
+
+func pegaJSONComentario(c *gin.Context) *modelComentario.ReqComentario {
+	req := modelComentario.ReqComentario{}
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(400, gin.H{
+			"message":"Could not create. Parameters were not passed correctly",
+			"err":err.Error(),
+		})
+		return nil
+	}
+	return &req
+}
+
+func novoComentario(c *gin.Context) {
+	fmt.Println("Tentando adicionar novo comentário")
+	id := c.Param("id")
+	idConv, err := strconv.Atoi(id)
+	if err != nil{
+		c.JSON(400, gin.H{"err":err.Error()})
+		return
+	}
+	u := uint(idConv)
+	req := pegaJSONComentario(c)
+	res, err := comentarios.NovoComentario(&u, req)
+	if err != nil {
+		c.JSON(400, gin.H{"err":err.Error()})
+		return
+	}
+	c.JSON(201, res)
+}
+
+func listarComentarios(c *gin.Context) {
+	fmt.Println("Tentando listar comentários")
+	id := c.Param("id")
+	res, err := comentarios.ListarComentarios(id)
+	if err != nil {
+		c.JSON(404, gin.H{"err":err.Error()})
+		return
+	}
+	c.JSON(200, res)
+}
+
+func deletarComentario(c *gin.Context) {
+	fmt.Println("Tentando deletar comentário")
+	id := c.Param("idc")
+	err := comentarios.DeletarComentario(id)
+	if err != nil {
+		if err == sql.ErrNoRows{
+			c.JSON(200, gin.H{"message":"Cadastro inexistente", "err":err.Error()})
+		} else {
+			c.JSON(404, gin.H{"err":err.Error()})
+		}
+		return
+	}
+	c.JSON(200, gin.H{"message":"Cadastro deletado com sucesso"})
+}
+
+func atualizarComentario(c *gin.Context) {
+	fmt.Println("Tentando atualizar comentário")
+	id := c.Param("idc")
+	req := pegaJSONComentario(c)
+	res, err := comentarios.AtualizarComentario(id, req)
+	if err != nil {
+		c.JSON(400, gin.H{"err":err.Error()})
+		return
+	}
+	c.JSON(200, res)
 }
