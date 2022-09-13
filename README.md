@@ -331,12 +331,14 @@ https://sistema-aprendizes-brisanet-go.herokuapp.com/tasks
 A parte de tasks funciona com alguns detalhes adicionais:
 - Se uma task for cadastrada em um projeto que ja está com status "Concluído", o status do projeto volta automáticamente para "Em desenvolvimento";
 - Se uma task já concluída for atualizada para status de "Fazendo" ou "A fazer" em um projeto já Concluído, o projeto muda automáticamente para "Em desenvolvimento"
-- Uma task só pode ser atribuída a uma pessoa que está na equipe responsável pelo projeto que a task está sendo cadastrada. 
+- Uma task só pode ser atribuída a uma pessoa que está na equipe responsável pelo projeto que a task está sendo cadastrada.
+- As rotas de Tasks incluem as rotas de comentários, então as tasks poderão receber comentários.
 
 | GET | POST | PUT | DELETE |
 |-----|------|-----|--------|
 | /tasks/ | /tasks/ | /tasks/:id/ | /tasks/:id/ |
 | /tasks/:id/ | | /tasks/:id/status/ | |
+| /tasks/:id/comentarios/ | /tasks/:id/comentarios/ | /tasks/:id/comentarios/:idcomentario/ | /tasks/:id/comentarios/:idcomentario/ |
 
 `/tasks/` `/tasks/1/` As funções *GET* retornam as seguintes informações de tasks:
 ```json
