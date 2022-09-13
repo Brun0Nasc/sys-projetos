@@ -59,7 +59,6 @@ EXECUTE PROCEDURE trigger_set_timestamp();
 CREATE TABLE "tasks" (
   "id_task" bigserial PRIMARY KEY,
   "descricao_task" text NOT NULL,
-  "comentario" text,
   "pessoa_id" bigint,
   "projeto_id" bigint NOT NULL,
   "status" varchar(80) NOT NULL DEFAULT 'Em planejamento',
@@ -76,6 +75,21 @@ CREATE TABLE "tasks" (
 
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON "tasks"
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+CREATE TABLE comentarios (
+	id_comentario bigserial primary key,
+	task_id bigint not null,	
+	comentario text not null,
+	created_at timestamp not null default (now()),
+	updated_at timestamp not null default (now()),
+	constraint fk_task
+	foreign key(task_id)
+		references tasks(id_task) on delete cascade
+);
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON "comentarios"
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
